@@ -97,8 +97,16 @@ function App() {
 function Home() {
   return (
     <main>
-      <h2>Welcome to homepage</h2>
-      <p>Placeholder</p>
+      <div className="h-full w-full p-5">
+        <div className="w-96 inline-flex flex-row justify-around content-center card bg-slate-900">
+          <figure>
+            <img src="images/wel-to-fam.jpg" alt="" />
+          </figure>
+          <div className="card-body">
+            <h2 className="card-title">Welcome to the Family!</h2>
+          </div>
+        </div>
+      </div>
     </main>
   );
 }

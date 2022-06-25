@@ -1,70 +1,45 @@
-# Getting Started with Create React App
+# Welcome to the Project Omerta repository!
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Thanks for checking the game out, it's currently still in early development.
 
-## Available Scripts
+## Technology we're using to create the game
 
-In the project directory, you can run:
+We're using Javascript, React, Node.js and Tailwind CSS. We want to provide a very fluid and responsive user experience, since right now most web/text-based games that I've played fall short in this area using outdated techonology.
 
-### `npm start`
+## Basis and idea of game
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+I'm a big fan of the following genres in gaming: crime, simulators, role-playing, massively multiplayer, political, text-based. I wanted to combine all of these genres into my vision for the perfect game to me, and hopefully many others eventually. The idea is too have each player control criminal characters, who may band together to form families (mafia-esque). I want in-depth customization in the following areas: Character, Families, Safehouses, Rackets.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Closed beta and invitation keys
 
-### `npm test`
+Right now the closed beta is extremely limited to trusted testers, and we'll let you know when this changes. We're very excited to share the game with you!
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Map and Tiles
 
-### `npm run build`
+Players and families will control, expand and fight over tiles, which will be plots of land in the hand-crafted map for the game. Tiles will either be empty, or have already built structures that can't be destroyed like exclusive rackets, authority buildings, entertainment venues etc...
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+When it comes to empty tiles, the playerbase will be able to invest in buildings and infrastructure that will bring in money and/or resources. We'll also have player/family specific buildings like hideouts/safehouses/compounds that will be customizable as well. Infrastructure such as water, electricity, roads, rail and water will work in a similar way.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Politics, intelligence and war
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Politics between players/families/authorities will be a vital mechanic, allowing war/truces/deals between entities. Families can team up together to bring down another family that's expanding into their territory. Maybe they want access to move goods with another family's infrastructue, and in return they give a percentage of profits. A council of high ranking family members will be a coded part of the game, but my vision is that most of the politics happens in the community in discord servers etc...
 
-### `npm run eject`
+### Character and Roleplaying
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Giving players the in-depth customization options to help build a character, encourages roleplaying and makes for a more vibrant, serious and bonded community. A developer can only do so much to breathe life into a game, the rest depends on the community that surronds and plays the game. We must allow players to create the stories they want, and be able to convey those stories clearly and easily.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Trading and economy
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Trading will be open to both solo players and families, you'll be able to sell and buy resources in a free market player-driven economy. Related to this I want a public API accessible by the playerbase, that would allow intuitive players to track, and even automate the trading process entirely with scripts.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Rackets
 
-## Learn More
+The game will have multiple ways of making money and resources, and they will be called rackets. You will have ordinary staple rackets that are buildable on tiles, and we will also have exclusive rackets that are pre-allocated to tiles in cities that will not be buildable by players. These exclusive rackets will have special perks, that will encourage fighting between families.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Intelligence and Espionage
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+This will be a family exclusive mecahnic, opened up by specific buildable infrastructure that will allow families to track others, spread disinformation and sow chaos amongst others through covert means. A sub-mechanic of risk will be included, that can make operations fail either privately or publicly.
 
-### Code Splitting
+## Thanks for reading, Machied appreciates your support
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Machied was founded by people who love games, and see them as a cornerstone to modern entertainment. We seek to change people's lives with not just revoultinary productivity tools, website design and marketing. We want to connect people, to help them smile, cry, scream and laugh with eachother. Games are the ultimate medium to achieve this, and we hope that Project Omerta will live up to this goal.
