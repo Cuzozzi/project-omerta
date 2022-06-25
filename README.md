@@ -14,29 +14,29 @@ I'm a big fan of the following genres in gaming: crime, simulators, role-playing
 
 Right now the closed beta is extremely limited to trusted testers, and we'll let you know when this changes. We're very excited to share the game with you!
 
-### Map and Tiles
+## Map and Tiles
 
 Players and families will control, expand and fight over tiles, which will be plots of land in the hand-crafted map for the game. Tiles will either be empty, or have already built structures that can't be destroyed like exclusive rackets, authority buildings, entertainment venues etc...
 
 When it comes to empty tiles, the playerbase will be able to invest in buildings and infrastructure that will bring in money and/or resources. We'll also have player/family specific buildings like hideouts/safehouses/compounds that will be customizable as well. Infrastructure such as water, electricity, roads, rail and water will work in a similar way.
 
-### Politics, intelligence and war
+## Politics, intelligence and war
 
 Politics between players/families/authorities will be a vital mechanic, allowing war/truces/deals between entities. Families can team up together to bring down another family that's expanding into their territory. Maybe they want access to move goods with another family's infrastructue, and in return they give a percentage of profits. A council of high ranking family members will be a coded part of the game, but my vision is that most of the politics happens in the community in discord servers etc...
 
-### Character and Roleplaying
+## Character and Roleplaying
 
 Giving players the in-depth customization options to help build a character, encourages roleplaying and makes for a more vibrant, serious and bonded community. A developer can only do so much to breathe life into a game, the rest depends on the community that surronds and plays the game. We must allow players to create the stories they want, and be able to convey those stories clearly and easily.
 
-### Trading and economy
+## Trading and economy
 
 Trading will be open to both solo players and families, you'll be able to sell and buy resources in a free market player-driven economy. Related to this I want a public API accessible by the playerbase, that would allow intuitive players to track, and even automate the trading process entirely with scripts.
 
-### Rackets
+## Rackets
 
 The game will have multiple ways of making money and resources, and they will be called rackets. You will have ordinary staple rackets that are buildable on tiles, and we will also have exclusive rackets that are pre-allocated to tiles in cities that will not be buildable by players. These exclusive rackets will have special perks, that will encourage fighting between families.
 
-### Intelligence and Espionage
+## Intelligence and Espionage
 
 This will be a family exclusive mecahnic, opened up by specific buildable infrastructure that will allow families to track others, spread disinformation and sow chaos amongst others through covert means. A sub-mechanic of risk will be included, that can make operations fail either privately or publicly.
 
