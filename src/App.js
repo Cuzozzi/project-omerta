@@ -103,10 +103,16 @@ function Home() {
             <img src="images/wel-to-fam.jpg" alt="" />
           </figure>
           <div className="card-body items-center text-center">
-            <h2 className="card-title">Welcome to the Family!</h2>
+            <h2 className="card-title pb-4">Welcome to the Family!</h2>
             <p>
-              Create a character now! Make friends, enemies and most importantly
-              family.
+              Create a character now! Make friends, enemies, and most
+              importantly family. Make sure to create or join a family, the game
+              is easier when you band together!
+            </p>
+            <p className="pt-4">
+              Project Omerta is a massively multiplayer game focused on
+              player-to-player interaction and community. You will thrive
+              further, and fall easier when you have someone backing you up.
             </p>
           </div>
         </div>
@@ -115,8 +121,18 @@ function Home() {
             <img src="images/empire.jpg" alt="" className="h-64 w-96" />
           </figure>
           <div className="card-body items-center text-center">
-            <h2 className="card-title">Take control of your empire!</h2>
-            <p></p>
+            <h2 className="card-title pb-4">Take control of your empire!</h2>
+            <p>
+              Run your empire how you want! You will have plenty of
+              opportunities at your feet, whether by yourself or with your
+              family. Just make sure to keep a tight grip on power.
+            </p>
+            <p className="pt-4">
+              Take control of map tiles so you can build rackets, safehouses,
+              compounds, or infrastructure. Rise to the top, by force or through
+              deals. Make clever trades and deals so you can consolidate your
+              power.
+            </p>
           </div>
         </div>
         <div className="w-96 h-100 card m-4 bg-slate-900">
@@ -124,7 +140,18 @@ function Home() {
             <img src="images/chess.jpg" alt="" className="h-64 w-96" />
           </figure>
           <div className="card-body items-center text-center">
-            <h2 className="card-title">Fight your way to the top!</h2>
+            <h2 className="card-title pb-4">Fight your way to the top!</h2>
+            <p>
+              When you can't talk it out over the table, show them who's boss!
+              Take down other families with sheer force and destruction. In this
+              life, nothing is out of the question.
+            </p>
+            <p className="pt-4">
+              You have plenty of tools at your disposal to take what is yours!
+              Fight it out with warfare, espionage, bribing officials, or take
+              over politics itself. Make sure they know where they stand,
+              capiche?
+            </p>
           </div>
         </div>
       </div>
