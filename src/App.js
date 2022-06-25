@@ -17,7 +17,8 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <div className="flex flex-row justify-around content-center navbar bg-slate-700">
+        <div className="inline-flex flex-row justify-around content-center navbar bg-slate-700">
+          <p className="text-xl">Project Omerta</p>
           <Link to="/" className="btn btn-ghost normal-case text-xl">
             Home
           </Link>
@@ -34,18 +35,14 @@ function App() {
             Rules
           </Link>
         </div>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/account" element={<Account />} />
-          <Route path="/team" element={<Team />} />
-          <Route path="/rules" element={<Rules />} />
-        </Routes>
       </header>
       <main>
-        <div className="gameplay-bar">
-          <div className="w-32 mr-5 inline-flex flex-col content-between navbar">
-            <Link to="/character" className="btn btn-ghost normal-case text-xl">
+        <div className="gameplay-bar inline-flex">
+          <div className="w-32 px-20 inline-flex flex-col content-between navbar gap-10 bg-slate-800">
+            <Link
+              to="/character"
+              className="mt-10 btn btn-ghost normal-case text-xl"
+            >
               Character
             </Link>
             <Link
@@ -71,7 +68,7 @@ function App() {
             </Link>
             <Link
               to="/intelligence"
-              className="btn btn-ghost normal-case text-xl"
+              className="mb-10 btn btn-ghost normal-case text-xl"
             >
               Intelligence
             </Link>
@@ -85,6 +82,11 @@ function App() {
             <Route path="/politics" element={<Politics />} />
             <Route path="/trading" element={<Trading />} />
             <Route path="/intelligence" element={<Intelligence />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/account" element={<Account />} />
+            <Route path="/team" element={<Team />} />
+            <Route path="/rules" element={<Rules />} />
           </Routes>
         </div>
       </main>
@@ -93,7 +95,12 @@ function App() {
 }
 
 function Home() {
-  return <main></main>;
+  return (
+    <main>
+      <h2>Welcome to homepage</h2>
+      <p>Placeholder</p>
+    </main>
+  );
 }
 
 export default App;
