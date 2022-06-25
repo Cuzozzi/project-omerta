@@ -31,7 +31,7 @@ function App() {
           <Link to="/team" className="btn btn-ghost normal-case text-xl">
             Team
           </Link>
-          <Link to="/rules" className="btn btn-ghost normal-case text-xl">
+          <Link to="/rules" className="btn btn-ghost normal-case text-xl w-max">
             Rules
           </Link>
         </div>
@@ -98,28 +98,33 @@ function Home() {
   return (
     <main>
       <div className="h-full w-full p-5 inline-flex flex-row content-between">
-        <div className="w-96 h-96 card m-4 bg-slate-900">
+        <div className="w-96 h-100 card m-4 bg-slate-900">
           <figure>
             <img src="images/wel-to-fam.jpg" alt="" />
           </figure>
-          <div className="card-body">
+          <div className="card-body items-center text-center">
             <h2 className="card-title">Welcome to the Family!</h2>
+            <p>
+              Create a character now! Make friends, enemies and most importantly
+              family.
+            </p>
           </div>
         </div>
-        <div className="w-96 h-96 card m-4 bg-slate-900">
-          <figure>
-            <img src="images/wel-to-fam.jpg" alt="" />
+        <div className="w-96 h-100 card m-4 bg-slate-900">
+          <figure className="h-64">
+            <img src="images/empire.jpg" alt="" className="h-64 w-96" />
           </figure>
-          <div className="card-body">
-            <h2 className="card-title">Welcome to the Family!</h2>
+          <div className="card-body items-center text-center">
+            <h2 className="card-title">Take control of your empire!</h2>
+            <p></p>
           </div>
         </div>
-        <div className="w-96 h-96 card m-4 bg-slate-900">
+        <div className="w-96 h-100 card m-4 bg-slate-900">
           <figure>
-            <img src="images/wel-to-fam.jpg" alt="" />
+            <img src="images/chess.jpg" alt="" className="h-64 w-96" />
           </figure>
-          <div className="card-body">
-            <h2 className="card-title">Welcome to the Family!</h2>
+          <div className="card-body items-center text-center">
+            <h2 className="card-title">Fight your way to the top!</h2>
           </div>
         </div>
       </div>

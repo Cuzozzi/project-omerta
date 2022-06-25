@@ -2510,6 +2510,10 @@ html {
   height: 24rem;
 }
 
+.h-64 {
+  height: 16rem;
+}
+
 .w-5 {
   width: 1.25rem;
 }
@@ -2532,6 +2536,11 @@ html {
 
 .w-96 {
   width: 24rem;
+}
+
+.w-max {
+  width: -webkit-max-content;
+  width: max-content;
 }
 
 .flex-none {
@@ -2658,6 +2667,10 @@ html {
 
 .pl-2 {
   padding-left: 0.5rem;
+}
+
+.text-center {
+  text-align: center;
 }
 
 .text-xl {
