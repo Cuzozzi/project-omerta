@@ -13,6 +13,8 @@ import Politics from "./pages/politics";
 import Trading from "./pages/trading";
 import Intelligence from "./pages/intelligence";
 
+const axios = require("axios");
+
 function App() {
   return (
     <div className="App">
