@@ -13,16 +13,15 @@ import Politics from "./pages/politics";
 import Trading from "./pages/trading";
 import Intelligence from "./pages/intelligence";
 import Signup from "./pages/signup";
+import Signup1 from "./pages/signup-1";
 import Login from "./pages/login";
-
-const axios = require("axios");
 
 function App() {
   return (
-    <div className="p-4">
+    <div className="">
       <div className="App">
-        <header className="App-header rounded">
-          <div className="inline-flex flex-row justify-around content-center navbar bg-slate-700 rounded">
+        <header className="App-header rounded-t">
+          <div className="inline-flex flex-row justify-around content-center navbar bg-slate-700 rounded-t">
             <p className="text-xl">Project Omerta</p>
             <Link to="/" className="btn btn-ghost normal-case text-xl">
               Home
@@ -39,42 +38,27 @@ function App() {
           </div>
         </header>
         <main>
-          <div className="gameplay-bar inline-flex">
-            <div className="w-32 px-20 inline-flex flex-col content-between navbar gap-10 bg-slate-800 rounded">
-              <Link
-                to="/character"
-                className="mt-10 btn btn-ghost normal-case text-xl"
-              >
+          <div className="gameplay-bar flex bg-slate-900">
+            <div className="w-28 border-2 border-slate-800 justify-center items-center inline-flex flex-col navbar gap-10 bg-slate-800">
+              <Link to="/character" className="btn btn-ghost bold">
                 Character
               </Link>
-              <Link
-                to="/safehouses"
-                className="btn btn-ghost normal-case text-xl"
-              >
+              <Link to="/safehouses" className="btn btn-ghost bold">
                 Safehouses
               </Link>
-              <Link to="/map" className="btn btn-ghost normal-case text-xl">
-                Map
-              </Link>
-              <Link to="/rackets" className="btn btn-ghost normal-case text-xl">
+              <Link to="/rackets" className="btn btn-ghost bold">
                 Rackets
               </Link>
-              <Link to="/family" className="btn btn-ghost normal-case text-xl">
+              <Link to="/family" className="btn btn-ghost bold">
                 Family
               </Link>
-              <Link
-                to="/politics"
-                className="btn btn-ghost normal-case text-xl"
-              >
-                Politics
+              <Link to="/politics" className="btn btn-ghost bold">
+                Politcs
               </Link>
-              <Link to="/trading" className="btn btn-ghost normal-case text-xl">
+              <Link to="/trading" className="btn btn-ghost bold">
                 Trading
               </Link>
-              <Link
-                to="/intelligence"
-                className="mb-10 btn btn-ghost normal-case text-xl"
-              >
+              <Link to="/intelligence" className="btn btn-ghost bold">
                 Intelligence
               </Link>
             </div>
@@ -93,19 +77,20 @@ function App() {
               <Route path="/team" element={<Team />} />
               <Route path="/rules" element={<Rules />} />
               <Route path="/signup" element={<Signup />} />
+              <Route path="/signup-1" element={<Signup1 />} />
               <Route path="/login" element={<Login />} />
             </Routes>
           </div>
         </main>
-        <footer class="footer p-4 bg-base-200 text-base-content rounded items-end">
-          <div class="grid grid-flow-col gap-4 m-0 p-0">
-            <Link to="/about" class="link link-hover">
+        <footer className="footer p-4 text-base-content rounded-b items-end bg-slate-700">
+          <div className="grid grid-flow-col gap-4 m-0 p-0">
+            <Link to="/about" className="link link-hover">
               About us
             </Link>
-            <Link to="/team" class="link link-hover">
+            <Link to="/team" className="link link-hover">
               Our Team
             </Link>
-            <Link to="/rules" class="link link-hover">
+            <Link to="/rules" className="link link-hover">
               Game Rules
             </Link>
           </div>
@@ -117,11 +102,11 @@ function App() {
 
 function Home() {
   return (
-    <main>
-      <div className="h-full w-full p-5 inline-flex flex-row content-between">
-        <div className="w-96 h-100 card m-4 bg-slate-900">
-          <figure>
-            <img src="images/wel-to-fam.jpg" alt="" />
+    <main className="p-4 bg-slate-900 main-window">
+      <div className="h-full w-full p-5 inline-flex flex-row content-between bg-slate-900 rounded">
+        <div className="w-96 h-100 card m-4 bg-slate-800">
+          <figure className="overflow-hidden">
+            <img src="images/wel-to-fam.jpg" alt="" className="h-64" />
           </figure>
           <div className="card-body items-center text-center">
             <h2 className="card-title pb-4">Welcome to the Family!</h2>
@@ -137,9 +122,9 @@ function Home() {
             </p>
           </div>
         </div>
-        <div className="w-96 h-100 card m-4 bg-slate-900">
-          <figure className="h-64">
-            <img src="images/empire.jpg" alt="" className="h-64 w-96" />
+        <div className="w-96 h-100 card m-4 bg-slate-800">
+          <figure className="h-64 overflow-hidden">
+            <img src="images/empire.jpg" alt="" className="object-fill" />
           </figure>
           <div className="card-body items-center text-center">
             <h2 className="card-title pb-4">Take control of your empire!</h2>
@@ -156,9 +141,9 @@ function Home() {
             </p>
           </div>
         </div>
-        <div className="w-96 h-100 card m-4 bg-slate-900">
-          <figure>
-            <img src="images/chess.jpg" alt="" className="h-64 w-96" />
+        <div className="w-96 h-100 card m-4 bg-slate-800">
+          <figure className="overflow-hidden">
+            <img src="images/chess.jpg" alt="" className="h-64" />
           </figure>
           <div className="card-body items-center text-center">
             <h2 className="card-title pb-4">Fight your way to the top!</h2>

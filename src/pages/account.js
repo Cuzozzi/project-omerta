@@ -2,10 +2,6 @@ import "../output.css";
 
 const axios = require("axios");
 
-function test() {
-  console.log("this works");
-}
-
 function Account() {
   return (
     <main>

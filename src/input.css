@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+  .main-window {
+    width: calc(100vw - 112px);
+    height: calc(100vh - 116px);
+  }
+  .bg-main-yellow {
+    background-color: rgb(86 72 52);
+  }
+}

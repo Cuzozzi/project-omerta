@@ -3,7 +3,7 @@ const axios = require("axios");
 
 function Login() {
   return (
-    <div className="hero min-h-screen bg-base-200">
+    <div className="hero main-window bg-base-200">
       <div className="hero-content flex-col lg:flex-row-reverse">
         <div className="text-center lg:text-left">
           <h1 className="text-5xl font-bold">Login now!</h1>
@@ -36,7 +36,10 @@ function Login() {
                 className="input input-bordered"
               />
               <label className="label">
-                <a href="#" className="label-text-alt link link-hover">
+                <a
+                  href="http://localhost:3001"
+                  className="label-text-alt link link-hover"
+                >
                   Forgot password?
                 </a>
               </label>
