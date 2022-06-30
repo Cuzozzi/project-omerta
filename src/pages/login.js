@@ -1,9 +1,11 @@
 import "../output.css";
+import { useNavigate } from "react-router-dom";
 const axios = require("axios");
 
 function Login() {
+  let navigate = useNavigate();
   return (
-    <div className="hero main-window bg-base-200">
+    <div className="hero main-window bg-slate-90">
       <div className="hero-content flex-col lg:flex-row-reverse">
         <div className="text-center lg:text-left">
           <h1 className="text-5xl font-bold">Login now!</h1>
@@ -51,11 +53,19 @@ function Login() {
                   console.log("boop-2");
                   axios({
                     method: "post",
-                    url: "http://localhost:5433/login_credentials",
+                    url: "http://localhost:5433/login_authentication",
                     data: {
                       email: document.getElementById("login-email").value,
                       password: document.getElementById("login-password").value,
                     },
+                  }).then(function (response) {
+                    console.log(response);
+                    if (response.data.response === "Authenticated") {
+                      localStorage.setItem("token", response.data.token);
+                      navigate("/account", { replace: true });
+                    } else {
+                      console.log("Wrong Password");
+                    }
                   });
                 }}
               >
