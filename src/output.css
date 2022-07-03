@@ -2989,6 +2989,11 @@ html {
   height: calc(100vh - 116px);
 }
 
+.main-window-2 {
+  width: calc(100vw);
+  height: calc(100vh - 116px);
+}
+
 @media (min-width: 1024px) {
   .lg\:flex-row-reverse {
     flex-direction: row-reverse;

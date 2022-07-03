@@ -2,7 +2,7 @@ import "../output.css";
 
 function Team() {
   return (
-    <main>
+    <main className="main-window">
       <h2>Team</h2>
       <p>Placeholder</p>
     </main>

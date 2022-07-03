@@ -7,6 +7,10 @@
     width: calc(100vw - 112px);
     height: calc(100vh - 116px);
   }
+  .main-window-2 {
+    width: calc(100vw);
+    height: calc(100vh - 116px);
+  }
   .bg-main-yellow {
     background-color: rgb(86 72 52);
   }

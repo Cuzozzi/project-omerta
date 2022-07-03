@@ -2,7 +2,7 @@ import "../output.css";
 
 function Map() {
   return (
-    <main>
+    <main className="main-window">
       <h2>Map</h2>
       <p>Placeholder</p>
     </main>

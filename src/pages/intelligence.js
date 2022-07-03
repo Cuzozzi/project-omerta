@@ -2,7 +2,7 @@ import "../output.css";
 
 function Intelligence() {
   return (
-    <main>
+    <main className="main-window">
       <h2>Intelligence</h2>
       <p>Placeholder</p>
     </main>

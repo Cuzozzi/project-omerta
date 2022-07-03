@@ -2,7 +2,7 @@ import "../output.css";
 
 function Trading() {
   return (
-    <main>
+    <main className="main-window">
       <h2>Trading</h2>
       <p>Placeholder</p>
     </main>

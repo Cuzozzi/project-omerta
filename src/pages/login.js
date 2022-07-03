@@ -1,5 +1,7 @@
 import "../output.css";
 import { useNavigate } from "react-router-dom";
+import { conditionSet } from "../App";
+
 const axios = require("axios");
 
 function Login() {
@@ -62,7 +64,9 @@ function Login() {
                     console.log(response);
                     if (response.data.response === "Authenticated") {
                       localStorage.setItem("token", response.data.token);
-                      navigate("/account", { replace: true });
+                      conditionSet();
+                      navigate("/", { replace: true });
+                      window.location.reload();
                     } else {
                       console.log("Wrong Password");
                     }
