@@ -1,4 +1,5 @@
 import { Routes, Route, Link, useNavigate } from "react-router-dom";
+import { Navigate } from "react-router";
 import { useState } from "react";
 import "./output.css";
 import About from "./pages/about";
@@ -17,6 +18,7 @@ import Signup from "./pages/signup";
 import Signup1 from "./pages/signup-1";
 import Login from "./pages/login";
 import axios from "axios";
+import { Component } from "react";
 
 function App() {
   const [conditionValue, setConditionValue] = useState();
@@ -46,6 +48,14 @@ function App() {
       }
     });
     return;
+  }
+
+  function protectedRoute(Component) {
+    if (conditionValue) {
+      return <Component />;
+    } else {
+      return <Login authCheck={authCheck} />;
+    }
   }
 
   if (conditionValue) {
@@ -109,20 +119,26 @@ function App() {
                 </Link>
               </div>
               <Routes>
-                <Route path="/character" element={<Character />} />
-                <Route path="/safehouses" element={<Safehouses />} />
-                <Route path="/map" element={<Map />} />
-                <Route path="/rackets" element={<Rackets />} />
-                <Route path="/family" element={<Family />} />
-                <Route path="/politics" element={<Politics />} />
-                <Route path="/trading" element={<Trading />} />
-                <Route path="/intelligence" element={<Intelligence />} />
+                <Route path="/character" element={protectedRoute(Character)} />
+                <Route
+                  path="/safehouses"
+                  element={protectedRoute(Safehouses)}
+                />
+                <Route path="/map" element={protectedRoute(Map)} />
+                <Route path="/rackets" element={protectedRoute(Rackets)} />
+                <Route path="/family" element={protectedRoute(Family)} />
+                <Route path="/politics" element={protectedRoute(Politics)} />
+                <Route path="/trading" element={protectedRoute(Trading)} />
+                <Route
+                  path="/intelligence"
+                  element={protectedRoute(Intelligence)}
+                />
                 <Route
                   path="/"
                   element={<Home conditionValue={conditionValue} />}
                 />
                 <Route path="/about" element={<About />} />
-                <Route path="/account" element={<Account />} />
+                <Route path="/account" element={protectedRoute(Account)} />
                 <Route path="/team" element={<Team />} />
                 <Route path="/rules" element={<Rules />} />
                 <Route path="/signup" element={<Signup />} />
@@ -171,20 +187,26 @@ function App() {
           <main>
             <div className="gameplay-bar flex bg-slate-900">
               <Routes>
-                <Route path="/character" element={<Character />} />
-                <Route path="/safehouses" element={<Safehouses />} />
-                <Route path="/map" element={<Map />} />
-                <Route path="/rackets" element={<Rackets />} />
-                <Route path="/family" element={<Family />} />
-                <Route path="/politics" element={<Politics />} />
-                <Route path="/trading" element={<Trading />} />
-                <Route path="/intelligence" element={<Intelligence />} />
+                <Route path="/character" element={protectedRoute(Character)} />
+                <Route
+                  path="/safehouses"
+                  element={protectedRoute(Safehouses)}
+                />
+                <Route path="/map" element={protectedRoute(Map)} />
+                <Route path="/rackets" element={protectedRoute(Rackets)} />
+                <Route path="/family" element={protectedRoute(Family)} />
+                <Route path="/politics" element={protectedRoute(Politics)} />
+                <Route path="/trading" element={protectedRoute(Trading)} />
+                <Route
+                  path="/intelligence"
+                  element={protectedRoute(Intelligence)}
+                />
                 <Route
                   path="/"
                   element={<Home conditionValue={conditionValue} />}
                 />
                 <Route path="/about" element={<About />} />
-                <Route path="/account" element={<Account />} />
+                <Route path="/account" element={protectedRoute(Account)} />
                 <Route path="/team" element={<Team />} />
                 <Route path="/rules" element={<Rules />} />
                 <Route path="/signup" element={<Signup />} />
