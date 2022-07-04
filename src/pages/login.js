@@ -1,11 +1,10 @@
 import "../output.css";
 import { useNavigate } from "react-router-dom";
-import { conditionSet } from "../App";
 import { useState } from "react";
 
 const axios = require("axios");
 
-function Login() {
+function Login(props) {
   let navigate = useNavigate();
   // eslint-disable-next-line
   const [_, startRefresh] = useState(0);
@@ -70,7 +69,7 @@ function Login() {
                     console.log(response);
                     if (response.data.response === "Authenticated") {
                       localStorage.setItem("token", response.data.token);
-                      conditionSet();
+                      props.authCheck();
                       navigate("/", { replace: true });
                       refresh();
                     } else {

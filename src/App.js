@@ -18,45 +18,36 @@ import Signup1 from "./pages/signup-1";
 import Login from "./pages/login";
 import axios from "axios";
 
-let conditionValue = false;
-
-export function conditionSet() {
-  if (localStorage.getItem("token")) {
-    conditionValue = true;
-  } else {
-    conditionValue = false;
-  }
-}
-
-function authCheck() {
-  let token = String(localStorage.getItem("token"));
-  console.log(token);
-  axios({
-    method: "post",
-    url: "http://localhost:5433/authentication_time_check",
-    data: {
-      token: token,
-    },
-  }).then(function (response) {
-    console.log(response);
-    if (response.data.response === "Token invalid") {
-      localStorage.removeItem("token");
-    } else {
-      return "Authenticated";
-    }
-  });
-}
-
-authCheck();
-conditionSet();
-
 function App() {
+  const [conditionValue, setConditionValue] = useState();
   let navigate = useNavigate();
   // eslint-disable-next-line
   const [_, startRefresh] = useState(0);
   const refresh = () => {
     startRefresh({});
   };
+
+  function authCheck() {
+    let token = String(localStorage.getItem("token"));
+    console.log(token);
+    axios({
+      method: "post",
+      url: "http://localhost:5433/authentication_time_check",
+      data: {
+        token: token,
+      },
+    }).then(function (response) {
+      console.log(response.data.response);
+      if (response.data.response === "Token invalid") {
+        localStorage.removeItem("token");
+        setConditionValue(false);
+      } else {
+        setConditionValue(true);
+      }
+    });
+    return;
+  }
+
   if (conditionValue) {
     return (
       <div className="">
@@ -83,7 +74,7 @@ function App() {
                     },
                   });
                   localStorage.removeItem("token");
-                  conditionSet();
+                  authCheck();
                   navigate("/", { replace: true });
                   refresh();
                 }}
@@ -126,14 +117,20 @@ function App() {
                 <Route path="/politics" element={<Politics />} />
                 <Route path="/trading" element={<Trading />} />
                 <Route path="/intelligence" element={<Intelligence />} />
-                <Route path="/" element={<Home />} />
+                <Route
+                  path="/"
+                  element={<Home conditionValue={conditionValue} />}
+                />
                 <Route path="/about" element={<About />} />
                 <Route path="/account" element={<Account />} />
                 <Route path="/team" element={<Team />} />
                 <Route path="/rules" element={<Rules />} />
                 <Route path="/signup" element={<Signup />} />
                 <Route path="/signup-1" element={<Signup1 />} />
-                <Route path="/login" element={<Login />} />
+                <Route
+                  path="/login"
+                  element={<Login authCheck={authCheck} />}
+                />
               </Routes>
             </div>
           </main>
@@ -182,14 +179,20 @@ function App() {
                 <Route path="/politics" element={<Politics />} />
                 <Route path="/trading" element={<Trading />} />
                 <Route path="/intelligence" element={<Intelligence />} />
-                <Route path="/" element={<Home />} />
+                <Route
+                  path="/"
+                  element={<Home conditionValue={conditionValue} />}
+                />
                 <Route path="/about" element={<About />} />
                 <Route path="/account" element={<Account />} />
                 <Route path="/team" element={<Team />} />
                 <Route path="/rules" element={<Rules />} />
                 <Route path="/signup" element={<Signup />} />
                 <Route path="/signup-1" element={<Signup1 />} />
-                <Route path="/login" element={<Login />} />
+                <Route
+                  path="/login"
+                  element={<Login authCheck={authCheck} />}
+                />
               </Routes>
             </div>
           </main>
@@ -212,8 +215,8 @@ function App() {
   }
 }
 
-function Home() {
-  if (conditionValue) {
+function Home(props) {
+  if (props.conditionValue) {
     return (
       <main className="p-4 bg-slate-900 main-window">
         <div className="h-full w-full p-5 inline-flex flex-row content-between bg-slate-900 rounded">
