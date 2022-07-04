@@ -1,4 +1,5 @@
 import { Routes, Route, Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
 import "./output.css";
 import About from "./pages/about";
 import Account from "./pages/account";
@@ -15,6 +16,7 @@ import Intelligence from "./pages/intelligence";
 import Signup from "./pages/signup";
 import Signup1 from "./pages/signup-1";
 import Login from "./pages/login";
+import axios from "axios";
 
 let conditionValue = false;
 
@@ -28,8 +30,13 @@ export function conditionSet() {
 
 conditionSet();
 
-export function App() {
+function App() {
   let navigate = useNavigate();
+  // eslint-disable-next-line
+  const [_, startRefresh] = useState(0);
+  const refresh = () => {
+    startRefresh({});
+  };
   if (conditionValue) {
     return (
       <div className="">
@@ -43,16 +50,22 @@ export function App() {
               <Link to="/account" className="btn btn-ghost normal-case text-xl">
                 Account
               </Link>
-              <Link to="/signup" className="btn btn-ghost normal-case text-xl">
-                Signup
-              </Link>
               <button
                 className="btn btn-ghost normal-case text-xl"
                 onClick={() => {
+                  let token = String(localStorage.getItem("token"));
+                  console.log(token);
+                  axios({
+                    method: "delete",
+                    url: "http://localhost:5433/authentication",
+                    data: {
+                      token,
+                    },
+                  });
                   localStorage.removeItem("token");
                   conditionSet();
                   navigate("/", { replace: true });
-                  window.location.reload();
+                  refresh();
                 }}
               >
                 Logout

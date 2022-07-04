@@ -1,11 +1,17 @@
 import "../output.css";
 import { useNavigate } from "react-router-dom";
 import { conditionSet } from "../App";
+import { useState } from "react";
 
 const axios = require("axios");
 
 function Login() {
   let navigate = useNavigate();
+  // eslint-disable-next-line
+  const [_, startRefresh] = useState(0);
+  const refresh = () => {
+    startRefresh({});
+  };
   return (
     <div className="hero main-window bg-slate-90">
       <div className="hero-content flex-col lg:flex-row-reverse">
@@ -24,7 +30,7 @@ function Login() {
               </label>
               <input
                 id="login-email"
-                type="text"
+                type="email"
                 placeholder="email"
                 className="input input-bordered"
               />
@@ -35,7 +41,7 @@ function Login() {
               </label>
               <input
                 id="login-password"
-                type="text"
+                type="password"
                 placeholder="password"
                 className="input input-bordered"
               />
@@ -55,7 +61,7 @@ function Login() {
                   console.log("boop-2");
                   axios({
                     method: "post",
-                    url: "http://localhost:5433/login_authentication",
+                    url: "http://localhost:5433/authentication",
                     data: {
                       email: document.getElementById("login-email").value,
                       password: document.getElementById("login-password").value,
@@ -66,7 +72,7 @@ function Login() {
                       localStorage.setItem("token", response.data.token);
                       conditionSet();
                       navigate("/", { replace: true });
-                      window.location.reload();
+                      refresh();
                     } else {
                       console.log("Wrong Password");
                     }

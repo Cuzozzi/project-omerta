@@ -6,7 +6,7 @@ const axios = require("axios");
 function Signup1() {
   //let navigate = useNavigate();
   return (
-    <main className="flex justify-center items-center main-window flex-col">
+    <main className="main-window-2 flex justify-center items-center main-window flex-col">
       <div className="mb-10">
         <ul className="steps">
           <li className="step step-primary">Register</li>
@@ -24,7 +24,7 @@ function Signup1() {
             </p>
             <div className="form-control mb-10">
               <input
-                type="text"
+                type="email"
                 placeholder="info@site.com"
                 className="input input-bordered"
                 id="email"
@@ -32,7 +32,7 @@ function Signup1() {
             </div>
             <div className="form-control mb-10">
               <input
-                type="text"
+                type="password"
                 placeholder="password"
                 className="input input-bordered"
                 id="password"
