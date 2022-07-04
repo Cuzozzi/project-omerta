@@ -28,6 +28,26 @@ export function conditionSet() {
   }
 }
 
+function authCheck() {
+  let token = String(localStorage.getItem("token"));
+  console.log(token);
+  axios({
+    method: "post",
+    url: "http://localhost:5433/authentication_time_check",
+    data: {
+      token: token,
+    },
+  }).then(function (response) {
+    console.log(response);
+    if (response.data.response === "Token invalid") {
+      localStorage.removeItem("token");
+    } else {
+      return "Authenticated";
+    }
+  });
+}
+
+authCheck();
 conditionSet();
 
 function App() {
