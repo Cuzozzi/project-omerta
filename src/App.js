@@ -1,4 +1,5 @@
 import { Routes, Route, Link, useNavigate } from "react-router-dom";
+// eslint-disable-next-line
 import { Navigate } from "react-router";
 import { useState } from "react";
 import "./output.css";
@@ -17,7 +18,10 @@ import Intelligence from "./pages/intelligence";
 import Signup from "./pages/signup";
 import Signup1 from "./pages/signup-1";
 import Login from "./pages/login";
+import Admin from "./pages/admin";
+import AdminConsole from "./pages/admin-console";
 import axios from "axios";
+// eslint-disable-next-line
 import { Component } from "react";
 
 function App() {
@@ -57,6 +61,8 @@ function App() {
       return <Login authCheck={authCheck} />;
     }
   }
+
+  authCheck();
 
   if (conditionValue) {
     return (
@@ -147,6 +153,8 @@ function App() {
                   path="/login"
                   element={<Login authCheck={authCheck} />}
                 />
+                <Route path="/admin" element={<Admin />} />
+                <Route path="/admin-console" element={<AdminConsole />} />
               </Routes>
             </div>
           </main>
@@ -215,6 +223,8 @@ function App() {
                   path="/login"
                   element={<Login authCheck={authCheck} />}
                 />
+                <Route path="/admin" element={<Admin />} />
+                <Route path="/admin-console" element={<AdminConsole />} />
               </Routes>
             </div>
           </main>
