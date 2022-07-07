@@ -69,6 +69,7 @@ function Login(props) {
                     console.log(response);
                     if (response.data.response === "Authenticated") {
                       localStorage.setItem("token", response.data.token);
+                      console.log("test-login");
                       props.authCheck();
                       navigate("/", { replace: true });
                       refresh();

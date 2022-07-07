@@ -1,6 +1,4 @@
 import { Routes, Route, Link, useNavigate } from "react-router-dom";
-// eslint-disable-next-line
-import { Navigate } from "react-router";
 import { useState } from "react";
 import "./output.css";
 import About from "./pages/about";
@@ -21,8 +19,6 @@ import Login from "./pages/login";
 import Admin from "./pages/admin";
 import AdminConsole from "./pages/admin-console";
 import axios from "axios";
-// eslint-disable-next-line
-import { Component } from "react";
 
 function App() {
   const [conditionValue, setConditionValue] = useState();
