@@ -1,10 +1,13 @@
 import "../output.css";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useRecoilState } from "recoil";
+import { authVerify0 } from "../atoms/authCheck";
 
 const axios = require("axios");
 
 function Login(props) {
+  const [auth, setAuth] = useRecoilState(authVerify0);
   let navigate = useNavigate();
   // eslint-disable-next-line
   const [_, startRefresh] = useState(0);
@@ -69,10 +72,9 @@ function Login(props) {
                     console.log(response);
                     if (response.data.response === "Authenticated") {
                       localStorage.setItem("token", response.data.token);
-                      console.log("test-login");
-                      props.authCheck();
+                      localStorage.setItem("isAdmin", response.data.admin);
+                      setAuth(true);
                       navigate("/", { replace: true });
-                      refresh();
                     } else {
                       console.log("Wrong Password");
                     }

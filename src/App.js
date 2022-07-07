@@ -1,5 +1,4 @@
 import { Routes, Route, Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
 import "./output.css";
 import About from "./pages/about";
 import Account from "./pages/account";
@@ -19,48 +18,32 @@ import Login from "./pages/login";
 import Admin from "./pages/admin";
 import AdminConsole from "./pages/admin-console";
 import axios from "axios";
+import { authVerify0 } from "./atoms/authCheck";
+import { adminAuth } from "./atoms/adminAuthCheck";
+import { useRecoilState } from "recoil";
 
 function App() {
-  const [conditionValue, setConditionValue] = useState();
+  const [auth, setAuth] = useRecoilState(authVerify0);
+  const [adAuth, setAdminAuth] = useRecoilState(adminAuth);
   let navigate = useNavigate();
-  // eslint-disable-next-line
-  const [_, startRefresh] = useState(0);
-  const refresh = () => {
-    startRefresh({});
-  };
-
-  function authCheck() {
-    let token = String(localStorage.getItem("token"));
-    console.log(token);
-    axios({
-      method: "post",
-      url: "http://localhost:5433/authentication_time_check",
-      data: {
-        token: token,
-      },
-    }).then(function (response) {
-      console.log(response.data.response);
-      if (response.data.response === "Token invalid") {
-        localStorage.removeItem("token");
-        setConditionValue(false);
-      } else {
-        setConditionValue(true);
-      }
-    });
-    return;
-  }
 
   function protectedRoute(Component) {
-    if (conditionValue) {
+    if (auth) {
       return <Component />;
     } else {
-      return <Login authCheck={authCheck} />;
+      return <Login authCheck={auth} />;
     }
   }
 
-  authCheck();
+  function protectedAdminRoute(Component) {
+    if (adAuth) {
+      return <Component />;
+    } else {
+      return <Login authCheck={auth} />;
+    }
+  }
 
-  if (conditionValue) {
+  if (auth) {
     return (
       <div className="">
         <div className="App">
@@ -86,9 +69,8 @@ function App() {
                     },
                   });
                   localStorage.removeItem("token");
-                  authCheck();
-                  navigate("/", { replace: true });
-                  refresh();
+                  setAuth(false);
+                  navigate("/login", { replace: true });
                 }}
               >
                 Logout
@@ -135,22 +117,19 @@ function App() {
                   path="/intelligence"
                   element={protectedRoute(Intelligence)}
                 />
-                <Route
-                  path="/"
-                  element={<Home conditionValue={conditionValue} />}
-                />
+                <Route path="/" element={<Home conditionValue={auth} />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/account" element={protectedRoute(Account)} />
                 <Route path="/team" element={<Team />} />
                 <Route path="/rules" element={<Rules />} />
                 <Route path="/signup" element={<Signup />} />
                 <Route path="/signup-1" element={<Signup1 />} />
-                <Route
-                  path="/login"
-                  element={<Login authCheck={authCheck} />}
-                />
+                <Route path="/login" element={<Login authCheck={auth} />} />
                 <Route path="/admin" element={<Admin />} />
-                <Route path="/admin-console" element={<AdminConsole />} />
+                <Route
+                  path="/admin-console"
+                  element={protectedAdminRoute(AdminConsole)}
+                />
               </Routes>
             </div>
           </main>
@@ -205,22 +184,19 @@ function App() {
                   path="/intelligence"
                   element={protectedRoute(Intelligence)}
                 />
-                <Route
-                  path="/"
-                  element={<Home conditionValue={conditionValue} />}
-                />
+                <Route path="/" element={<Home conditionValue={auth} />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/account" element={protectedRoute(Account)} />
                 <Route path="/team" element={<Team />} />
                 <Route path="/rules" element={<Rules />} />
                 <Route path="/signup" element={<Signup />} />
                 <Route path="/signup-1" element={<Signup1 />} />
-                <Route
-                  path="/login"
-                  element={<Login authCheck={authCheck} />}
-                />
+                <Route path="/login" element={<Login authCheck={auth} />} />
                 <Route path="/admin" element={<Admin />} />
-                <Route path="/admin-console" element={<AdminConsole />} />
+                <Route
+                  path="/admin-console"
+                  element={protectedAdminRoute(AdminConsole)}
+                />
               </Routes>
             </div>
           </main>

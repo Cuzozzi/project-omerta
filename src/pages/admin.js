@@ -10,8 +10,7 @@ function Admin() {
       method: "post",
       url: "http://localhost:5433/admin_authentication",
       data: {
-        email: document.getElementById("login-email").value,
-        password: document.getElementById("login-password").value,
+        token: localStorage.getItem("token"),
       },
     }).then(function (response) {
       if (response.data.response === "Admin authenticated") {
