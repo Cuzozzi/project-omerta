@@ -33,18 +33,19 @@ function AdminConsole() {
               onClick={() => {
                 axios({
                   method: "post",
-                  url: "http://localhost:5433/login_credentials",
+                  url: "http://localhost:5433/admin-console-add",
                   data: {
                     email: document.getElementById("email").value,
                     password: document.getElementById("password").value,
+                    token: localStorage.getItem("token"),
                   },
                 }).then(function (response) {
                   console.log(response);
-                  if (response.data === `works`) {
-                    console.log("works");
+                  if (response.data === "User added") {
+                    console.log("User added");
                     document.getElementById("my-modal-1").checked = false;
                   } else {
-                    console.log("doesn't work");
+                    console.log("Authentication failed");
                   }
                 });
               }}
@@ -54,7 +55,6 @@ function AdminConsole() {
             <button
               className="btn"
               onClick={() => {
-                console.log("boop");
                 document.getElementById("my-modal-1").checked = false;
               }}
             >
@@ -164,7 +164,6 @@ function AdminConsole() {
                     token: localStorage.getItem("token"),
                   },
                 }).then(function (response) {
-                  console.log(response);
                   if (
                     response.data === "User tokens deleted by ID" ||
                     response.data === "User tokens deleted by email"
@@ -191,22 +190,48 @@ function AdminConsole() {
         </div>
       </div>
 
-      {/* 
-
       <input type="checkbox" id="my-modal-4" className="modal-toggle" />
       <div className="modal modal-bottom sm:modal-middle">
         <div className="modal-box">
           <h3 className="font-bold text-lg">
-            Congratulations random Internet user!
+            Delete all user tokens site-wide below!
           </h3>
           <p className="py-4">
-            You've been selected for a chance to get one year of subscription to
-            use Wikipedia for free!
+            Are you sure you want to do this? Don't click this unless absolutely
+            necessary!
           </p>
+          <img src="images/warning.jpg" alt="" className="" />
           <div className="modal-action">
-            <label for="my-modal-6" className="btn">
-              Yay!
+            <label
+              for="my-modal-4"
+              className="btn btn-error"
+              onClick={() => {
+                axios({
+                  method: "delete",
+                  url: "http://localhost:5433/admin-console-delete-all-tokens",
+                  data: {
+                    token: localStorage.getItem("token"),
+                  },
+                }).then(function (response) {
+                  if (response.data === "All session tokens deleted sitewide") {
+                    console.log("All session tokens deleted sitewide");
+                    document.getElementById("my-modal-4").checked = false;
+                  } else {
+                    console.log("Authentication failed");
+                  }
+                });
+              }}
+            >
+              Delete all tokens
             </label>
+            <button
+              className="btn"
+              onClick={() => {
+                document.getElementById("my-modal-4").checked = false;
+              }}
+            >
+              Close
+            </button>
           </div>
         </div>
       </div>
@@ -215,16 +240,61 @@ function AdminConsole() {
       <div className="modal modal-bottom sm:modal-middle">
         <div className="modal-box">
           <h3 className="font-bold text-lg">
-            Congratulations random Internet user!
+            Give moderator to user by ID or email
           </h3>
-          <p className="py-4">
-            You've been selected for a chance to get one year of subscription to
-            use Wikipedia for free!
-          </p>
+          <div className="form-control mt-10">
+            <input
+              type="number"
+              placeholder="User ID"
+              className="input input-bordered"
+              id="user-moderator-id"
+            />
+          </div>
+          <div className="form-control mt-10">
+            <input
+              type="email"
+              placeholder="User Email"
+              className="input input-bordered"
+              id="user-moderator-email"
+            />
+          </div>
           <div className="modal-action">
-            <label for="my-modal-6" className="btn">
-              Yay!
+            <label
+              for="my-modal-5"
+              className="btn"
+              onClick={() => {
+                axios({
+                  method: "put",
+                  url: "http://localhost:5433/admin-console-give-moderator",
+                  data: {
+                    user_id: document.getElementById("user-moderator-id").value,
+                    user_email: document.getElementById("user-moderator-email")
+                      .value,
+                    token: localStorage.getItem("token"),
+                  },
+                }).then(function (response) {
+                  if (
+                    response.data === "User granted moderator role by ID" ||
+                    response.data === "User granted moderator role by email"
+                  ) {
+                    console.log("User granted moderator");
+                    document.getElementById("my-modal-5").checked = false;
+                  } else {
+                    console.log("Authentication failed");
+                  }
+                });
+              }}
+            >
+              Give moderator to user
             </label>
+            <button
+              className="btn"
+              onClick={() => {
+                document.getElementById("my-modal-5").checked = false;
+              }}
+            >
+              Close
+            </button>
           </div>
         </div>
       </div>
@@ -233,19 +303,66 @@ function AdminConsole() {
       <div className="modal modal-bottom sm:modal-middle">
         <div className="modal-box">
           <h3 className="font-bold text-lg">
-            Congratulations random Internet user!
+            Remove moderator to user by ID or email
           </h3>
-          <p className="py-4">
-            You've been selected for a chance to get one year of subscription to
-            use Wikipedia for free!
-          </p>
+          <div className="form-control mt-10">
+            <input
+              type="number"
+              placeholder="User ID"
+              className="input input-bordered"
+              id="user-remove-moderator-id"
+            />
+          </div>
+          <div className="form-control mt-10">
+            <input
+              type="email"
+              placeholder="User Email"
+              className="input input-bordered"
+              id="user-remove-moderator-email"
+            />
+          </div>
           <div className="modal-action">
-            <label for="my-modal-6" className="btn">
-              Yay!
+            <label
+              for="my-modal-6"
+              className="btn"
+              onClick={() => {
+                axios({
+                  method: "put",
+                  url: "http://localhost:5433/admin-console-remove-moderator",
+                  data: {
+                    user_id: document.getElementById("user-remove-moderator-id")
+                      .value,
+                    user_email: document.getElementById(
+                      "user-remove-moderator-email"
+                    ).value,
+                    token: localStorage.getItem("token"),
+                  },
+                }).then(function (response) {
+                  if (
+                    response.data === "User revoked moderator role by ID" ||
+                    response.data === "User revoked moderator role by email"
+                  ) {
+                    console.log("User revoked moderator");
+                    document.getElementById("my-modal-6").checked = false;
+                  } else {
+                    console.log("Authentication failed");
+                  }
+                });
+              }}
+            >
+              Remove moderator from user
             </label>
+            <button
+              className="btn"
+              onClick={() => {
+                document.getElementById("my-modal-6").checked = false;
+              }}
+            >
+              Close
+            </button>
           </div>
         </div>
-      </div> */}
+      </div>
 
       <div className="flex flex-col m-10">
         <label for="my-modal-1" className="btn modal-button m-4">
@@ -264,7 +381,7 @@ function AdminConsole() {
           Give moderator to user
         </label>
         <label for="my-modal-6" className="btn modal-button m-4">
-          Remove moderator to user
+          Remove moderator from user
         </label>
       </div>
     </div>
