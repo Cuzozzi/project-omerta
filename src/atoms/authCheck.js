@@ -11,14 +11,18 @@ async function AuthVerify() {
     data: {
       token: token,
     },
-  }).then(function (response) {
-    if (response.status === 403) {
-      localStorage.removeItem("token");
-      authValue = false;
-    } else {
-      authValue = true;
-    }
-  });
+  })
+    .then(function (response) {
+      if (response.status === 200) {
+        authValue = true;
+      }
+    })
+    .catch(function (err) {
+      console.log(err);
+      if (err.response.status === 401) {
+        authValue = false;
+      }
+    });
   if (authValue) {
     return true;
   } else {

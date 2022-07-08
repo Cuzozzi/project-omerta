@@ -1,7 +1,9 @@
 import "../output.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function AdminConsole() {
+  let navigate = useNavigate();
   return (
     <div className="main-window p-6">
       <input type="checkbox" id="my-modal-1" className="modal-toggle" />
@@ -37,15 +39,21 @@ function AdminConsole() {
                     password: document.getElementById("password").value,
                     token: localStorage.getItem("token"),
                   },
-                }).then(function (response) {
-                  console.log(response);
-                  if (response.status === 200) {
-                    console.log("User added");
-                    document.getElementById("my-modal-1").checked = false;
-                  } else {
-                    console.log("Authentication failed");
-                  }
-                });
+                })
+                  .then(function (response) {
+                    console.log(response);
+                    if (response.status === 200) {
+                      console.log("User added");
+                      document.getElementById("my-modal-1").checked = false;
+                    }
+                  })
+                  .catch(function (err) {
+                    if (err.response.status === 401) {
+                      console.log("Authentication failed");
+                      localStorage.setItem("isAdmin", "false");
+                      navigate("/", { replace: true });
+                    }
+                  });
               }}
             >
               Add User
@@ -97,15 +105,21 @@ function AdminConsole() {
                     user_email: document.getElementById("user-email").value,
                     token: localStorage.getItem("token"),
                   },
-                }).then(function (response) {
-                  console.log(response);
-                  if (response.status === 200) {
-                    console.log("User deleted");
-                    document.getElementById("my-modal-2").checked = false;
-                  } else {
-                    console.log("Authentication failed");
-                  }
-                });
+                })
+                  .then(function (response) {
+                    console.log(response);
+                    if (response.status === 200) {
+                      console.log("User deleted");
+                      document.getElementById("my-modal-2").checked = false;
+                    }
+                  })
+                  .catch(function (err) {
+                    if (err.response.status === 401) {
+                      console.log("Authentication failed");
+                      localStorage.setItem("isAdmin", "false");
+                      navigate("/", { replace: true });
+                    }
+                  });
               }}
             >
               Delete User
@@ -158,14 +172,20 @@ function AdminConsole() {
                       document.getElementById("user-tokens-email").value,
                     token: localStorage.getItem("token"),
                   },
-                }).then(function (response) {
-                  if (response.status === 200) {
-                    console.log("User tokens deleted");
-                    document.getElementById("my-modal-3").checked = false;
-                  } else {
-                    console.log("Authentication failed");
-                  }
-                });
+                })
+                  .then(function (response) {
+                    if (response.status === 200) {
+                      console.log("User tokens deleted");
+                      document.getElementById("my-modal-3").checked = false;
+                    }
+                  })
+                  .catch(function (err) {
+                    if (err.response.status === 401) {
+                      console.log("Authentication failed");
+                      localStorage.setItem("isAdmin", "false");
+                      navigate("/", { replace: true });
+                    }
+                  });
               }}
             >
               Delete Tokens
@@ -204,14 +224,20 @@ function AdminConsole() {
                   data: {
                     token: localStorage.getItem("token"),
                   },
-                }).then(function (response) {
-                  if (response.status === 200) {
-                    console.log("All session tokens deleted sitewide");
-                    document.getElementById("my-modal-4").checked = false;
-                  } else {
-                    console.log("Authentication failed");
-                  }
-                });
+                })
+                  .then(function (response) {
+                    if (response.status === 200) {
+                      console.log("All session tokens deleted sitewide");
+                      document.getElementById("my-modal-4").checked = false;
+                    }
+                  })
+                  .catch(function (err) {
+                    if (err.response.status === 401) {
+                      console.log("Authentication failed");
+                      localStorage.setItem("isAdmin", "false");
+                      navigate("/", { replace: true });
+                    }
+                  });
               }}
             >
               Delete all tokens
@@ -264,14 +290,20 @@ function AdminConsole() {
                       .value,
                     token: localStorage.getItem("token"),
                   },
-                }).then(function (response) {
-                  if (response.status === 200) {
-                    console.log("User granted moderator");
-                    document.getElementById("my-modal-5").checked = false;
-                  } else {
-                    console.log("Authentication failed");
-                  }
-                });
+                })
+                  .then(function (response) {
+                    if (response.status === 200) {
+                      console.log("User granted moderator");
+                      document.getElementById("my-modal-5").checked = false;
+                    }
+                  })
+                  .catch(function (err) {
+                    if (err.response.status === 401) {
+                      console.log("Authentication failed");
+                      localStorage.setItem("isAdmin", "false");
+                      navigate("/", { replace: true });
+                    }
+                  });
               }}
             >
               Give moderator to user
@@ -326,14 +358,20 @@ function AdminConsole() {
                     ).value,
                     token: localStorage.getItem("token"),
                   },
-                }).then(function (response) {
-                  if (response.status === 200) {
-                    console.log("User revoked moderator");
-                    document.getElementById("my-modal-6").checked = false;
-                  } else {
-                    console.log("Authentication failed");
-                  }
-                });
+                })
+                  .then(function (response) {
+                    if (response.status === 200) {
+                      console.log("User revoked moderator");
+                      document.getElementById("my-modal-6").checked = false;
+                    }
+                  })
+                  .catch(function (err) {
+                    if (err.response.status === 401) {
+                      console.log("Authentication failed");
+                      localStorage.setItem("isAdmin", "false");
+                      navigate("/", { replace: true });
+                    }
+                  });
               }}
             >
               Remove moderator from user
@@ -365,14 +403,20 @@ function AdminConsole() {
                   data: {
                     token: localStorage.getItem("token"),
                   },
-                }).then(function (response) {
-                  if (response.status === 200) {
-                    console.log("Users sent");
-                    console.log(response.data);
-                  } else {
-                    console.log("Authentication failed");
-                  }
-                });
+                })
+                  .then(function (response) {
+                    if (response.status === 200) {
+                      console.log("Users sent");
+                      console.log(response.data);
+                    }
+                  })
+                  .catch(function (err) {
+                    if (err.response.status === 401) {
+                      console.log("Authentication failed");
+                      localStorage.setItem("isAdmin", "false");
+                      navigate("/", { replace: true });
+                    }
+                  });
               }}
             >
               List all users
