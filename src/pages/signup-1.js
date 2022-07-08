@@ -42,7 +42,6 @@ function Signup1() {
               to="/signup-1"
               className="btn btn-primary"
               onClick={() => {
-                console.log("boop-2");
                 const password = document.getElementById("password").value;
                 axios({
                   method: "post",
