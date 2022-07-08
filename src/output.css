@@ -1763,12 +1763,6 @@ html {
   pointer-events: none;
 }
 
-.btn-square {
-  height: 3rem;
-  width: 3rem;
-  padding: 0px;
-}
-
 .btn.loading, 
     .btn.loading:hover {
   pointer-events: none;
@@ -1998,38 +1992,9 @@ html {
   border-radius: var(--rounded-btn, 0.5rem);
 }
 
-.input-group {
-  display: flex;
-  width: 100%;
-  align-items: stretch;
-}
-
 .input-group > *, 
   .input-group > .input {
   border-radius: 0px;
-}
-
-.input-group :where(span) {
-  display: flex;
-  align-items: center;
-  --tw-bg-opacity: 1;
-  background-color: hsl(var(--b3, var(--b2)) / var(--tw-bg-opacity));
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
-
-.input-group :first-child {
-  border-top-left-radius: var(--rounded-btn, 0.5rem);
-  border-top-right-radius: 0;
-  border-bottom-left-radius: var(--rounded-btn, 0.5rem);
-  border-bottom-right-radius: 0;
-}
-
-.input-group :last-child {
-  border-top-left-radius: 0;
-  border-top-right-radius: var(--rounded-btn, 0.5rem);
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: var(--rounded-btn, 0.5rem);
 }
 
 .link {
@@ -2168,31 +2133,6 @@ html {
   position: -webkit-sticky;
   left: 0px;
   z-index: 11;
-}
-
-.textarea {
-  flex-shrink: 1;
-  transition-property: color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter;
-  transition-property: color, background-color, border-color, fill, stroke, opacity, box-shadow, -webkit-text-decoration-color, -webkit-transform, -webkit-filter, -webkit-backdrop-filter;
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-transform, -webkit-filter, -webkit-backdrop-filter;
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;
-  transition-duration: 200ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  padding-left: 1rem;
-  padding-right: 1rem;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-  line-height: 2;
-  min-height: 3rem;
-  border-width: 1px;
-  border-color: hsl(var(--bc) / var(--tw-border-opacity));
-  --tw-border-opacity: 0;
-  --tw-bg-opacity: 1;
-  background-color: hsl(var(--b1) / var(--tw-bg-opacity));
-  border-radius: var(--rounded-btn, 0.5rem);
 }
 
 .btn-outline.btn-primary .badge {
@@ -2897,69 +2837,6 @@ body[dir="rtl"] .checkbox:checked,
   background-color: hsl(var(--b1) / var(--tw-bg-opacity));
 }
 
-.textarea:focus {
-  outline: 2px solid hsla(var(--bc) / 0.2);
-  outline-offset: 2px;
-}
-
-.textarea-primary {
-  --tw-border-opacity: 1;
-  border-color: hsl(var(--p) / var(--tw-border-opacity));
-}
-
-.textarea-primary:focus {
-  outline: 2px solid hsl(var(--p));
-}
-
-.textarea-disabled, 
-  .textarea[disabled] {
-  cursor: not-allowed;
-  --tw-border-opacity: 1;
-  border-color: hsl(var(--b2, var(--b1)) / var(--tw-border-opacity));
-  --tw-bg-opacity: 1;
-  background-color: hsl(var(--b2, var(--b1)) / var(--tw-bg-opacity));
-  --tw-text-opacity: 0.2;
-}
-
-.textarea-disabled::-webkit-input-placeholder, .textarea[disabled]::-webkit-input-placeholder {
-  color: hsl(var(--bc) / var(--tw-placeholder-opacity));
-  --tw-placeholder-opacity: 0.2;
-}
-
-.textarea-disabled::placeholder, 
-  .textarea[disabled]::placeholder {
-  color: hsl(var(--bc) / var(--tw-placeholder-opacity));
-  --tw-placeholder-opacity: 0.2;
-}
-
-.btn-block {
-  width: 100%;
-}
-
-.btn-square:where(.btn-xs) {
-  height: 1.5rem;
-  width: 1.5rem;
-  padding: 0px;
-}
-
-.btn-square:where(.btn-sm) {
-  height: 2rem;
-  width: 2rem;
-  padding: 0px;
-}
-
-.btn-square:where(.btn-md) {
-  height: 3rem;
-  width: 3rem;
-  padding: 0px;
-}
-
-.btn-square:where(.btn-lg) {
-  height: 4rem;
-  width: 4rem;
-  padding: 0px;
-}
-
 .modal-bottom {
   align-items: flex-end;
 }
@@ -3069,8 +2946,8 @@ body[dir="rtl"] .checkbox:checked,
   margin: 2.5rem;
 }
 
-.m-6 {
-  margin: 1.5rem;
+.mt-10 {
+  margin-top: 2.5rem;
 }
 
 .mt-6 {
@@ -3079,26 +2956,6 @@ body[dir="rtl"] .checkbox:checked,
 
 .mb-10 {
   margin-bottom: 2.5rem;
-}
-
-.mb-4 {
-  margin-bottom: 1rem;
-}
-
-.mb-6 {
-  margin-bottom: 1.5rem;
-}
-
-.mb-5 {
-  margin-bottom: 1.25rem;
-}
-
-.mt-10 {
-  margin-top: 2.5rem;
-}
-
-.block {
-  display: block;
 }
 
 .flex {
@@ -3125,10 +2982,6 @@ body[dir="rtl"] .checkbox:checked,
   height: 16rem;
 }
 
-.h-6 {
-  height: 1.5rem;
-}
-
 .max-h-fit {
   max-height: -webkit-fit-content;
   max-height: -moz-fit-content;
@@ -3151,10 +3004,6 @@ body[dir="rtl"] .checkbox:checked,
 
 .w-96 {
   width: 24rem;
-}
-
-.w-6 {
-  width: 1.5rem;
 }
 
 .max-w-sm {
@@ -3221,10 +3070,6 @@ body[dir="rtl"] .checkbox:checked,
 
 .gap-4 {
   gap: 1rem;
-}
-
-.gap-6 {
-  gap: 1.5rem;
 }
 
 .overflow-hidden {
@@ -3316,26 +3161,22 @@ body[dir="rtl"] .checkbox:checked,
   padding: 1.25rem;
 }
 
-.p-10 {
-  padding: 2.5rem;
-}
-
 .p-6 {
   padding: 1.5rem;
 }
 
-.p-2 {
-  padding: 0.5rem;
-}
-
-.py-6 {
-  padding-top: 1.5rem;
-  padding-bottom: 1.5rem;
+.p-10 {
+  padding: 2.5rem;
 }
 
 .py-4 {
   padding-top: 1rem;
   padding-bottom: 1rem;
+}
+
+.py-6 {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
 }
 
 .pb-4 {
@@ -3355,14 +3196,14 @@ body[dir="rtl"] .checkbox:checked,
   line-height: 1.75rem;
 }
 
-.text-5xl {
-  font-size: 3rem;
-  line-height: 1;
-}
-
 .text-lg {
   font-size: 1.125rem;
   line-height: 1.75rem;
+}
+
+.text-5xl {
+  font-size: 3rem;
+  line-height: 1;
 }
 
 .font-bold {

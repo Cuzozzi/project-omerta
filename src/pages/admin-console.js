@@ -1,9 +1,7 @@
 import "../output.css";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 
 function AdminConsole() {
-  const navigate = useNavigate();
   return (
     <div className="main-window p-6">
       <input type="checkbox" id="my-modal-1" className="modal-toggle" />
@@ -28,7 +26,7 @@ function AdminConsole() {
           </div>
           <div className="modal-action">
             <label
-              for="my-modal-1"
+              htmlFor="my-modal-1"
               className="btn"
               onClick={() => {
                 axios({
@@ -41,7 +39,7 @@ function AdminConsole() {
                   },
                 }).then(function (response) {
                   console.log(response);
-                  if (response.data === "User added") {
+                  if (response.status === 200) {
                     console.log("User added");
                     document.getElementById("my-modal-1").checked = false;
                   } else {
@@ -88,7 +86,7 @@ function AdminConsole() {
           </div>
           <div className="modal-action">
             <label
-              for="my-modal-2"
+              htmlFor="my-modal-2"
               className="btn"
               onClick={() => {
                 axios({
@@ -101,10 +99,7 @@ function AdminConsole() {
                   },
                 }).then(function (response) {
                   console.log(response);
-                  if (
-                    response.data === "User deleted by ID" ||
-                    response.data === "User deleted by email"
-                  ) {
+                  if (response.status === 200) {
                     console.log("User deleted");
                     document.getElementById("my-modal-2").checked = false;
                   } else {
@@ -151,7 +146,7 @@ function AdminConsole() {
           </div>
           <div className="modal-action">
             <label
-              for="my-modal-3"
+              htmlFor="my-modal-3"
               className="btn"
               onClick={() => {
                 axios({
@@ -164,10 +159,7 @@ function AdminConsole() {
                     token: localStorage.getItem("token"),
                   },
                 }).then(function (response) {
-                  if (
-                    response.data === "User tokens deleted by ID" ||
-                    response.data === "User tokens deleted by email"
-                  ) {
+                  if (response.status === 200) {
                     console.log("User tokens deleted");
                     document.getElementById("my-modal-3").checked = false;
                   } else {
@@ -203,7 +195,7 @@ function AdminConsole() {
           <img src="images/warning.jpg" alt="" className="" />
           <div className="modal-action">
             <label
-              for="my-modal-4"
+              htmlFor="my-modal-4"
               className="btn btn-error"
               onClick={() => {
                 axios({
@@ -213,7 +205,7 @@ function AdminConsole() {
                     token: localStorage.getItem("token"),
                   },
                 }).then(function (response) {
-                  if (response.data === "All session tokens deleted sitewide") {
+                  if (response.status === 200) {
                     console.log("All session tokens deleted sitewide");
                     document.getElementById("my-modal-4").checked = false;
                   } else {
@@ -260,7 +252,7 @@ function AdminConsole() {
           </div>
           <div className="modal-action">
             <label
-              for="my-modal-5"
+              htmlFor="my-modal-5"
               className="btn"
               onClick={() => {
                 axios({
@@ -273,10 +265,7 @@ function AdminConsole() {
                     token: localStorage.getItem("token"),
                   },
                 }).then(function (response) {
-                  if (
-                    response.data === "User granted moderator role by ID" ||
-                    response.data === "User granted moderator role by email"
-                  ) {
+                  if (response.status === 200) {
                     console.log("User granted moderator");
                     document.getElementById("my-modal-5").checked = false;
                   } else {
@@ -323,7 +312,7 @@ function AdminConsole() {
           </div>
           <div className="modal-action">
             <label
-              for="my-modal-6"
+              htmlFor="my-modal-6"
               className="btn"
               onClick={() => {
                 axios({
@@ -338,10 +327,7 @@ function AdminConsole() {
                     token: localStorage.getItem("token"),
                   },
                 }).then(function (response) {
-                  if (
-                    response.data === "User revoked moderator role by ID" ||
-                    response.data === "User revoked moderator role by email"
-                  ) {
+                  if (response.status === 200) {
                     console.log("User revoked moderator");
                     document.getElementById("my-modal-6").checked = false;
                   } else {
@@ -364,23 +350,65 @@ function AdminConsole() {
         </div>
       </div>
 
+      <input type="checkbox" id="my-modal-7" className="modal-toggle" />
+      <div className="modal modal-bottom sm:modal-middle">
+        <div className="modal-box">
+          <h3 className="font-bold text-lg">Display all users below!</h3>
+          <div className="modal-action">
+            <label
+              htmlFor="my-modal-7"
+              className="btn"
+              onClick={() => {
+                axios({
+                  method: "post",
+                  url: "http://localhost:5433/admin-console-all-users",
+                  data: {
+                    token: localStorage.getItem("token"),
+                  },
+                }).then(function (response) {
+                  if (response.status === 200) {
+                    console.log("Users sent");
+                    console.log(response.data);
+                  } else {
+                    console.log("Authentication failed");
+                  }
+                });
+              }}
+            >
+              List all users
+            </label>
+            <button
+              className="btn"
+              onClick={() => {
+                document.getElementById("my-modal-7").checked = false;
+              }}
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+
       <div className="flex flex-col m-10">
-        <label for="my-modal-1" className="btn modal-button m-4">
+        <label htmlFor="my-modal-7" className="btn modal-button m-4">
+          All users
+        </label>
+        <label htmlFor="my-modal-1" className="btn modal-button m-4">
           Add user
         </label>
-        <label for="my-modal-2" className="btn modal-button m-4">
+        <label htmlFor="my-modal-2" className="btn modal-button m-4">
           Delete user
         </label>
-        <label for="my-modal-3" className="btn modal-button m-4">
+        <label htmlFor="my-modal-3" className="btn modal-button m-4">
           Delete user's tokens
         </label>
-        <label for="my-modal-4" className="btn modal-button m-4">
+        <label htmlFor="my-modal-4" className="btn modal-button m-4">
           Delete all tokens
         </label>
-        <label for="my-modal-5" className="btn modal-button m-4">
+        <label htmlFor="my-modal-5" className="btn modal-button m-4">
           Give moderator to user
         </label>
-        <label for="my-modal-6" className="btn modal-button m-4">
+        <label htmlFor="my-modal-6" className="btn modal-button m-4">
           Remove moderator from user
         </label>
       </div>

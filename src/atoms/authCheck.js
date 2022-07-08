@@ -12,8 +12,7 @@ async function AuthVerify() {
       token: token,
     },
   }).then(function (response) {
-    console.log(response.data.response);
-    if (response.data.response === "Token invalid") {
+    if (response.status === 403) {
       localStorage.removeItem("token");
       authValue = false;
     } else {

@@ -1,19 +1,17 @@
 import "../output.css";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
 import { useRecoilState } from "recoil";
 import { authVerify0 } from "../atoms/authCheck";
+import { adminAuth } from "../atoms/adminAuthCheck";
 
 const axios = require("axios");
 
 function Login(props) {
-  const [auth, setAuth] = useRecoilState(authVerify0);
-  let navigate = useNavigate();
   // eslint-disable-next-line
-  const [_, startRefresh] = useState(0);
-  const refresh = () => {
-    startRefresh({});
-  };
+  const [auth, setAuth] = useRecoilState(authVerify0);
+  // eslint-disable-next-line
+  const [adAuth, setAdminAuth] = useRecoilState(adminAuth);
+  let navigate = useNavigate();
   return (
     <div className="hero main-window bg-slate-90">
       <div className="hero-content flex-col lg:flex-row-reverse">
@@ -70,10 +68,11 @@ function Login(props) {
                     },
                   }).then(function (response) {
                     console.log(response);
-                    if (response.data.response === "Authenticated") {
+                    if (response.status === 200) {
                       localStorage.setItem("token", response.data.token);
                       localStorage.setItem("isAdmin", response.data.admin);
                       setAuth(true);
+                      setAdminAuth(response.data.admin);
                       navigate("/", { replace: true });
                     } else {
                       console.log("Wrong Password");

@@ -53,11 +53,11 @@ function Signup1() {
                   },
                 }).then(function (response) {
                   console.log(response);
-                  if (response.data === `works`) {
-                    console.log("works");
+                  if (response.status === 200) {
+                    console.log("Account created");
                     //navigate("/signup-2", { replace: true });
                   } else {
-                    console.log("doesn't work");
+                    console.log("Account creation failed");
                   }
                 });
               }}
