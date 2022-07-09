@@ -3,7 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 function AdminConsole() {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   return (
     <div className="main-window p-6">
       <input type="checkbox" id="my-modal-1" className="modal-toggle" />
@@ -33,11 +33,13 @@ function AdminConsole() {
               onClick={() => {
                 axios({
                   method: "post",
-                  url: "http://localhost:5433/admin-console-add",
+                  url: "http://localhost:5433/admin/console-add",
                   data: {
                     email: document.getElementById("email").value,
                     password: document.getElementById("password").value,
-                    token: localStorage.getItem("token"),
+                  },
+                  headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
                   },
                 })
                   .then(function (response) {
@@ -99,11 +101,13 @@ function AdminConsole() {
               onClick={() => {
                 axios({
                   method: "delete",
-                  url: "http://localhost:5433/admin-console-delete",
+                  url: "http://localhost:5433/admin/console-delete",
                   data: {
                     user_id: document.getElementById("user-id").value,
                     user_email: document.getElementById("user-email").value,
-                    token: localStorage.getItem("token"),
+                  },
+                  headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
                   },
                 })
                   .then(function (response) {
@@ -165,12 +169,14 @@ function AdminConsole() {
               onClick={() => {
                 axios({
                   method: "delete",
-                  url: "http://localhost:5433/admin-console-delete-tokens",
+                  url: "http://localhost:5433/admin/console-delete-tokens",
                   data: {
                     user_id: document.getElementById("user-tokens-id").value,
                     user_email:
                       document.getElementById("user-tokens-email").value,
-                    token: localStorage.getItem("token"),
+                  },
+                  headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
                   },
                 })
                   .then(function (response) {
@@ -220,9 +226,12 @@ function AdminConsole() {
               onClick={() => {
                 axios({
                   method: "delete",
-                  url: "http://localhost:5433/admin-console-delete-all-tokens",
+                  url: "http://localhost:5433/admin/console-delete-all-tokens",
                   data: {
                     token: localStorage.getItem("token"),
+                  },
+                  headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
                   },
                 })
                   .then(function (response) {
@@ -283,12 +292,14 @@ function AdminConsole() {
               onClick={() => {
                 axios({
                   method: "put",
-                  url: "http://localhost:5433/admin-console-give-moderator",
+                  url: "http://localhost:5433/admin/console-give-moderator",
                   data: {
                     user_id: document.getElementById("user-moderator-id").value,
                     user_email: document.getElementById("user-moderator-email")
                       .value,
-                    token: localStorage.getItem("token"),
+                  },
+                  headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
                   },
                 })
                   .then(function (response) {
@@ -349,14 +360,16 @@ function AdminConsole() {
               onClick={() => {
                 axios({
                   method: "put",
-                  url: "http://localhost:5433/admin-console-remove-moderator",
+                  url: "http://localhost:5433/admin/console-remove-moderator",
                   data: {
                     user_id: document.getElementById("user-remove-moderator-id")
                       .value,
                     user_email: document.getElementById(
                       "user-remove-moderator-email"
                     ).value,
-                    token: localStorage.getItem("token"),
+                  },
+                  headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
                   },
                 })
                   .then(function (response) {
@@ -398,10 +411,10 @@ function AdminConsole() {
               className="btn"
               onClick={() => {
                 axios({
-                  method: "post",
-                  url: "http://localhost:5433/admin-console-all-users",
-                  data: {
-                    token: localStorage.getItem("token"),
+                  method: "get",
+                  url: "http://localhost:5433/admin/console-all-users",
+                  headers: {
+                    Authorization: `${localStorage.getItem("token")}`,
                   },
                 })
                   .then(function (response) {

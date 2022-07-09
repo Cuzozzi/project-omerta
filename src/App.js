@@ -64,13 +64,11 @@ function App() {
               <button
                 className="btn btn-ghost normal-case text-xl"
                 onClick={() => {
-                  let token = String(localStorage.getItem("token"));
-                  console.log(token);
                   axios({
                     method: "delete",
                     url: "http://localhost:5433/authentication",
-                    data: {
-                      token,
+                    headers: {
+                      Authorization: `Bearer ${localStorage.getItem("token")}`,
                     },
                   });
                   localStorage.removeItem("token");
@@ -169,13 +167,11 @@ function App() {
               <button
                 className="btn btn-ghost normal-case text-xl"
                 onClick={() => {
-                  let token = String(localStorage.getItem("token"));
-                  console.log(token);
                   axios({
                     method: "delete",
                     url: "http://localhost:5433/authentication",
-                    data: {
-                      token,
+                    headers: {
+                      Authorization: `Bearer ${localStorage.getItem("token")}`,
                     },
                   });
                   localStorage.removeItem("token");

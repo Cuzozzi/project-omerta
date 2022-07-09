@@ -60,7 +60,7 @@ function Login(props) {
                 onClick={() => {
                   console.log("boop-2");
                   axios({
-                    method: "post",
+                    method: "put",
                     url: "http://localhost:5433/authentication",
                     data: {
                       email: document.getElementById("login-email").value,

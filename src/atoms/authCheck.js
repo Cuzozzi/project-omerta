@@ -1,15 +1,15 @@
 import axios from "axios";
-import { atom, selector } from "recoil";
+import { atom } from "recoil";
 
 async function AuthVerify() {
   let authValue = false;
   let token = String(localStorage.getItem("token"));
   console.log(token);
   await axios({
-    method: "post",
+    method: "get",
     url: "http://localhost:5433/authentication_time_check",
-    data: {
-      token: token,
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
   })
     .then(function (response) {
