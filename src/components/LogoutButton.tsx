@@ -4,6 +4,7 @@ import { useRecoilState } from "recoil";
 import { authVerify0 } from "../atoms/authCheck";
 
 function LogoutButton() {
+  // eslint-disable-next-line
   const [auth, setAuth] = useRecoilState(authVerify0);
   let navigate = useNavigate();
   return (

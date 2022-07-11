@@ -1,0 +1,29 @@
+[
+  {
+    "img": "images/wel-to-fam.jpg",
+    "alt": "",
+    "title1": "Welcome to the Family!",
+    "title2": "",
+    "para1": "Create a character now! Make friends, enemies, and most importantly family. Make sure to create or join a family, the game is easier when you band together!",
+    "para2": "Project Omerta is a massively multiplayer game focused on player-to-player interaction and community. You will thrive further, and fall easier when you have someone backing you up.",
+    "para3": ""
+  },
+  {
+    "img": "images/empire.jpg",
+    "alt": "",
+    "title1": "Take control of your empire!",
+    "title2": "",
+    "para1": "Run your empire how you want! You will have plenty of opportunities at your feet, whether by yourself or with your family. Just make sure to keep a tight grip on power.",
+    "para2": "Take control of map tiles so you can build rackets, safehouses, compounds, or infrastructure. Rise to the top, by force or through deals. Make clever trades and deals so you can consolidate your power.",
+    "para3": ""
+  },
+  {
+    "img": "images/chess.jpg",
+    "alt": "",
+    "title1": "Fight your way to the top!",
+    "title2": "",
+    "para1": "When you can't talk it out over the table, show them who's boss! Take down other families with sheer force and destruction. In this life, nothing is out of the question.",
+    "para2": "You have plenty of tools at your disposal to take what is yours! Fight it out with warfare, espionage, bribing officials, or take over politics itself. Make sure they know where they stand, capiche?",
+    "para3": ""
+  }
+]

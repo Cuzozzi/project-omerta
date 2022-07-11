@@ -1,0 +1,29 @@
+[
+  {
+    "img": "images/charlotte.jpg",
+    "alt": "",
+    "title1": "Charlotte Dunleavey",
+    "title2": "Lead Developer",
+    "para1": "I'm a new developer, this is my first long-term project. I've tried to be ambitious and use modern techonolgies and libaries, so we can give an amazing user experience.",
+    "para2": "I care deeply about this game, I've created something that I'd personally play for many hours. I hope you will enjoy it as much as I do.",
+    "para3": ""
+  },
+  {
+    "img": "images/mango.jpg",
+    "alt": "",
+    "title1": "Mango",
+    "title2": "Senior Developer",
+    "para1": "I required many snacks and scratchies, to work on this project. I'm a world-renowed developer, so my rate is not very cheap.",
+    "para2": "You should check out my contributions on Github and StackOverflow, and let me know how amazed you are by my superior code.",
+    "para3": "Ciao."
+  },
+  {
+    "img": "images/tom.jpg",
+    "alt": "",
+    "title1": "Tomáš Schmied",
+    "title2": "Consultant Developer",
+    "para1": "I couldn't do this without him, he's been my personal stack overflow. Every 403 and 200, he was there to guide and help me.",
+    "para2": "My entire world, I can't express how much you've done for me. You plus programming have given me purpose, and a future.",
+    "para3": "I will love you forever and always."
+  }
+]
