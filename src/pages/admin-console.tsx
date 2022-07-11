@@ -9,7 +9,7 @@ import {
   AllTokens,
   GiveMod,
   RemoveMod,
-} from "../components/AdminFunctions";
+} from "../helpers/adminFunctions";
 import { useNavigate } from "react-router-dom";
 
 function AdminConsole() {
