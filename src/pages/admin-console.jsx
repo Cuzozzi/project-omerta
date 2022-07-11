@@ -2,6 +2,62 @@ import "../output.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
+function AddUser() {
+  axios({
+    method: "post",
+    url: "http://localhost:5433/admin/console-add",
+    data: {
+      email: document.getElementById("email").value,
+      password: document.getElementById("password").value,
+    },
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+  })
+    .then(function (response) {
+      console.log(response);
+      if (response.status === 200) {
+        console.log("User added");
+        document.getElementById("my-modal-1").checked = false;
+      }
+    })
+    .catch(function (err) {
+      if (err.response.status === 401) {
+        console.log("Authentication failed");
+        localStorage.setItem("isAdmin", "false");
+        navigate("/", { replace: true });
+      }
+    });
+}
+
+function DeleteUser() {
+  axios({
+    method: "delete",
+    url: "http://localhost:5433/admin/console-delete",
+    data: {
+      user_id: document.getElementById("user-id").value,
+      user_email: document.getElementById("user-email").value,
+    },
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+  })
+    .then(function (response) {
+      console.log(response);
+      if (response.status === 200) {
+        console.log("User deleted");
+        document.getElementById("my-modal-2").checked = false;
+      }
+    })
+    .catch(function (err) {
+      if (err.response.status === 401) {
+        console.log("Authentication failed");
+        localStorage.setItem("isAdmin", "false");
+        navigate("/", { replace: true });
+      }
+    });
+}
+
 function AdminConsole() {
   const navigate = useNavigate();
   return (
@@ -27,37 +83,7 @@ function AdminConsole() {
             />
           </div>
           <div className="modal-action">
-            <label
-              htmlFor="my-modal-1"
-              className="btn"
-              onClick={() => {
-                axios({
-                  method: "post",
-                  url: "http://localhost:5433/admin/console-add",
-                  data: {
-                    email: document.getElementById("email").value,
-                    password: document.getElementById("password").value,
-                  },
-                  headers: {
-                    Authorization: `Bearer ${localStorage.getItem("token")}`,
-                  },
-                })
-                  .then(function (response) {
-                    console.log(response);
-                    if (response.status === 200) {
-                      console.log("User added");
-                      document.getElementById("my-modal-1").checked = false;
-                    }
-                  })
-                  .catch(function (err) {
-                    if (err.response.status === 401) {
-                      console.log("Authentication failed");
-                      localStorage.setItem("isAdmin", "false");
-                      navigate("/", { replace: true });
-                    }
-                  });
-              }}
-            >
+            <label htmlFor="my-modal-1" className="btn" onClick={AddUser()}>
               Add User
             </label>
             <button
@@ -95,37 +121,7 @@ function AdminConsole() {
             />
           </div>
           <div className="modal-action">
-            <label
-              htmlFor="my-modal-2"
-              className="btn"
-              onClick={() => {
-                axios({
-                  method: "delete",
-                  url: "http://localhost:5433/admin/console-delete",
-                  data: {
-                    user_id: document.getElementById("user-id").value,
-                    user_email: document.getElementById("user-email").value,
-                  },
-                  headers: {
-                    Authorization: `Bearer ${localStorage.getItem("token")}`,
-                  },
-                })
-                  .then(function (response) {
-                    console.log(response);
-                    if (response.status === 200) {
-                      console.log("User deleted");
-                      document.getElementById("my-modal-2").checked = false;
-                    }
-                  })
-                  .catch(function (err) {
-                    if (err.response.status === 401) {
-                      console.log("Authentication failed");
-                      localStorage.setItem("isAdmin", "false");
-                      navigate("/", { replace: true });
-                    }
-                  });
-              }}
-            >
+            <label htmlFor="my-modal-2" className="btn" onClick={DeleteUser()}>
               Delete User
             </label>
             <button
