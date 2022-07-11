@@ -14,8 +14,8 @@ function Home() {
           !auth && "justify-center"
         } content-between bg-slate-900 rounded`}
       >
-        {home.map((i) => (
-          <ContentCard {...i} />
+        {home.map((i, index) => (
+          <ContentCard {...i} key={index} />
         ))}
       </div>
     </main>
