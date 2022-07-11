@@ -32,7 +32,7 @@ Giving players the in-depth customization options to help build a character, enc
 
 Trading will be open to both solo players and families, you'll be able to sell and buy resources in a free market player-driven economy. Related to this I want a public API accessible by the playerbase, that would allow intuitive players to track, and even automate the trading process entirely with scripts.
 
-## Rackets
+## Rockets
 
 The game will have multiple ways of making money and resources, and they will be called rackets. You will have ordinary staple rackets that are buildable on tiles, and we will also have exclusive rackets that are pre-allocated to tiles in cities that will not be buildable by players. These exclusive rackets will have special perks, that will encourage fighting between families.
 
