@@ -1,5 +1,5 @@
 import "../output.css";
-import LoginButton from "../helpers/LoginButton";
+import LoginButton from "../helpers/LoginFunction";
 import { useState } from "react";
 import { useRecoilState } from "recoil";
 import { authVerify0 } from "../atoms/authCheck";

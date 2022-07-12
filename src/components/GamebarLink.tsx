@@ -3,12 +3,12 @@ import { Link } from "react-router-dom";
 interface GamebarLinkProps {
   path: string;
   domRender: string;
-  thisWillBeUnsued?: number;
+  logout?: () => void;
 }
 
-function GamebarLink({ path, domRender }: GamebarLinkProps) {
+function GamebarLink({ path, domRender, logout }: GamebarLinkProps) {
   return (
-    <Link to={path} className="btn btn-ghost bold">
+    <Link to={path} className="btn btn-ghost bold" onClick={logout}>
       {domRender}
     </Link>
   );

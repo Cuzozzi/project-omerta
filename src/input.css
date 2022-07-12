@@ -15,3 +15,21 @@
     background-color: rgb(86 72 52);
   }
 }
+
+@media only screen and (max-width: 480px) {
+  .mobile {
+    display: flex;
+  }
+  .desktop {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 481px) {
+  .mobile {
+    display: none;
+  }
+  .desktop {
+    display: flex;
+  }
+}
