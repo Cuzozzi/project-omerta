@@ -1,6 +1,6 @@
 import "../output.css";
 import team from "../JSON/team.json";
-import ContentCard from "../components/ContentCard.tsx";
+import ContentCard from "../components/ContentCard";
 
 function Team() {
   return (

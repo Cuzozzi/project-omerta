@@ -1,10 +1,14 @@
 import "../output.css";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import SingupButton from "../helpers/SignupButton";
 //import { useNavigate } from "react-router-dom";
-const axios = require("axios");
 
 function Signup1() {
   //let navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const SignupButtonArgs = { email, password };
   return (
     <main className="main-window-2 flex justify-center items-center main-window flex-col">
       <div className="mb-10">
@@ -27,6 +31,7 @@ function Signup1() {
                 type="email"
                 placeholder="info@site.com"
                 className="input input-bordered"
+                onChange={(event) => setEmail(event.target.value)}
                 id="email"
               />
             </div>
@@ -35,31 +40,14 @@ function Signup1() {
                 type="password"
                 placeholder="password"
                 className="input input-bordered"
+                onChange={(event) => setPassword(event.target.value)}
                 id="password"
               />
             </div>
             <Link
               to="/signup-1"
               className="btn btn-primary"
-              onClick={() => {
-                const password = document.getElementById("password").value;
-                axios({
-                  method: "post",
-                  url: "http://localhost:5433/login_credentials",
-                  data: {
-                    email: document.getElementById("email").value,
-                    password: password,
-                  },
-                }).then(function (response) {
-                  console.log(response);
-                  if (response.status === 200) {
-                    console.log("Account created");
-                    //navigate("/signup-2", { replace: true });
-                  } else {
-                    console.log("Account creation failed");
-                  }
-                });
-              }}
+              onClick={() => SingupButton(SignupButtonArgs)}
             >
               Create Account!
             </Link>
