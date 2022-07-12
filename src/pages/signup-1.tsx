@@ -2,6 +2,7 @@ import "../output.css";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import SingupButton from "../helpers/SignupButton";
+
 //import { useNavigate } from "react-router-dom";
 
 function Signup1() {
@@ -10,7 +11,7 @@ function Signup1() {
   const [password, setPassword] = useState("");
   const SignupButtonArgs = { email, password };
   return (
-    <main className="main-window-2 flex justify-center items-center main-window flex-col">
+    <main className="main-window flex justify-center items-center flex-col">
       <div className="mb-10">
         <ul className="steps">
           <li className="step step-primary">Register</li>

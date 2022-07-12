@@ -18,11 +18,11 @@ function ContentCard({
   para3: string;
 }) {
   return (
-    <div className="max-h-fit max-w-96 flex-1 card overflow-auto m-4 bg-slate-800">
-      <figure className="max-h-48 md:max-h-64 h-64 overflow-hidden">
+    <div className="flex-1 card  m-4 bg-slate-800">
+      <figure className="max-h-48 md:max-h-64 overflow-hidden">
         <img src={img} alt={alt} className="object-fill" />
       </figure>
-      <div className="card-body overflow-auto items-center text-center">
+      <div className="card-body items-center text-center">
         <h2 className="card-title">{title1}</h2>
         <h4 className="pb-2">{title2}</h4>
         <p>{para1}</p>

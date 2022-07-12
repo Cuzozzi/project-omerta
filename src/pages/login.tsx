@@ -14,16 +14,20 @@ function Login() {
   let navigate = useNavigate();
 
   return (
-    <div className="hero main-window bg-slate-90">
-      <div className="hero-content flex-col lg:flex-row-reverse">
-        <div className="text-center lg:text-left">
-          <h1 className="text-5xl font-bold">Login now!</h1>
-          <p className="py-6">
+    <div
+      className={`hero ${auth && "main-window"} ${
+        !auth && "main-window-2"
+      } bg-slate-900`}
+    >
+      <div className="hero-content justify-center flex-col lg:flex-row-reverse">
+        <div className="text-center">
+          <h1 className="text-5xl font-bold ">Login now!</h1>
+          <p className="py-6 md:flex hidden">
             Welcome back! Login with your credentials, so you can get back to
             the action! Your family needs your help, capiche?
           </p>
         </div>
-        <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+        <div className="card max-h-96 shrink w-full max-w-sm shadow-2xl bg-base-100">
           <div className="card-body">
             <div className="form-control">
               <label className="label">

@@ -1,3 +1,4 @@
+import "../output.css";
 import ContentCard from "../components/ContentCard";
 import home from "../JSON/home.json";
 import { authVerify0 } from "../atoms/authCheck";

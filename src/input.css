@@ -3,33 +3,102 @@
 @tailwind utilities;
 
 @layer utilities {
-  .main-window {
-    width: calc(100vw - 112px);
-    height: calc(100vh - 116px);
-  }
-  .main-window-2 {
-    width: calc(100vw);
-    height: calc(100vh - 116px);
-  }
   .bg-main-yellow {
     background-color: rgb(86 72 52);
   }
 }
 
-@media only screen and (max-width: 480px) {
+/* Phone portrait and landscape */
+
+@media screen and (max-width: 767px) {
   .mobile {
     display: flex;
   }
   .desktop {
     display: none;
+  }
+  .main-window {
+    width: calc(100vw);
+    min-height: calc(100vh - 116px);
+  }
+  .main-window-2 {
+    width: calc(100vw);
+    min-height: calc(100vh - 116px);
   }
 }
 
-@media only screen and (min-width: 481px) {
+/* Phone landscape */
+
+@media screen and (min-width: 320px) and (max-width: 767px) and (orientation: landscape) {
+  .mobile {
+    display: flex;
+  }
+  .desktop {
+    display: none;
+  }
+  .main-window {
+    width: calc(100vw);
+    min-height: calc(100vh - 116px);
+  }
+  .main-window-2 {
+    width: calc(100vw);
+    min-height: calc(100vh - 116px);
+  }
+}
+
+/* Tablet Portrait and Landscape */
+
+@media screen and (max-width: 1024px) {
+  .mobile {
+    display: flex;
+  }
+  .desktop {
+    display: none;
+  }
+  .main-window {
+    width: calc(100vw);
+    min-height: calc(100vh - 116px);
+  }
+  .main-window-2 {
+    width: calc(100vw);
+    min-height: calc(100vh - 116px);
+  }
+}
+
+/* Tablet Landscape */
+
+@media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
   .mobile {
     display: none;
   }
   .desktop {
     display: flex;
+  }
+  .main-window {
+    width: calc(100vw);
+    min-height: calc(100vh - 116px);
+  }
+  .main-window-2 {
+    width: calc(100vw);
+    min-height: calc(100vh - 116px);
+  }
+}
+
+/* Desktop */
+
+@media only screen and (min-width: 1024px) {
+  .mobile {
+    display: none;
+  }
+  .desktop {
+    display: flex;
+  }
+  .main-window {
+    width: calc(100vw - 112px);
+    min-height: calc(100vh - 116px);
+  }
+  .main-window-2 {
+    width: calc(100vw);
+    min-height: calc(100vh - 116px);
   }
 }
