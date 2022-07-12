@@ -1,17 +1,18 @@
 import "../output.css";
-import { useNavigate } from "react-router-dom";
+import LoginButton from "../helpers/LoginButton";
+import { useState } from "react";
 import { useRecoilState } from "recoil";
 import { authVerify0 } from "../atoms/authCheck";
-import { adminAuth } from "../atoms/adminAuthCheck";
+import { useNavigate } from "react-router-dom";
 
-const axios = require("axios");
-
-function Login(props) {
+function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const buttonArguments = { email, password };
   // eslint-disable-next-line
   const [auth, setAuth] = useRecoilState(authVerify0);
-  // eslint-disable-next-line
-  const [adAuth, setAdminAuth] = useRecoilState(adminAuth);
   let navigate = useNavigate();
+
   return (
     <div className="hero main-window bg-slate-90">
       <div className="hero-content flex-col lg:flex-row-reverse">
@@ -29,10 +30,10 @@ function Login(props) {
                 <span className="label-text">Email</span>
               </label>
               <input
-                id="login-email"
                 type="email"
                 placeholder="email"
                 className="input input-bordered"
+                onChange={(event) => setEmail(event.target.value)}
               />
             </div>
             <div className="form-control">
@@ -40,10 +41,10 @@ function Login(props) {
                 <span className="label-text">Password</span>
               </label>
               <input
-                id="login-password"
                 type="password"
                 placeholder="password"
                 className="input input-bordered"
+                onChange={(event) => setPassword(event.target.value)}
               />
               <label className="label">
                 <a
@@ -57,27 +58,13 @@ function Login(props) {
             <div className="form-control mt-6">
               <button
                 className="btn btn-primary"
-                onClick={() => {
-                  console.log("boop-2");
-                  axios({
-                    method: "put",
-                    url: "http://localhost:5433/authentication",
-                    data: {
-                      email: document.getElementById("login-email").value,
-                      password: document.getElementById("login-password").value,
-                    },
-                  }).then(function (response) {
-                    console.log(response);
-                    if (response.status === 200) {
-                      localStorage.setItem("token", response.data.token);
-                      localStorage.setItem("isAdmin", response.data.admin);
-                      setAuth(true);
-                      setAdminAuth(response.data.admin);
-                      navigate("/", { replace: true });
-                    } else {
-                      console.log("Wrong Password");
-                    }
-                  });
+                onClick={async () => {
+                  if (await LoginButton(buttonArguments)) {
+                    setAuth(true);
+                    navigate("/", { replace: true });
+                  } else {
+                    setAuth(false);
+                  }
                 }}
               >
                 Login

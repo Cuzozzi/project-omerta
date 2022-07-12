@@ -29,7 +29,7 @@ function AllRoutes() {
     if (auth) {
       return <Component />;
     } else {
-      return <Login authCheck={auth} />;
+      return <Login />;
     }
   }
 
@@ -37,7 +37,7 @@ function AllRoutes() {
     if (auth && adAuth === "true") {
       return <Component />;
     } else {
-      return <Login authCheck={auth} />;
+      return <Login />;
     }
   }
 
@@ -58,7 +58,7 @@ function AllRoutes() {
       <Route path="/rules" element={<Rules />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/signup-1" element={<Signup1 />} />
-      <Route path="/login" element={<Login authCheck={auth} />} />
+      <Route path="/login" element={<Login />} />
       <Route
         path="/admin-console"
         element={protectedAdminRoute(AdminConsole)}

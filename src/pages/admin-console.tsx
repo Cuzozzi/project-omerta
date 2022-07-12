@@ -9,7 +9,7 @@ import {
   AllTokens,
   GiveMod,
   RemoveMod,
-} from "../helpers/adminFunctions";
+} from "../helpers/AdminFunctions";
 import { useNavigate } from "react-router-dom";
 
 function AdminConsole() {
@@ -21,9 +21,7 @@ function AdminConsole() {
         title="Display all users below!"
         htmlFor="my-modal-1"
         button="Display all users"
-        onClick1={(inputValue1, inputValue2) =>
-          AllUsers(navigate, inputValue1, inputValue2)
-        }
+        onClick1={() => AllUsers(navigate)}
         onClick2={() => {
           const element = document.getElementById(
             "my-modal-1"
@@ -104,9 +102,7 @@ function AdminConsole() {
         title="Delete all user tokens site-wide below!"
         htmlFor="my-modal-5"
         button="Delete all tokens"
-        onClick1={(inputValue1, inputValue2) =>
-          AllTokens(navigate, inputValue1, inputValue2)
-        }
+        onClick1={() => AllTokens(navigate)}
         onClick2={() => {
           const element = document.getElementById(
             "my-modal-5"

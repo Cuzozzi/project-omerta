@@ -1,11 +1,7 @@
 import axios from "axios";
 import { NavigateFunction } from "react-router-dom";
 
-export function AllUsers(
-  navigate: NavigateFunction,
-  inputValue1: string,
-  inputValue2: string
-) {
+export function AllUsers(navigate: NavigateFunction) {
   axios({
     method: "get",
     url: "http://localhost:5433/admin/console-all-users",
@@ -124,11 +120,7 @@ export function UserTokens(
     });
 }
 
-export function AllTokens(
-  navigate: NavigateFunction,
-  inputValue1: string,
-  inputValue2: string
-) {
+export function AllTokens(navigate: NavigateFunction) {
   const element = document.getElementById("my-modal-5") as HTMLInputElement;
   axios({
     method: "delete",
