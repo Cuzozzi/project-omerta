@@ -42,6 +42,9 @@ function TopNavbar() {
                 className="menu dropdown-content p-2 shadow bg-base-100 rounded-box w-52 mt-4"
               >
                 <GamebarLink path="/" domRender="Home" />
+                {auth && adAuth === "true" && (
+                  <GamebarLink path="/admin-console" domRender="Admin" />
+                )}
                 <GamebarLink path="/character" domRender="Character" />
                 <GamebarLink path="/safehouses" domRender="Safehouses" />
                 <GamebarLink path="/rackets" domRender="Rackets" />

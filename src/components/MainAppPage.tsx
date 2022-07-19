@@ -11,6 +11,7 @@ function MainAppPage() {
         <main>
           <div className="desktop gameplay-bar flex bg-slate-900">
             <div className="w-28 border-2 border-slate-800 justify-center items-center inline-flex flex-col navbar gap-10 bg-slate-800">
+              <GamebarLink path="/map" domRender="Map" />
               <GamebarLink path="/character" domRender="Character" />
               <GamebarLink path="/safehouses" domRender="Safehouses" />
               <GamebarLink path="/rackets" domRender="Rackets" />

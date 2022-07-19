@@ -25,6 +25,11 @@
     width: calc(100vw);
     min-height: calc(100vh - 116px);
   }
+
+  .map-window {
+    width: calc(100vw);
+    height: calc(100vh - 116px);
+  }
 }
 
 /* Phone landscape */
@@ -43,6 +48,10 @@
   .main-window-2 {
     width: calc(100vw);
     min-height: calc(100vh - 116px);
+  }
+  .map-window {
+    width: calc(100vw);
+    height: calc(100vh - 116px);
   }
 }
 
@@ -63,6 +72,10 @@
     width: calc(100vw);
     min-height: calc(100vh - 116px);
   }
+  .map-window {
+    width: calc(100vw);
+    height: calc(100vh - 116px);
+  }
 }
 
 /* Tablet Landscape */
@@ -82,6 +95,10 @@
     width: calc(100vw);
     min-height: calc(100vh - 116px);
   }
+  .map-window {
+    width: calc(100vw);
+    height: calc(100vh - 116px);
+  }
 }
 
 /* Desktop */
@@ -100,5 +117,9 @@
   .main-window-2 {
     width: calc(100vw);
     min-height: calc(100vh - 116px);
+  }
+  .map-window {
+    width: calc(100vw - 112px);
+    height: calc(100vh - 116px);
   }
 }
