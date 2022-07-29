@@ -3,7 +3,7 @@ import { Canvas } from "@react-three/fiber";
 import { Stars } from "@react-three/drei";
 import { Physics } from "@react-three/cannon";
 import Astronaut from "../components/models/Astronaut";
-import { Suspense, useCallback, useRef } from "react";
+import { Suspense } from "react";
 import MapTile from "../components/map/MapTile";
 import MapSphere from "../components/map/MapSphere";
 import MapCamera from "../components/map/MapCamera";

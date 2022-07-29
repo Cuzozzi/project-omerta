@@ -1,5 +1,5 @@
 import { usePlane } from "@react-three/cannon";
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect } from "react";
 import { angleToRadians } from "../../helpers/angleToRadians";
 import { getRecoil, setRecoil } from "recoil-nexus";
 import { MapTilePosition } from "../../atoms/MapTilePosition";

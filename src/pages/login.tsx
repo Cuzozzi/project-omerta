@@ -61,6 +61,7 @@ function Login() {
             </div>
             <div className="form-control mt-6">
               <button
+                type="submit"
                 className="btn btn-primary"
                 onClick={async () => {
                   if (await LoginButton(buttonArguments)) {
