@@ -4,11 +4,14 @@ import { Stars } from "@react-three/drei";
 import { Physics } from "@react-three/cannon";
 import Astronaut from "../components/models/Astronaut";
 import { Suspense } from "react";
+import PrimaryMapTile from "../components/map/PrimaryMapTile";
 import MapTile from "../components/map/MapTile";
 import MapSphere from "../components/map/MapSphere";
 import MapCamera from "../components/map/MapCamera";
+import InitialTilePlacement from "../components/map/InitialTilePlacement";
 
 function Map() {
+  console.log("shit");
   return (
     <main>
       <div
@@ -17,7 +20,9 @@ function Map() {
       >
         <Canvas>
           <Physics>
-            <MapTile />
+            <PrimaryMapTile />
+            <MapTile position={[32, 0, 0]} />
+            <InitialTilePlacement />
           </Physics>
           <Suspense fallback={null}>
             <ambientLight intensity={0.1} />

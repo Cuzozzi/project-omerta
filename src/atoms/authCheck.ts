@@ -1,7 +1,7 @@
 import axios from "axios";
 import { atom } from "recoil";
 
-async function AuthVerify() {
+export async function AuthVerify() {
   let authValue = false;
   let token = String(localStorage.getItem("token"));
   console.log(token);
@@ -32,5 +32,5 @@ async function AuthVerify() {
 
 export const authVerify0 = atom({
   key: "authVerify0", // unique ID (with respect to other atoms/selectors)
-  default: AuthVerify(), // default value (aka initial value)
+  default: false, // default value (aka initial value)
 });

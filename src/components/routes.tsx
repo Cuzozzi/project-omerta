@@ -25,19 +25,20 @@ function AllRoutes() {
   const auth = useRecoilValue(authVerify0);
   const adAuth = useRecoilValue(adminAuth);
 
-  function protectedRoute(Component: React.FunctionComponent) {
+  function protectedRoute(Component: () => JSX.Element) {
+    console.log("were fucked");
     if (auth) {
-      return <Component />;
+      return Component();
     } else {
-      return <Login />;
+      return Login();
     }
   }
 
-  function protectedAdminRoute(Component: React.FunctionComponent) {
+  function protectedAdminRoute(Component: () => JSX.Element) {
     if (auth && adAuth === "true") {
-      return <Component />;
+      return Component();
     } else {
-      return <Login />;
+      return Login();
     }
   }
 

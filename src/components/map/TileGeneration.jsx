@@ -1,5 +1,5 @@
 import axios from "axios";
-import MapTile from "./MapTile";
+import MapTile from "./PrimaryMapTile";
 
 async function TilePower() {
   let tilepower = 0;
@@ -42,18 +42,22 @@ async function TotalTiles() {
 async function TileGeneration() {
   let tilepower = await TilePower();
   let totaltiles = await TotalTiles();
+  let lastTileX = 0;
+  let lastTileY = 0;
   //let difference = tilepower - totaltiles;
   console.log(tilepower, totaltiles);
   if (totaltiles < tilepower) {
     console.log("wow");
     axios({
-      method: "get",
-      url: "http://localhost:5433/map/what_tile_next",
+      method: "post",
+      url: "http://localhost:5433/map/tile-up",
+      data: {
+        x: lastTileX,
+        y: lastTileY,
+      },
     }).then(function (response) {
       if (response.status === 200) {
-        let x = response.data[0].min;
-        let y = response.data[1].min;
-        return <MapTile position={[x, y, 0]} />;
+        console.log(response);
       } else {
         console.log("oof");
       }
