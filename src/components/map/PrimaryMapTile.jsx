@@ -13,10 +13,7 @@ export function PrimaryMapTile() {
 
   useEffect(() => {
     if (!!planeRef.current) {
-      console.log(planeRef.current);
-      console.log(planeRef.current.position);
       setRecoil(MapTilePosition, planeRef.current.position);
-      console.log(getRecoil(MapTilePosition));
     }
   });
   return (

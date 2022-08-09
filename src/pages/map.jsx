@@ -6,12 +6,28 @@ import Astronaut from "../components/models/Astronaut";
 import { Suspense } from "react";
 import PrimaryMapTile from "../components/map/PrimaryMapTile";
 import MapTile from "../components/map/MapTile";
+import axios from "axios";
+import { useState, useEffect } from "react";
 import MapSphere from "../components/map/MapSphere";
 import MapCamera from "../components/map/MapCamera";
-import InitialTilePlacement from "../components/map/InitialTilePlacement";
+
+function InitialTilePlacement() {
+  const [result, setResult] = useState([]);
+
+  useEffect(() => {
+    const asyncCall = async () => {
+      const res = await axios.get("http://localhost:5433/map/all-tiles");
+      setResult(res.data);
+    };
+    asyncCall();
+  }, []);
+
+  return result.map((tile, index) => (
+    <MapTile key={index} position={[tile.x, tile.y, tile.z]} />
+  ));
+}
 
 function Map() {
-  console.log("shit");
   return (
     <main>
       <div
@@ -22,7 +38,7 @@ function Map() {
           <Physics>
             <PrimaryMapTile />
             <MapTile position={[32, 0, 0]} />
-            <InitialTilePlacement />
+            {InitialTilePlacement()}
           </Physics>
           <Suspense fallback={null}>
             <ambientLight intensity={0.1} />

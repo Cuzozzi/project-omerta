@@ -26,7 +26,6 @@ function AllRoutes() {
   const adAuth = useRecoilValue(adminAuth);
 
   function protectedRoute(Component: () => JSX.Element) {
-    console.log("were fucked");
     if (auth) {
       return Component();
     } else {

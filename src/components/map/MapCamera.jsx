@@ -18,12 +18,10 @@ export default function MapCamera() {
 
   useEffect(() => {
     if (!!orbitControlsRef.current === true) {
-      console.log(getRecoil(MapTilePosition));
     }
   });
 
   const tilePosition = getRecoil(MapTilePosition);
-  console.log(getRecoil(MapTilePosition));
   return (
     <>
       <PerspectiveCamera makeDefault position={tilePosition} />

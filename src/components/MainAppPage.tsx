@@ -3,7 +3,6 @@ import { authVerify0 } from "../atoms/authCheck";
 import GamebarLink from "./GamebarLink";
 import AllRoutes from "./routes";
 import TileGeneration from "./map/TileGeneration";
-import InitialTilePlacement from "./map/InitialTilePlacement";
 import { useEffect } from "react";
 
 function MainAppPage() {
