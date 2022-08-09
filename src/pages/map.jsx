@@ -40,12 +40,13 @@ function Map() {
             <MapTile position={[32, 0, 0]} />
             {InitialTilePlacement()}
           </Physics>
+          <MapSphere />
           <Suspense fallback={null}>
             <ambientLight intensity={0.1} />
             <directionalLight color="hotpink" position={[5, 10, 100]} />
             <Stars />
             <Astronaut />
-            <MapSphere />
+
             <MapCamera />
           </Suspense>
         </Canvas>

@@ -1,9 +1,9 @@
 import { PerspectiveCamera, OrbitControls } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { angleToRadians } from "../../helpers/angleToRadians";
 import { getRecoil } from "recoil-nexus";
-import { MapTilePosition } from "../../atoms/MapTilePosition";
+import { SpherePosition } from "../../atoms/SpherePosition";
 
 export default function MapCamera() {
   const orbitControlsRef = useRef(null);
@@ -16,15 +16,11 @@ export default function MapCamera() {
     }
   });
 
-  useEffect(() => {
-    if (!!orbitControlsRef.current === true) {
-    }
-  });
-
-  const tilePosition = getRecoil(MapTilePosition);
+  const spherePosition = getRecoil(SpherePosition);
+  console.log(spherePosition);
   return (
     <>
-      <PerspectiveCamera makeDefault position={tilePosition} />
+      <PerspectiveCamera makeDefault position={spherePosition} />
       <OrbitControls
         ref={orbitControlsRef}
         minPolarAngle={angleToRadians(10)}

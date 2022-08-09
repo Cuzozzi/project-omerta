@@ -6,9 +6,9 @@ import TileGeneration from "./map/TileGeneration";
 import { useEffect } from "react";
 
 function MainAppPage() {
-  /*   useEffect(() => {
-    InitialTilePlacement();
-  }, []); */
+  useEffect(() => {
+    TileGeneration();
+  }, []);
 
   const auth = useRecoilValue(authVerify0);
   if (auth) {
