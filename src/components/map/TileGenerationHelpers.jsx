@@ -1,7 +1,6 @@
 import axios from "axios";
-import MapTile from "./PrimaryMapTile";
 
-async function TilePower() {
+export async function TilePower() {
   let tilepower = 0;
   await axios({
     method: "get",
@@ -18,7 +17,7 @@ async function TilePower() {
   return tilepower;
 }
 
-async function TotalTiles() {
+export async function TotalTiles() {
   let totaltiles = 0;
   await axios({
     method: "get",
@@ -36,24 +35,3 @@ async function TotalTiles() {
     });
   return totaltiles;
 }
-
-async function TileGeneration() {
-  //let tilepower = await TilePower();
-  let tilepower = 999;
-  let totaltiles = await TotalTiles();
-
-  if (totaltiles < tilepower) {
-    await axios({
-      method: "get",
-      url: "http://localhost:5433/map/tile-generation",
-    }).then(function (response) {
-      if (response.status === 200) {
-        console.log(response);
-      } else {
-        console.log("oof");
-      }
-    });
-  }
-}
-
-export default TileGeneration;
