@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from "react";
 import { angleToRadians } from "../../helpers/angleToRadians";
 import { getRecoil } from "recoil-nexus";
 import { SpherePosition } from "../../atoms/SpherePosition";
-import { ClampToEdgeWrapping } from "three";
 
 export default function MapCamera() {
   const [spherePosition, setSpherePosition] = useState(
@@ -20,9 +19,9 @@ export default function MapCamera() {
     }
   });
 
-  useEffect(() => {
+  /* useEffect(() => {
     console.log(spherePosition);
-  }, [spherePosition]);
+  }, [spherePosition]); */
 
   return (
     <>

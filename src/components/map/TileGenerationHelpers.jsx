@@ -44,9 +44,7 @@ export function InitialTilePlacement() {
   useEffect(() => {
     const asyncCall = async () => {
       const res = await axios.get("http://localhost:5433/map/all-tiles");
-      console.log(res);
       setResult(res.data);
-      console.log(result);
     };
     asyncCall();
   }, []);
@@ -56,13 +54,13 @@ export function InitialTilePlacement() {
 }
 
 async function TileGenerationStart() {
-  let tilepower = await TilePower();
-  let totaltiles = await TotalTiles();
+  let tilepower = Number(await TilePower());
+  let totaltiles = Number(await TotalTiles());
   let renderArray = [];
+  console.log("tilepower", tilepower);
+  console.log("totaltiles", totaltiles);
   if (totaltiles < tilepower) {
     for (let i = totaltiles; i < tilepower; i++) {
-      console.log("tilepower", tilepower);
-      console.log("totaltiles", totaltiles);
       await axios({
         method: "get",
         url: "http://localhost:5433/map/tile-generation",
@@ -75,7 +73,6 @@ async function TileGenerationStart() {
         }
       });
     }
-    console.log(renderArray);
     return renderArray;
   }
 }
@@ -85,11 +82,15 @@ export function TileGenerationEnd() {
   useEffect(() => {
     const asyncCall = async () => {
       setResult(await TileGenerationStart());
-      console.log(result);
     };
     asyncCall();
   }, []);
-  return result.map((tile, index) => (
-    <MapTile key={index} position={[tile.x, 0, tile.z]} />
-  ));
+
+  if (result) {
+    return result.map((tile, index) => (
+      <MapTile key={index} position={[tile.x, 0, tile.z]} />
+    ));
+  } else {
+    return;
+  }
 }
