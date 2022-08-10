@@ -17,52 +17,27 @@ import Signup1 from "../pages/signup-1";
 import Login from "../pages/login";
 import Home from "../pages/home";
 import AdminConsole from "../pages/admin-console";
-import { authVerify0 } from "../atoms/authCheck";
-import { adminAuth } from "../atoms/adminAuthCheck";
-import { useRecoilValue } from "recoil";
 
 function AllRoutes() {
-  const auth = useRecoilValue(authVerify0);
-  const adAuth = useRecoilValue(adminAuth);
-
-  function protectedRoute(Component: () => JSX.Element) {
-    if (auth) {
-      return Component();
-    } else {
-      return Login();
-    }
-  }
-
-  function protectedAdminRoute(Component: () => JSX.Element) {
-    if (auth && adAuth === "true") {
-      return Component();
-    } else {
-      return Login();
-    }
-  }
-
   return (
     <Routes>
-      <Route path="/character" element={protectedRoute(Character)} />
-      <Route path="/safehouses" element={protectedRoute(Safehouses)} />
-      <Route path="/map" element={protectedRoute(Map)} />
-      <Route path="/rackets" element={protectedRoute(Rackets)} />
-      <Route path="/family" element={protectedRoute(Family)} />
-      <Route path="/politics" element={protectedRoute(Politics)} />
-      <Route path="/trading" element={protectedRoute(Trading)} />
-      <Route path="/intelligence" element={protectedRoute(Intelligence)} />
+      <Route path="/character" element={<Character />} />
+      <Route path="/safehouses" element={<Safehouses />} />
+      <Route path="/map" element={<Map />} />
+      <Route path="/rackets" element={<Rackets />} />
+      <Route path="/family" element={<Family />} />
+      <Route path="/politics" element={<Politics />} />
+      <Route path="/trading" element={<Trading />} />
+      <Route path="/intelligence" element={<Intelligence />} />
       <Route path="/" element={<Home />} />
       <Route path="/about" element={<About />} />
-      <Route path="/account" element={protectedRoute(Account)} />
+      <Route path="/account" element={<Account />} />
       <Route path="/team" element={<Team />} />
       <Route path="/rules" element={<Rules />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/signup-1" element={<Signup1 />} />
       <Route path="/login" element={<Login />} />
-      <Route
-        path="/admin-console"
-        element={protectedAdminRoute(AdminConsole)}
-      />
+      <Route path="/admin-console" element={<AdminConsole />} />
     </Routes>
   );
 }

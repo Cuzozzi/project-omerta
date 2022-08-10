@@ -1,6 +1,7 @@
 [
   {
     "img": "images/charlotte.jpg",
+    "imgLowRes": "images/bitch.png",
     "alt": "",
     "title1": "Charlotte Dunleavey",
     "title2": "Lead Developer",
@@ -10,6 +11,7 @@
   },
   {
     "img": "images/mango.jpg",
+    "imgLowRes": "images/bitch.png",
     "alt": "",
     "title1": "Mango",
     "title2": "Senior Developer",
@@ -19,6 +21,7 @@
   },
   {
     "img": "images/tom.jpg",
+    "imgLowRes": "images/bitch.png",
     "alt": "",
     "title1": "Tomáš Schmied",
     "title2": "Consultant Developer",

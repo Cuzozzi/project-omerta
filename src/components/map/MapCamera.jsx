@@ -1,11 +1,15 @@
 import { PerspectiveCamera, OrbitControls } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { angleToRadians } from "../../helpers/angleToRadians";
 import { getRecoil } from "recoil-nexus";
 import { SpherePosition } from "../../atoms/SpherePosition";
+import { ClampToEdgeWrapping } from "three";
 
 export default function MapCamera() {
+  const [spherePosition, setSpherePosition] = useState(
+    getRecoil(SpherePosition)
+  );
   const orbitControlsRef = useRef(null);
   useFrame((state) => {
     if (!!orbitControlsRef.current) {
@@ -16,8 +20,10 @@ export default function MapCamera() {
     }
   });
 
-  const spherePosition = getRecoil(SpherePosition);
-  console.log(spherePosition);
+  useEffect(() => {
+    console.log(spherePosition);
+  }, [spherePosition]);
+
   return (
     <>
       <PerspectiveCamera makeDefault position={spherePosition} />

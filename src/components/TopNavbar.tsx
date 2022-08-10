@@ -2,15 +2,13 @@ import LogoutButton from "./LogoutButton";
 import NavLink from "./NavLink";
 import GamebarLink from "./GamebarLink";
 import Logout from "../helpers/LogoutFunction";
-import { useRecoilValue, useRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 import { authVerify0 } from "../atoms/authCheck";
 import { adminAuth } from "../atoms/adminAuthCheck";
-import { useNavigate } from "react-router-dom";
 
 function TopNavbar() {
-  const [auth, setAuth] = useRecoilState(authVerify0);
+  const auth = useRecoilValue(authVerify0);
   const adAuth = useRecoilValue(adminAuth);
-  const navigate = useNavigate();
   return (
     <div>
       <header className="desktop rounded-t">
@@ -42,7 +40,7 @@ function TopNavbar() {
                 className="menu dropdown-content p-2 shadow bg-base-100 rounded-box w-52 mt-4"
               >
                 <GamebarLink path="/" domRender="Home" />
-                {auth && adAuth === "true" && (
+                {adAuth === "true" && (
                   <GamebarLink path="/admin-console" domRender="Admin" />
                 )}
                 <GamebarLink path="/character" domRender="Character" />
@@ -52,18 +50,7 @@ function TopNavbar() {
                 <GamebarLink path="/politics" domRender="Politics" />
                 <GamebarLink path="/trading" domRender="Trading" />
                 <GamebarLink path="/intelligence" domRender="Intelligence" />
-                <GamebarLink
-                  path="/login"
-                  domRender="Logout"
-                  logout={async () => {
-                    if (Logout() === false) {
-                      setAuth(false);
-                      navigate("/", { replace: true });
-                    } else {
-                      console.log("broke");
-                    }
-                  }}
-                />
+                <GamebarLink path="/login" domRender="Logout" logout={Logout} />
               </ul>
             </div>
           )}

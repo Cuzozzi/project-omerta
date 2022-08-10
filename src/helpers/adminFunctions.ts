@@ -1,5 +1,6 @@
 import axios from "axios";
 import { NavigateFunction } from "react-router-dom";
+import Logout from "./LogoutFunction";
 
 export function AllUsers(navigate: NavigateFunction) {
   axios({
@@ -48,9 +49,7 @@ export function AddUser(
     })
     .catch(function (err) {
       if (err.response.status === 401) {
-        console.log("Authentication failed");
-        localStorage.setItem("isAdmin", "false");
-        navigate("/", { replace: true });
+        Logout();
       }
     });
 }
