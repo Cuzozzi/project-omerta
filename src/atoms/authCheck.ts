@@ -7,7 +7,7 @@ export async function AuthVerify() {
   console.log(token);
   await axios({
     method: "get",
-    url: "http://localhost:5433/api/authentication_time_check",
+    url: "http://localhost:5433/authentication",
     headers: {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
     },

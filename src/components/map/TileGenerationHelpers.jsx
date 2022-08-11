@@ -6,7 +6,7 @@ export async function TilePower() {
   let tilepower = 0;
   await axios({
     method: "get",
-    url: "http://localhost:5433/map/get_tilepower",
+    url: "http://localhost:5433/map/tile-power",
   })
     .then(function (response) {
       if (response.status === 200) {
@@ -23,7 +23,7 @@ export async function TotalTiles() {
   let totaltiles = 0;
   await axios({
     method: "get",
-    url: "http://localhost:5433/map/total_tiles",
+    url: "http://localhost:5433/map/count-tiles",
   })
     .then(function (response) {
       if (response.status === 200) {
