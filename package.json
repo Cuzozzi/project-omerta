@@ -23,7 +23,10 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "SET PORT=3001 && react-scripts start",
+    "start": "run-script-os",
+    "start:win32": "SET PORT=3001 && react-scripts start",
+    "start:darwin:linux": "PORT=3001 react-scripts start",
+    "start:default": "echo 'Your OS doesnt seem to be supported - assuming POSIX-based OS...' && PORT=3001 react-scripts start",
     "start-bg": "PORT=3001 pm2 --name Omerta start react-scripts -- start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -49,6 +52,7 @@
   },
   "devDependencies": {
     "@types/three": "^0.141.0",
+    "run-script-os": "^1.1.6",
     "tailwindcss": "^3.1.4"
   }
 }
