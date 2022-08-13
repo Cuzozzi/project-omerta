@@ -27,7 +27,7 @@ function Login() {
             the action! Your family needs your help, capiche?
           </p>
         </div>
-        <div className="card max-h-96 shrink w-full max-w-sm shadow-2xl bg-base-100">
+        <div className="card max-h-96 shrink w-full max-w-sm shadow-2xl bg-slate-800">
           <div className="card-body">
             <div className="form-control">
               <label className="label">

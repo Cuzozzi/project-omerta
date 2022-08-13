@@ -32,8 +32,8 @@ function AdminModal({
   return (
     <div>
       <input type="checkbox" id={id} className="modal-toggle" />
-      <div className="modal modal-bottom sm:modal-middle">
-        <div className="modal-box">
+      <div className="modal modal-bottom sm:modal-middle bg-slate-800">
+        <div className="modal-box bg-slate-700">
           <h3 className="font-bold text-lg">{title}</h3>
           {input && (
             <div className="form-control mt-10">
