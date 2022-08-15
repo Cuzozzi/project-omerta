@@ -8,10 +8,7 @@ import PrimaryMapTile from "../components/map/PrimaryMapTile";
 import MapTile from "../components/map/MapTile";
 import MapSphere from "../components/map/MapSphere";
 import MapCamera from "../components/map/MapCamera";
-import {
-  InitialTilePlacement,
-  TileGenerationEnd,
-} from "../components/map/TileGenerationHelpers";
+import { StartTileGeneration } from "../components/map/TileGenerationHelpers";
 
 function Map() {
   return (
@@ -22,17 +19,15 @@ function Map() {
       >
         <Canvas>
           <Physics>
-            <PrimaryMapTile />
-            <MapTile position={[32, 0, 0]} />
-            <InitialTilePlacement />
-            <TileGenerationEnd />
             <MapSphere />
             <Suspense fallback={null}>
+              <PrimaryMapTile />
+              <StartTileGeneration />
+              <Suspense fallback={null}></Suspense>
               <ambientLight intensity={0.1} />
               <directionalLight color="hotpink" position={[5, 10, 100]} />
               <Stars />
               <Astronaut />
-
               <MapCamera />
             </Suspense>
           </Physics>

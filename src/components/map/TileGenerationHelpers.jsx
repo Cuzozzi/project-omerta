@@ -32,56 +32,64 @@ export async function TotalTiles() {
     })
     .catch(function (err) {
       console.log(err);
-      if (err.response.status === 401) {
-      }
     });
   return totaltiles;
 }
 
-export function InitialTilePlacement() {
-  const [result, setResult] = useState([]);
-
-  useEffect(() => {
-    const asyncCall = async () => {
-      const res = await axios.get("http://localhost:5433/map/all-tiles");
-      setResult(res.data);
-    };
-    asyncCall();
-  }, []);
-  return result.map((tile, index) => (
-    <MapTile key={index} position={[tile.x, tile.y, tile.z]} />
-  ));
+export async function allTiles() {
+  let allTiles = [];
+  await axios({
+    method: "get",
+    url: "http://localhost:5433/map/all-tiles",
+  })
+    .then(function (response) {
+      allTiles = response.data;
+    })
+    .catch(function (err) {
+      console.log(err);
+    });
+  return allTiles;
 }
 
-async function TileGenerationStart() {
-  let tilepower = Number(await TilePower());
-  let totaltiles = Number(await TotalTiles());
+export async function TileGeneration() {
+  let tilePower = await TilePower();
+  let countTiles = await TotalTiles();
   let renderArray = [];
-  console.log("tilepower", tilepower);
-  console.log("totaltiles", totaltiles);
-  if (totaltiles < tilepower) {
-    for (let i = totaltiles; i < tilepower; i++) {
-      await axios({
-        method: "get",
-        url: "http://localhost:5433/map/tile-generation",
-      }).then(function (response) {
-        if (response.status === 200) {
-          //console.log(response.data);
-          renderArray.push({ x: response.data.x, z: response.data.z });
-        } else {
-          console.log("oof");
-        }
+  let allArray = await allTiles();
+
+  console.log(allArray);
+  console.log(tilePower, countTiles);
+
+  if (Number(countTiles) < Number(tilePower)) {
+    await axios({
+      method: "put",
+      url: "http://localhost:5433/map/test-generation",
+      data: {
+        tilepower: tilePower,
+        counttiles: countTiles,
+      },
+    })
+      .then(function (response) {
+        console.log(response);
+        renderArray = response.data;
+        renderArray = renderArray.concat(allArray);
+        console.log(renderArray);
+      })
+      .catch(function (err) {
+        console.log(err);
       });
-    }
-    return renderArray;
+  } else {
+    renderArray = allArray;
   }
+  return renderArray;
 }
 
-export function TileGenerationEnd() {
+export function StartTileGeneration() {
   const [result, setResult] = useState([]);
   useEffect(() => {
     const asyncCall = async () => {
-      setResult(await TileGenerationStart());
+      const data = await TileGeneration();
+      setResult(data);
     };
     asyncCall();
   }, []);
