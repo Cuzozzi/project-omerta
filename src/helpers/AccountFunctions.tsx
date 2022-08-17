@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import Gravatar from "react-gravatar";
-import AccountCard from "../components/AccountCard";
+import AccountCard, { Message } from "../components/AccountCard";
 
 export interface User {
   user_id: number;
@@ -35,6 +35,21 @@ export function AccountContent() {
 
   const [result, setResult] = useState<User>();
   const [hash, setHash] = useState(md5(404));
+  const [usernameMessage, usernameSetMessage] = useState<Message>({
+    type: "success",
+    content: "",
+    isVisible: false,
+  });
+  const [emailMessage, emailSetMessage] = useState<Message>({
+    type: "success",
+    content: "",
+    isVisible: false,
+  });
+  const [passwordMessage, passwordSetMessage] = useState<Message>({
+    type: "success",
+    content: "",
+    isVisible: false,
+  });
 
   useEffect(() => {
     const asyncCall = async () => {
@@ -52,7 +67,7 @@ export function AccountContent() {
           className="mask mask-circle"
           md5={hash}
           size={150}
-          default="monsterid"
+          default="identicon"
         />
       </div>
       <div className="overflow-x-auto mx-8 mb-8">
@@ -90,10 +105,36 @@ export function AccountContent() {
         inputPlaceOne="New Username"
         inputPlaceTwo="Enter Password"
         button="Change Username"
+        message={usernameMessage}
         onClick1={(inputValue1, inputValue2) => {
           ChangeUsername(inputValue1, inputValue2).then(function (response) {
             if (response === inputValue1 && result) {
               setResult({ ...result, username: inputValue1 });
+              const newMessage = {
+                type: "success",
+                content: "Username succesfully changed!",
+                isVisible: true,
+              } as Message;
+              usernameSetMessage(newMessage);
+              setTimeout(() => {
+                usernameSetMessage({
+                  ...newMessage,
+                  isVisible: false,
+                });
+              }, 6000);
+            } else {
+              const newMessage = {
+                type: "error",
+                content: "Failed to change username!",
+                isVisible: true,
+              } as Message;
+              usernameSetMessage(newMessage);
+              setTimeout(() => {
+                usernameSetMessage({
+                  ...newMessage,
+                  isVisible: false,
+                });
+              }, 6000);
             }
           });
         }}
@@ -106,10 +147,36 @@ export function AccountContent() {
         inputPlaceOne="New Email"
         inputPlaceTwo="Enter Password"
         button="Change Email"
+        message={emailMessage}
         onClick1={(inputValue1, inputValue2) => {
           ChangeEmail(inputValue1, inputValue2).then(function (response) {
             if (response === inputValue1 && result) {
               setResult({ ...result, email: inputValue1 });
+              const newMessage = {
+                type: "success",
+                content: "Email succesfully changed!",
+                isVisible: true,
+              } as Message;
+              emailSetMessage(newMessage);
+              setTimeout(() => {
+                emailSetMessage({
+                  ...newMessage,
+                  isVisible: false,
+                });
+              }, 6000);
+            } else {
+              const newMessage = {
+                type: "error",
+                content: "Failed to change email!",
+                isVisible: true,
+              } as Message;
+              emailSetMessage(newMessage);
+              setTimeout(() => {
+                emailSetMessage({
+                  ...newMessage,
+                  isVisible: false,
+                });
+              }, 6000);
             }
           });
         }}
@@ -122,10 +189,36 @@ export function AccountContent() {
         inputPlaceOne="New Password"
         inputPlaceTwo="Old Password"
         button="Change Password"
+        message={passwordMessage}
         onClick1={(inputValue1, inputValue2) => {
           ChangePassword(inputValue1, inputValue2).then(function (response) {
             if (response === inputValue1 && result) {
               setResult({ ...result, username: inputValue1 });
+              const newMessage = {
+                type: "success",
+                content: "Password succesfully changed!",
+                isVisible: true,
+              } as Message;
+              passwordSetMessage(newMessage);
+              setTimeout(() => {
+                passwordSetMessage({
+                  ...newMessage,
+                  isVisible: false,
+                });
+              }, 6000);
+            } else {
+              const newMessage = {
+                type: "error",
+                content: "Failed to change password!",
+                isVisible: true,
+              } as Message;
+              passwordSetMessage(newMessage);
+              setTimeout(() => {
+                passwordSetMessage({
+                  ...newMessage,
+                  isVisible: false,
+                });
+              }, 6000);
             }
           });
         }}

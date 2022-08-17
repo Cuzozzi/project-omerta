@@ -6,6 +6,17 @@
   .bg-main-yellow {
     background-color: rgb(86 72 52);
   }
+  .fixed {
+    position: fixed;
+    bottom: 0;
+    right: -350px;
+    transition: right 500ms ease;
+    z-index: 999;
+  }
+
+  .message-transition {
+    right: 0;
+  }
 }
 
 /* Phone portrait and landscape */
