@@ -1,15 +1,7 @@
-import { setRecoil } from "recoil-nexus";
-import { SpherePosition } from "../../atoms/SpherePosition";
-import { useRef, useEffect } from "react";
+import { useRef } from "react";
 
 function MapSphere() {
   const sphereRef = useRef(null);
-
-  useEffect(() => {
-    if (!!sphereRef.current) {
-      setRecoil(SpherePosition, sphereRef.current.position);
-    }
-  });
 
   return (
     <object3D position={[0, 0.5, 0]} ref={sphereRef}>

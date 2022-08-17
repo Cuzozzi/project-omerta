@@ -22,11 +22,7 @@ function ContentCard({
   return (
     <div className="flex-1 card  m-4 bg-slate-800">
       <figure className="max-h-48 md:max-h-64 overflow-hidden">
-        <React.Suspense
-          fallback={<img src={imgLowRes} alt={alt} className="object-fill" />}
-        >
-          <img src={img} alt={alt} className="object-fill" />
-        </React.Suspense>
+        <img src={img} alt={alt} className="object-fill" />
       </figure>
       <div className="card-body items-center text-center">
         <h2 className="card-title">{title1}</h2>

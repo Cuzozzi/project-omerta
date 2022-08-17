@@ -1,9 +1,9 @@
 import axios from "axios";
 import { atom } from "recoil";
-import { setRecoil } from "recoil-nexus";
 
 export async function AuthVerify() {
   let token = String(localStorage.getItem("token"));
+  let value = false;
   console.log(token);
   await axios({
     method: "get",
@@ -14,18 +14,19 @@ export async function AuthVerify() {
   })
     .then(function (response) {
       if (response.status === 200) {
-        setRecoil(authVerify0, true);
+        value = true;
       }
     })
     .catch(function (err) {
       console.log(err);
       if (err.response.status === 401) {
-        setRecoil(authVerify0, false);
+        value = false;
       }
     });
+  return value;
 }
 
 export const authVerify0 = atom({
   key: "authVerify0", // unique ID (with respect to other atoms/selectors)
-  default: false, // default value (aka initial value)
+  default: AuthVerify(), // default value (aka initial value)
 });

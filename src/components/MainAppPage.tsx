@@ -5,6 +5,7 @@ import AllRoutes from "./routes";
 
 function MainAppPage() {
   const auth = useRecoilValue(authVerify0);
+  console.log("shit");
   if (auth) {
     return (
       <div>

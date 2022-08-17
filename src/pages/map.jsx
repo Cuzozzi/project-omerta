@@ -3,9 +3,7 @@ import { Canvas } from "@react-three/fiber";
 import { Stars } from "@react-three/drei";
 import { Physics } from "@react-three/cannon";
 import Astronaut from "../components/models/Astronaut";
-import { Suspense } from "react";
 import PrimaryMapTile from "../components/map/PrimaryMapTile";
-import MapTile from "../components/map/MapTile";
 import MapSphere from "../components/map/MapSphere";
 import MapCamera from "../components/map/MapCamera";
 import { StartTileGeneration } from "../components/map/TileGenerationHelpers";
@@ -20,16 +18,13 @@ function Map() {
         <Canvas>
           <Physics>
             <MapSphere />
-            <Suspense fallback={null}>
-              <PrimaryMapTile />
-              <StartTileGeneration />
-              <Suspense fallback={null}></Suspense>
-              <ambientLight intensity={0.1} />
-              <directionalLight color="hotpink" position={[5, 10, 100]} />
-              <Stars />
-              <Astronaut />
-              <MapCamera />
-            </Suspense>
+            <PrimaryMapTile />
+            <StartTileGeneration />
+            <ambientLight intensity={0.1} />
+            <directionalLight color="hotpink" position={[5, 10, 100]} />
+            <Stars />
+            <Astronaut />
+            <MapCamera />
           </Physics>
         </Canvas>
       </div>

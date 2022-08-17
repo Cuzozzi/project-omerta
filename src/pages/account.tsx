@@ -1,12 +1,8 @@
 import "../output.css";
+import { AccountContent } from "../helpers/AccountFunctions";
 
 function Account() {
-  return (
-    <main className="main-window">
-      <h2>Account</h2>
-      <p>Placeholder</p>
-    </main>
-  );
+  return <AccountContent />;
 }
 
 export default Account;
