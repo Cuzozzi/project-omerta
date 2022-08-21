@@ -74,25 +74,31 @@ export function AccountContent() {
         <table className="table w-full">
           <thead className="text-center">
             <tr>
-              <th>Details</th>
+              <th className="bg-slate-800">Details</th>
             </tr>
           </thead>
           <tbody className="text-center">
             <tr>
-              <td>Username:</td>
-              <td>{result ? result.username : "404"}</td>
+              <td className="bg-slate-800">Username:</td>
+              <td className="bg-slate-800">
+                {result ? result.username : "404"}
+              </td>
             </tr>
             <tr>
-              <td>Email: </td>
-              <td>{result ? result.email : "404"}</td>
+              <td className="bg-slate-800">Email: </td>
+              <td className="bg-slate-800">{result ? result.email : "404"}</td>
             </tr>
             <tr>
-              <td>Tilepower:</td>
-              <td>{result ? result.tilepower : "404"}</td>
+              <td className="bg-slate-800">Tilepower:</td>
+              <td className="bg-slate-800">
+                {result ? result.tilepower : "404"}
+              </td>
             </tr>
             <tr>
-              <td>Account ID:</td>
-              <td>{result ? result.user_id : "404"}</td>
+              <td className="bg-slate-800">Account ID:</td>
+              <td className="bg-slate-800">
+                {result ? result.user_id : "404"}
+              </td>
             </tr>
           </tbody>
         </table>

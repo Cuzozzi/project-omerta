@@ -37,7 +37,7 @@ function AccountCard({
   };
 
   return (
-    <div className="card w-auto mx-8 mb-8 bg-base-100 shadow-xl">
+    <div className="card w-auto mx-8 mb-8 bg-slate-800 shadow-xl">
       <div className="card-body items-center text-center">
         <h2 className="card-title">{action_title}</h2>
         <p>{description}</p>

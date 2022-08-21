@@ -2,7 +2,6 @@ import "../output.css";
 import { Canvas } from "@react-three/fiber";
 import { Stars } from "@react-three/drei";
 import { Physics } from "@react-three/cannon";
-import Astronaut from "../components/models/Astronaut";
 import PrimaryMapTile from "../components/map/PrimaryMapTile";
 import MapSphere from "../components/map/MapSphere";
 import MapCamera from "../components/map/MapCamera";
@@ -23,7 +22,6 @@ function Map() {
             <ambientLight intensity={0.1} />
             <directionalLight color="hotpink" position={[5, 10, 100]} />
             <Stars />
-            <Astronaut />
             <MapCamera />
           </Physics>
         </Canvas>
