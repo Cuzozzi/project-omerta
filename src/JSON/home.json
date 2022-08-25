@@ -1,7 +1,6 @@
 [
   {
     "img": "images/wel-to-fam.jpg",
-    "imgLowRes": "images/bitch.png",
     "alt": "",
     "title1": "Welcome to the Family!",
     "title2": "",
@@ -11,7 +10,6 @@
   },
   {
     "img": "images/empire.jpg",
-    "imgLowRes": "images/bitch.png",
     "alt": "",
     "title1": "Take control of your empire!",
     "title2": "",
@@ -21,7 +19,6 @@
   },
   {
     "img": "images/chess.jpg",
-    "imgLowRes": "images/bitch.png",
     "alt": "",
     "title1": "Fight your way to the top!",
     "title2": "",

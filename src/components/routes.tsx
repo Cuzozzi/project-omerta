@@ -1,6 +1,5 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import About from "../pages/about";
 import Account from "../pages/account";
 import Rules from "../pages/rules";
 import Team from "../pages/team";
@@ -30,7 +29,6 @@ function AllRoutes() {
       <Route path="/trading" element={<Trading />} />
       <Route path="/intelligence" element={<Intelligence />} />
       <Route path="/" element={<Home />} />
-      <Route path="/about" element={<About />} />
       <Route path="/account" element={<Account />} />
       <Route path="/team" element={<Team />} />
       <Route path="/rules" element={<Rules />} />

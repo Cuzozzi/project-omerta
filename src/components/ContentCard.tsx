@@ -1,8 +1,5 @@
-import React from "react";
-
 function ContentCard({
   img,
-  imgLowRes,
   alt,
   title1,
   title2,
@@ -11,7 +8,6 @@ function ContentCard({
   para3,
 }: {
   img: string;
-  imgLowRes: string;
   alt: string;
   title1: string;
   title2: string;

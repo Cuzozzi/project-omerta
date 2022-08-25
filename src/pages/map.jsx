@@ -3,8 +3,7 @@ import { Canvas } from "@react-three/fiber";
 import { Stars } from "@react-three/drei";
 import { Physics } from "@react-three/cannon";
 import PrimaryMapTile from "../components/map/PrimaryMapTile";
-import MapSphere from "../components/map/MapSphere";
-import MapCamera from "../components/map/MapCamera";
+import Scene from "../components/map/Scene";
 import { StartTileGeneration } from "../components/map/TileGenerationHelpers";
 
 function Map() {
@@ -16,18 +15,14 @@ function Map() {
       >
         <Canvas>
           <Physics>
-            <MapSphere />
+            <Scene />
             <PrimaryMapTile />
             <StartTileGeneration />
-            <ambientLight intensity={0.1} />
-            <directionalLight color="hotpink" position={[5, 10, 100]} />
             <Stars />
-            <MapCamera />
           </Physics>
         </Canvas>
       </div>
     </main>
   );
 }
-
 export default Map;
