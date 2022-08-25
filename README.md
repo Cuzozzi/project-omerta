@@ -22,9 +22,9 @@ npm start
 
 npx tailwindcss -i ./src/input.css -o ./src/output.css --watch
 
-## Technology we're using to create the game
+## Technology I'm using to create the game
 
-We're using Javascript, React, Node.js and Tailwind CSS. We want to provide a very fluid and responsive user experience, since right now most web/text-based games that I've played fall short in this area using outdated techonology.
+We're using Javascript ES6 + TypeScript, React, ThreeJS, Axios, Node.js and Tailwind CSS, HTML, CSS. We want to provide a very fluid and responsive user experience, since right now most web/text-based games that I've played fall short in this area using outdated techonology.
 
 ## Basis and idea of game
 
@@ -59,7 +59,3 @@ The game will have multiple ways of making money and resources, and they will be
 ## Intelligence and Espionage
 
 This will be a family exclusive mecahnic, opened up by specific buildable infrastructure that will allow families to track others, spread disinformation and sow chaos amongst others through covert means. A sub-mechanic of risk will be included, that can make operations fail either privately or publicly.
-
-## Thanks for reading, Machied appreciates your support
-
-Machied was founded by people who love games, and see them as a cornerstone to modern entertainment. We seek to change people's lives with not just revoultinary productivity tools, website design and marketing. We want to connect people, to help them smile, cry, scream and laugh with eachother. Games are the ultimate medium to achieve this, and we hope that Project Omerta will live up to this goal.
