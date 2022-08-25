@@ -6,6 +6,14 @@ Thanks for checking the game out, it's currently still in early development.
 
 Clone the repository to your local machine, and open it in a terminal. I use VS Code's intergrated terminal.
 
+### .env File guide
+
+Rename .env.example to just .env
+
+If you've changed SERVER_PORT in the server's .env file, then change REACT_APP_SERVER_PORT to reflect this change.
+
+### Start-up Guide
+
 Run the following commands in the order listed:
 
 npm install
