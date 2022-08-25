@@ -3,7 +3,7 @@ import axios from "axios";
 function Logout() {
   axios({
     method: "delete",
-    url: "http://localhost:5433/authentication",
+    url: `http://localhost:${process.env.REACT_APP_SERVER_PORT}/authentication`,
     headers: {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
     },

@@ -9,7 +9,7 @@ async function LoginButton({ email, password }: LoginButtonProps) {
   let value = false;
   await axios({
     method: "put",
-    url: "http://localhost:5433/authentication",
+    url: `http://localhost:${process.env.REACT_APP_SERVER_PORT}/authentication`,
     data: {
       email: email,
       password: password,

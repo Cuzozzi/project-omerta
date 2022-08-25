@@ -5,9 +5,10 @@ export async function AuthVerify() {
   let token = String(localStorage.getItem("token"));
   let value = false;
   console.log(token);
+
   await axios({
     method: "get",
-    url: "http://localhost:5433/authentication",
+    url: `http://localhost:${process.env.REACT_APP_SERVER_PORT}/authentication`,
     headers: {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
     },

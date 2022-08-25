@@ -5,7 +5,7 @@ import Logout from "./LogoutFunction";
 export function AllUsers(navigate: NavigateFunction) {
   axios({
     method: "get",
-    url: "http://localhost:5433/admin/console/user",
+    url: `http://localhost:${process.env.REACT_APP_SERVER_PORT}/admin/console/user`,
     headers: {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
@@ -32,7 +32,7 @@ export function AddUser(
   const element = document.getElementById("my-modal-2") as HTMLInputElement;
   axios({
     method: "post",
-    url: "http://localhost:5433/admin/console/user",
+    url: `http://localhost:${process.env.REACT_APP_SERVER_PORT}/admin/console/user`,
     data: {
       email: inputValue1,
       password: inputValue2,
@@ -62,7 +62,7 @@ export function DeleteUser(
   const element = document.getElementById("my-modal-3") as HTMLInputElement;
   axios({
     method: "delete",
-    url: "http://localhost:5433/admin/console/user",
+    url: `http://localhost:${process.env.REACT_APP_SERVER_PORT}/admin/console/user`,
     data: {
       user_id: inputValue1,
       user_email: inputValue2,
@@ -95,7 +95,7 @@ export function UserTokens(
   const element = document.getElementById("my-modal-4") as HTMLInputElement;
   axios({
     method: "put",
-    url: "http://localhost:5433/admin/console/tokens",
+    url: `http://localhost:${process.env.REACT_APP_SERVER_PORT}/admin/console/tokens`,
     data: {
       user_id: inputValue1,
       user_email: inputValue2,
@@ -123,7 +123,7 @@ export function AllTokens(navigate: NavigateFunction) {
   const element = document.getElementById("my-modal-5") as HTMLInputElement;
   axios({
     method: "delete",
-    url: "http://localhost:5433/admin/console/tokens",
+    url: `http://localhost:${process.env.REACT_APP_SERVER_PORT}/admin/console/tokens`,
     data: {
       token: localStorage.getItem("token"),
     },
@@ -154,7 +154,7 @@ export function GiveMod(
   const element = document.getElementById("my-modal-2") as HTMLInputElement;
   axios({
     method: "put",
-    url: "http://localhost:5433/admin/console/moderator",
+    url: `http://localhost:${process.env.REACT_APP_SERVER_PORT}/admin/console/moderator`,
     data: {
       user_id: inputValue1,
       user_email: inputValue2,
@@ -186,7 +186,7 @@ export function RemoveMod(
   const element = document.getElementById("my-modal-2") as HTMLInputElement;
   axios({
     method: "delete",
-    url: "http://localhost:5433/admin/console/moderator",
+    url: `http://localhost:${process.env.REACT_APP_SERVER_PORT}/admin/console/moderator`,
     data: {
       user_id: inputValue1,
       user_email: inputValue2,

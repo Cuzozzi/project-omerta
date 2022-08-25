@@ -8,7 +8,7 @@ interface SingupButtonProps {
 function SingupButton({ password, email }: SingupButtonProps) {
   axios({
     method: "post",
-    url: "http://localhost:5433/login_credentials",
+    url: `http://localhost:${process.env.REACT_APP_SERVER_PORT}/login_credentials`,
     data: {
       email: email,
       password: password,
