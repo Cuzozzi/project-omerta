@@ -9,7 +9,9 @@ Clone the repository to your local machine, and open it in a terminal. I use VS 
 Run the following commands in the order listed:
 
 npm install
+
 npm start
+
 npx tailwindcss -i ./src/input.css -o ./src/output.css --watch
 
 ## Technology we're using to create the game
