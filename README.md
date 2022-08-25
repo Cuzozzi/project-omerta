@@ -2,6 +2,16 @@
 
 Thanks for checking the game out, it's currently still in early development.
 
+## Installation Guide
+
+Clone the repository to your local machine, and open it in a terminal. I use VS Code's intergrated terminal.
+
+Run the following commands in the order listed:
+
+npm install
+npm start
+npx tailwindcss -i ./src/input.css -o ./src/output.css --watch
+
 ## Technology we're using to create the game
 
 We're using Javascript, React, Node.js and Tailwind CSS. We want to provide a very fluid and responsive user experience, since right now most web/text-based games that I've played fall short in this area using outdated techonology.
