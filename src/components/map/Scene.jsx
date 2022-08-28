@@ -36,7 +36,7 @@ function Scene() {
     mesh.current.getWorldPosition(astroRef.current.position);
     cameraRef.current.position.set(
       astroRef.current.position.x + 0,
-      astroRef.current.position.y + 0,
+      astroRef.current.position.y + 3,
       astroRef.current.position.z + -10
     );
     cameraRef.current.lookAt(astroRef.current.position);
