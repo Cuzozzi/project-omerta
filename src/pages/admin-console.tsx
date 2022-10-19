@@ -11,9 +11,53 @@ import {
   RemoveMod,
 } from "../helpers/AdminFunctions";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 function AdminConsole() {
   const navigate = useNavigate();
+  const [tableValue, changeTableValue] = useState(false);
+  const [tableArray, changeTableArray] = useState<any[]>([]);
+
+  if (tableValue === true) {
+    return (
+      <div className="overflow-x-auto w-full">
+        <table className="table mx-auto mt-10">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Username</th>
+              <th>Email</th>
+              <th>Admin</th>
+              <th>Moderator</th>
+            </tr>
+          </thead>
+          <tbody>
+            {tableArray.map((user) => (
+              <tr key={user.id}>
+                <td>{user.id}</td>
+                <td>{user.username}</td>
+                <td>{user.email}</td>
+                <td className=" text-center">
+                  {user.admin ? (
+                    <i className="fa-regular fa-circle-check"></i>
+                  ) : (
+                    <i className="fa-regular fa-circle-xmark"></i>
+                  )}
+                </td>
+                <td className=" text-center">
+                  {user.moderator ? (
+                    <i className="fa-regular fa-circle-check"></i>
+                  ) : (
+                    <i className="fa-regular fa-circle-xmark"></i>
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    );
+  }
   return (
     <div className="main-window p-6">
       <AdminModal
@@ -21,7 +65,10 @@ function AdminConsole() {
         title="Display all users below!"
         htmlFor="my-modal-1"
         button="Display all users"
-        onClick1={() => AllUsers(navigate)}
+        onClick1={async () => {
+          changeTableArray((await AllUsers(navigate)) || []);
+          changeTableValue(true);
+        }}
         onClick2={() => {
           const element = document.getElementById(
             "my-modal-1"

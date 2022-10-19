@@ -1,28 +1,25 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { NavigateFunction } from "react-router-dom";
 import Logout from "./LogoutFunction";
 
-export function AllUsers(navigate: NavigateFunction) {
-  axios({
-    method: "get",
-    url: `${process.env.REACT_APP_SERVER_PORT}/admin/console/user`,
-    headers: {
-      Authorization: `Bearer ${localStorage.getItem("token")}`,
-    },
-  })
-    .then(function (response) {
-      if (response.status === 200) {
-        console.log("Users recieved");
-        console.log(response.data);
-      }
-    })
-    .catch(function (err) {
-      if (err.response.status === 401) {
-        console.log("Authentication failed");
-        localStorage.setItem("isAdmin", "false");
-        navigate("/", { replace: true });
-      }
+export async function AllUsers(navigate: NavigateFunction) {
+  let array: any[] = [];
+  try {
+    const response = await axios({
+      method: "get",
+      url: `${process.env.REACT_APP_SERVER_PORT}/admin/console/user`,
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
     });
+    return response.data;
+  } catch (err: any) {
+    if (err.response.status === 401) {
+      console.log("Authentication failed");
+      localStorage.setItem("isAdmin", "false");
+      navigate("/", { replace: true });
+    }
+  }
 }
 
 export function AddUser(
