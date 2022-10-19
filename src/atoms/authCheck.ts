@@ -19,7 +19,6 @@ export async function AuthVerify() {
       }
     })
     .catch(function (err) {
-      console.log("error: ", err);
       if (err.response.status === 401) {
         value = false;
       }
