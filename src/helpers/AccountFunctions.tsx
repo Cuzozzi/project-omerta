@@ -14,7 +14,7 @@ export async function GetInfo() {
   let info: User[] = [];
   await axios({
     method: "get",
-    url: `http://localhost:${process.env.REACT_APP_SERVER_PORT}/account/info`,
+    url: `${process.env.REACT_APP_SERVER_PORT}/account/info`,
     headers: {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
@@ -237,7 +237,7 @@ export async function ChangeUsername(inputValue1: string, inputValue2: string) {
   let message = "";
   await axios({
     method: "put",
-    url: `http://localhost:${process.env.REACT_APP_SERVER_PORT}/account/change-username`,
+    url: `${process.env.REACT_APP_SERVER_PORT}/account/change-username`,
     headers: {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
@@ -263,7 +263,7 @@ export async function ChangeEmail(inputValue1: string, inputValue2: string) {
   let message = "";
   await axios({
     method: "put",
-    url: `http://localhost:${process.env.REACT_APP_SERVER_PORT}/account/change-email`,
+    url: `${process.env.REACT_APP_SERVER_PORT}/account/change-email`,
     headers: {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
@@ -289,7 +289,7 @@ export async function ChangePassword(inputValue1: string, inputValue2: string) {
   let message = "";
   await axios({
     method: "put",
-    url: `http://localhost:${process.env.REACT_APP_SERVER_PORT}/account/change-password`,
+    url: `${process.env.REACT_APP_SERVER_PORT}/account/change-password`,
     headers: {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
     },

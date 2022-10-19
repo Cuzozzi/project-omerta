@@ -8,7 +8,7 @@ export async function AuthVerify() {
 
   await axios({
     method: "get",
-    url: `http://localhost:${process.env.REACT_APP_SERVER_PORT}/authentication`,
+    url: `${process.env.REACT_APP_SERVER_PORT}/authentication`,
     headers: {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
     },

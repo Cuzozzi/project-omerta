@@ -8,7 +8,7 @@ interface SingupButtonProps {
 function SingupButton({ password, email }: SingupButtonProps) {
   axios({
     method: "post",
-    url: `http://localhost:${process.env.REACT_APP_SERVER_PORT}/login_credentials`,
+    url: `${process.env.REACT_APP_SERVER_PORT}/login_credentials`,
     data: {
       email: email,
       password: password,
@@ -17,6 +17,7 @@ function SingupButton({ password, email }: SingupButtonProps) {
     console.log(response);
     if (response.status === 200) {
       console.log("Account created");
+      console.log("Please remember to continue to the login page, thank you.")
       //navigate("/signup-2", { replace: true });
     } else {
       console.log("Account creation failed");

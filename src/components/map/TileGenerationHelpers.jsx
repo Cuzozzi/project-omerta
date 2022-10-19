@@ -6,7 +6,7 @@ export async function TilePower() {
   let tilepower = 0;
   await axios({
     method: "get",
-    url: `http://localhost:${process.env.REACT_APP_SERVER_PORT}/map/tile-power`,
+    url: `${process.env.REACT_APP_SERVER_PORT}/map/tile-power`,
   })
     .then(function (response) {
       if (response.status === 200) {
@@ -23,7 +23,7 @@ export async function TotalTiles() {
   let totaltiles = 0;
   await axios({
     method: "get",
-    url: `http://localhost:${process.env.REACT_APP_SERVER_PORT}/map/count-tiles`,
+    url: `${process.env.REACT_APP_SERVER_PORT}/map/count-tiles`,
   })
     .then(function (response) {
       if (response.status === 200) {
@@ -40,7 +40,7 @@ export async function allTiles() {
   let allTiles = [];
   await axios({
     method: "get",
-    url: `http://localhost:${process.env.REACT_APP_SERVER_PORT}/map/all-tiles`,
+    url: `${process.env.REACT_APP_SERVER_PORT}/map/all-tiles`,
   })
     .then(function (response) {
       allTiles = response.data;
@@ -63,7 +63,7 @@ export async function TileGeneration() {
   if (Number(countTiles) < Number(tilePower)) {
     await axios({
       method: "put",
-      url: `http://localhost:${process.env.REACT_APP_SERVER_PORT}/map/test-generation`,
+      url: `${process.env.REACT_APP_SERVER_PORT}/map/test-generation`,
       data: {
         tilepower: tilePower,
         counttiles: countTiles,
