@@ -9,7 +9,8 @@ function Signup1() {
   //let navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const SignupButtonArgs = { email, password };
+  const [username, setUsername] = useState("");
+  const SignupButtonArgs = { email, password, username };
   return (
     <main className="main-window flex justify-center items-center flex-col">
       <div className="mb-10">
@@ -24,9 +25,18 @@ function Signup1() {
           <div className="max-w-md">
             <h1 className="text-5xl font-bold">Welcome to Omerta</h1>
             <p className="py-6">
-              Sign up below to create your account, we just need an email and
-              passowrd! Then we can move to the next step!
+              Sign up below to create your account, we just need an email,
+              username and passowrd! Then we can move to the next step!
             </p>
+            <div className="form-control mb-10">
+              <input
+                type="text"
+                placeholder="username"
+                className="input input-bordered"
+                onChange={(event) => setUsername(event.target.value)}
+                id="username"
+              />
+            </div>
             <div className="form-control mb-10">
               <input
                 type="email"

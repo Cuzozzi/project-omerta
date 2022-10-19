@@ -8,7 +8,7 @@ export async function AuthVerify() {
 
   await axios({
     method: "get",
-    url: `${process.env.REACT_APP_SERVER_PORT}/authentication`,
+    url: `${process.env.REACT_APP_SERVER_PORT}/api/authentication`,
     headers: {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
@@ -19,7 +19,7 @@ export async function AuthVerify() {
       }
     })
     .catch(function (err) {
-      console.log(err);
+      console.log("error: ", err);
       if (err.response.status === 401) {
         value = false;
       }

@@ -13,7 +13,7 @@ function LogoutButton() {
       onClick={() => {
         axios({
           method: "delete",
-          url: `${process.env.REACT_APP_SERVER_PORT}/authentication`,
+          url: `${process.env.REACT_APP_SERVER_PORT}/api/logout`,
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },

@@ -12,7 +12,8 @@ export function AllUsers(navigate: NavigateFunction) {
   })
     .then(function (response) {
       if (response.status === 200) {
-        console.log("Users sent");
+        console.log("Users recieved");
+        console.log(response.data);
       }
     })
     .catch(function (err) {
