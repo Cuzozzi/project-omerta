@@ -55,6 +55,12 @@ function AdminConsole() {
             ))}
           </tbody>
         </table>
+        <button
+          className="btn flex mx-auto mt-10"
+          onClick={() => changeTableValue(false)}
+        >
+          Close
+        </button>
       </div>
     );
   }

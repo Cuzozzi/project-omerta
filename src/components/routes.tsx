@@ -1,5 +1,4 @@
-import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate, Navigate } from "react-router-dom";
 import Account from "../pages/account";
 import Rules from "../pages/rules";
 import Team from "../pages/team";
@@ -16,26 +15,75 @@ import Signup1 from "../pages/signup-1";
 import Login from "../pages/login";
 import Home from "../pages/home";
 import AdminConsole from "../pages/admin-console";
+import { authVerify0 } from "../atoms/authCheck";
+import { adminAuth } from "../atoms/adminAuthCheck";
+import { useRecoilValue } from "recoil";
+
+function ProtectedRoute({ children }: { children: JSX.Element }) {
+  const auth = useRecoilValue(authVerify0);
+  if (!auth) {
+    return <Navigate to="/" />;
+  } else {
+    return children;
+  }
+}
+
+function AdminRoute({ children }: { children: JSX.Element }) {
+  const auth = useRecoilValue(adminAuth);
+  if (!auth) {
+    return <Navigate to="/" />;
+  } else {
+    return children;
+  }
+}
 
 function AllRoutes() {
   return (
     <Routes>
-      <Route path="/character" element={<Character />} />
-      <Route path="/safehouses" element={<Safehouses />} />
-      <Route path="/map" element={<Map />} />
-      <Route path="/rackets" element={<Rackets />} />
-      <Route path="/family" element={<Family />} />
-      <Route path="/politics" element={<Politics />} />
-      <Route path="/trading" element={<Trading />} />
-      <Route path="/intelligence" element={<Intelligence />} />
+      <Route
+        path="/character"
+        element={<ProtectedRoute children={<Character />} />}
+      />
+      <Route
+        path="/safehouses"
+        element={<ProtectedRoute children={<Safehouses />} />}
+      />
+      <Route path="/map" element={<ProtectedRoute children={<Map />} />} />
+      <Route
+        path="/rackets"
+        element={<ProtectedRoute children={<Rackets />} />}
+      />
+      <Route
+        path="/family"
+        element={<ProtectedRoute children={<Family />} />}
+      />
+      <Route
+        path="/politics"
+        element={<ProtectedRoute children={<Politics />} />}
+      />
+      <Route
+        path="/trading"
+        element={<ProtectedRoute children={<Trading />} />}
+      />
+      <Route
+        path="/intelligence"
+        element={<ProtectedRoute children={<Intelligence />} />}
+      />
+
+      <Route
+        path="/account"
+        element={<ProtectedRoute children={<Account />} />}
+      />
+      <Route
+        path="/admin-console"
+        element={<AdminRoute children={<AdminConsole />} />}
+      />
       <Route path="/" element={<Home />} />
-      <Route path="/account" element={<Account />} />
       <Route path="/team" element={<Team />} />
       <Route path="/rules" element={<Rules />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/signup-1" element={<Signup1 />} />
       <Route path="/login" element={<Login />} />
-      <Route path="/admin-console" element={<AdminConsole />} />
     </Routes>
   );
 }

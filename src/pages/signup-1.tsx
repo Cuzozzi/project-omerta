@@ -12,8 +12,8 @@ function Signup1() {
   const [username, setUsername] = useState("");
   const SignupButtonArgs = { email, password, username };
   return (
-    <main className="main-window flex justify-center items-center flex-col">
-      <div className="mb-10">
+    <main className="main-window-2 bg-hello-img bg-cover flex justify-center items-center flex-col">
+      <div className="mb-6">
         <ul className="steps">
           <li className="step step-primary">Register</li>
           <li className="step">Rules</li>

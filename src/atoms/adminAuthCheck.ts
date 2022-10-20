@@ -2,8 +2,11 @@ import { atom } from "recoil";
 
 function AdminAuthVerify() {
   let adminValue = localStorage.getItem("isAdmin");
-  console.log(adminValue);
-  return adminValue;
+  if (adminValue === "true") {
+    return true;
+  } else {
+    return false;
+  }
 }
 
 export const adminAuth = atom({

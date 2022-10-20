@@ -16,7 +16,7 @@ function TopNavbar() {
           <p className="text-xl">Project Omerta</p>
           <NavLink path="/" domRender="Home" />
           {auth && <NavLink path="/account" domRender="Account" />}
-          {auth && adAuth === "true" && (
+          {auth && adAuth && (
             <NavLink path="/admin-console" domRender="Admin" />
           )}
           {auth && <LogoutButton />}
@@ -40,7 +40,7 @@ function TopNavbar() {
                 className="menu dropdown-content p-2 shadow bg-base-100 rounded-box w-52 mt-4"
               >
                 <GamebarLink path="/" domRender="Home" />
-                {adAuth === "true" && (
+                {adAuth && (
                   <GamebarLink path="/admin-console" domRender="Admin" />
                 )}
                 <GamebarLink path="/character" domRender="Character" />

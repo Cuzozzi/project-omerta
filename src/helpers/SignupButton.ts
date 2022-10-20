@@ -1,4 +1,5 @@
 import axios from "axios";
+//import { useNavigate } from "react-router-dom";
 
 interface SingupButtonProps {
   password: string;
@@ -7,6 +8,7 @@ interface SingupButtonProps {
 }
 
 function SingupButton({ password, email, username }: SingupButtonProps) {
+  //const navigate = useNavigate();
   console.log(password, email, username);
   axios({
     method: "post",
@@ -21,7 +23,7 @@ function SingupButton({ password, email, username }: SingupButtonProps) {
     if (response.status === 200) {
       console.log("Account created");
       console.log("Please remember to continue to the login page, thank you.");
-      //navigate("/signup-2", { replace: true });
+      //navigate("/", { replace: true });
     } else {
       console.log("Account creation failed");
     }
