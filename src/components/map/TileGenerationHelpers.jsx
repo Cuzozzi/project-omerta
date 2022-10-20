@@ -1,6 +1,7 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import MapTile from "./MapTile";
+import { useQuery } from "react-query";
 
 export async function TilePower() {
   let tilepower = 0;
@@ -86,13 +87,12 @@ export async function TileGeneration() {
 
 export function StartTileGeneration() {
   const [result, setResult] = useState([]);
-  useEffect(() => {
-    const asyncCall = async () => {
-      const data = await TileGeneration();
-      setResult(data);
-    };
-    asyncCall();
-  }, []);
+
+  useQuery("tile-data", TileGeneration, {
+    onSuccess: (result) => {
+      setResult(result);
+    },
+  });
 
   if (result) {
     return result.map((tile, index) => (

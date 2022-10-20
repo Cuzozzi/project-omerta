@@ -1,7 +1,8 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Gravatar from "react-gravatar";
 import AccountCard, { Message } from "../components/AccountCard";
+import { useQuery } from "react-query";
 
 export interface User {
   user_id: number;
@@ -51,14 +52,12 @@ export function AccountContent() {
     isVisible: false,
   });
 
-  useEffect(() => {
-    const asyncCall = async () => {
-      const data = await GetInfo();
+  useQuery("info", GetInfo, {
+    onSuccess: (data) => {
       setHash(data.length > 0 ? md5(data[0].email) : md5(404));
       setResult(data[0] as User);
-    };
-    asyncCall();
-  }, [md5]);
+    },
+  });
 
   return (
     <div className="main-window">

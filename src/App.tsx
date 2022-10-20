@@ -2,14 +2,10 @@ import "./output.css";
 import TopNavbar from "./components/TopNavbar";
 import MainAppPage from "./components/MainAppPage";
 import Footer from "./components/Footer";
-import { AuthVerify } from "./atoms/authCheck";
-import { useEffect } from "react";
 import { BrowserRouter } from "react-router-dom";
 
 function App() {
-  useEffect(() => {
-    AuthVerify();
-  }, []);
+  console.log("Render Check");
 
   return (
     <div className="App">

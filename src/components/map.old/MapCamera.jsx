@@ -14,10 +14,6 @@ export default function MapCamera() {
     }
   });
 
-  /* useEffect(() => {
-    console.log(spherePosition);
-  }, [spherePosition]); */
-
   return (
     <>
       <PerspectiveCamera makeDefault position={[0, 5, 0]} />
