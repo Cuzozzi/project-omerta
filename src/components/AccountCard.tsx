@@ -1,3 +1,4 @@
+import React, { useRef } from "react";
 import { useState } from "react";
 
 export interface Message {
@@ -29,6 +30,8 @@ function AccountCard({
 }) {
   const [inputValue1, setInputValue1] = useState("");
   const [inputValue2, setInputValue2] = useState("");
+  const [disable1, setDisable1] = useState(true);
+  const [disable2, setDisable2] = useState(true);
 
   const handleSubmit = (event: { preventDefault: () => void }) => {
     event.preventDefault();
@@ -48,7 +51,14 @@ function AccountCard({
               placeholder={inputPlaceOne}
               className="input input-bordered"
               value={inputValue1}
-              onChange={(event) => setInputValue1(event.target.value)}
+              onChange={(event) => {
+                setInputValue1(event.target.value);
+                if (event.target.value === "") {
+                  setDisable1(true);
+                } else {
+                  setDisable1(false);
+                }
+              }}
               id="input1"
               tabIndex={-1}
             />
@@ -59,15 +69,29 @@ function AccountCard({
               placeholder={inputPlaceTwo}
               className="input input-bordered"
               value={inputValue2}
-              onChange={(event) => setInputValue2(event.target.value)}
+              onChange={(event) => {
+                setInputValue2(event.target.value);
+                if (event.target.value === "") {
+                  setDisable2(true);
+                } else {
+                  setDisable2(false);
+                }
+              }}
               id="input2"
               tabIndex={-1}
             />
           </div>
           <button
             type="submit"
+            disabled={disable1 === false && disable2 === false ? false : true}
             className="btn"
-            onClick={() => onClick1(inputValue1, inputValue2)}
+            onClick={() => {
+              onClick1(inputValue1, inputValue2);
+              setDisable1(true);
+              setDisable2(true);
+              setInputValue1("");
+              setInputValue2("");
+            }}
           >
             {button}
           </button>

@@ -20,7 +20,7 @@ function AdminConsole() {
 
   if (tableValue === true) {
     return (
-      <div className="overflow-x-auto w-full">
+      <div className="main-window overflow-x-auto w-full">
         <table className="table mx-auto mt-10">
           <thead>
             <tr>
@@ -56,7 +56,7 @@ function AdminConsole() {
           </tbody>
         </table>
         <button
-          className="btn flex mx-auto mt-10"
+          className="btn flex mx-auto mt-10 btn-error"
           onClick={() => changeTableValue(false)}
         >
           Close

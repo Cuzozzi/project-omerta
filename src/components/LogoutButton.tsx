@@ -19,6 +19,7 @@ function LogoutButton() {
           },
         });
         localStorage.removeItem("token");
+        localStorage.setItem("isAdmin", "false");
         setAuth(false);
         navigate("/login", { replace: true });
       }}

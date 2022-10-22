@@ -1,4 +1,4 @@
-import { Routes, Route, useNavigate, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Account from "../pages/account";
 import Rules from "../pages/rules";
 import Team from "../pages/team";
@@ -18,6 +18,7 @@ import AdminConsole from "../pages/admin-console";
 import { authVerify0 } from "../atoms/authCheck";
 import { adminAuth } from "../atoms/adminAuthCheck";
 import { useRecoilValue } from "recoil";
+import Signup2 from "../pages/signup-2";
 
 function ProtectedRoute({ children }: { children: JSX.Element }) {
   const auth = useRecoilValue(authVerify0);
@@ -48,7 +49,6 @@ function AllRoutes() {
         path="/safehouses"
         element={<ProtectedRoute children={<Safehouses />} />}
       />
-      <Route path="/map" element={<ProtectedRoute children={<Map />} />} />
       <Route
         path="/rackets"
         element={<ProtectedRoute children={<Rackets />} />}
@@ -78,11 +78,13 @@ function AllRoutes() {
         path="/admin-console"
         element={<AdminRoute children={<AdminConsole />} />}
       />
+      <Route path="/map" element={<ProtectedRoute children={<Map />} />} />
       <Route path="/" element={<Home />} />
       <Route path="/team" element={<Team />} />
       <Route path="/rules" element={<Rules />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/signup-1" element={<Signup1 />} />
+      <Route path="/signup-2" element={<Signup2 />} />
       <Route path="/login" element={<Login />} />
     </Routes>
   );
