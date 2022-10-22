@@ -6,11 +6,16 @@ interface AdModalProps {
   htmlFor: string;
   button: string;
   input?: boolean;
+  userinput?: boolean;
   inputTypeOne?: string;
   inputTypeTwo?: string;
   inputPlaceOne?: string;
   inputPlaceTwo?: string;
-  onClick1: (inputValue1: string, inputValue2: string) => void;
+  onClick1: (
+    inputValue1: string,
+    inputValue2: string,
+    inputValue3: string
+  ) => void;
   onClick2: () => void;
 }
 
@@ -22,6 +27,7 @@ function AdminModal({
   onClick1,
   onClick2,
   input,
+  userinput,
   inputTypeOne,
   inputTypeTwo,
   inputPlaceOne,
@@ -29,6 +35,7 @@ function AdminModal({
 }: AdModalProps) {
   const [inputValue1, setInputValue1] = useState("");
   const [inputValue2, setInputValue2] = useState("");
+  const [inputValue3, setInputValue3] = useState("");
   return (
     <div>
       <input type="checkbox" id={id} className="modal-toggle" />
@@ -57,11 +64,22 @@ function AdminModal({
               />
             </div>
           )}
+          {userinput && (
+            <div className="form-control mt-10">
+              <input
+                type="text"
+                placeholder="username"
+                className="input input-bordered"
+                onChange={(event) => setInputValue3(event.target.value)}
+                id="input3"
+              />
+            </div>
+          )}
           <div className="modal-action">
             <label
               htmlFor={htmlFor}
               className="btn"
-              onClick={() => onClick1(inputValue1, inputValue2)}
+              onClick={() => onClick1(inputValue1, inputValue2, inputValue3)}
             >
               {button}
             </label>

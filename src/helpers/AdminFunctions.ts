@@ -25,7 +25,8 @@ export async function AllUsers(navigate: NavigateFunction) {
 export function AddUser(
   navigate: NavigateFunction,
   inputValue1: string,
-  inputValue2: string
+  inputValue2: string,
+  inputValue3: string
 ) {
   const element = document.getElementById("my-modal-2") as HTMLInputElement;
   axios({
@@ -34,6 +35,7 @@ export function AddUser(
     data: {
       email: inputValue1,
       password: inputValue2,
+      username: inputValue3,
     },
     headers: {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -206,4 +208,26 @@ export function RemoveMod(
         navigate("/", { replace: true });
       }
     });
+}
+
+export async function TableUserDelete(id: number, navigate: NavigateFunction) {
+  try {
+    const response = await axios({
+      method: "delete",
+      url: `${process.env.REACT_APP_SERVER_PORT}/admin/console/user`,
+      data: {
+        user_id: id,
+      },
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
+    return response.data;
+  } catch (err: any) {
+    if (err.response.status === 401) {
+      console.log("Authentication failed");
+      localStorage.setItem("isAdmin", "false");
+      navigate("/", { replace: true });
+    }
+  }
 }

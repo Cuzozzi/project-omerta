@@ -9,6 +9,7 @@ import {
   AllTokens,
   GiveMod,
   RemoveMod,
+  TableUserDelete,
 } from "../helpers/AdminFunctions";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
@@ -51,6 +52,23 @@ function AdminConsole() {
                     <i className="fa-regular fa-circle-xmark"></i>
                   )}
                 </td>
+                <td>
+                  <button
+                    className=""
+                    onClick={async () => {
+                      console.log(user.id);
+                      const response = await TableUserDelete(user.id, navigate);
+                      if (response === "OK") {
+                        const id = user.id;
+                        changeTableArray(
+                          tableArray.filter((tableArray) => tableArray.id != id)
+                        );
+                      }
+                    }}
+                  >
+                    <i className="fa-solid fa-trash text-rose-500"></i>
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>
@@ -90,12 +108,13 @@ function AdminConsole() {
         htmlFor="my-modal-2"
         button="Add user"
         input
+        userinput
         inputTypeOne="email"
         inputTypeTwo="password"
         inputPlaceOne="info@site.com"
         inputPlaceTwo="password"
-        onClick1={(inputValue1, inputValue2) =>
-          AddUser(navigate, inputValue1, inputValue2)
+        onClick1={(inputValue1, inputValue2, inputValue3) =>
+          AddUser(navigate, inputValue1, inputValue2, inputValue3)
         }
         onClick2={() => {
           const element = document.getElementById(
