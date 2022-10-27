@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "main": "src/index.ts",
+  "resolutions": {
+    "react-devtools-core": "4.14.0"
+  },
   "dependencies": {
     "@react-three/cannon": "^6.3.0",
     "@react-three/drei": "^9.17.1",

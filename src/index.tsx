@@ -11,7 +11,9 @@ root.render(
   <React.StrictMode>
     <RecoilRoot>
       <QueryClientProvider client={queryClient}>
-        <App />
+        <React.Suspense fallback="loading... bitch">
+          <App />
+        </React.Suspense>
       </QueryClientProvider>
     </RecoilRoot>
   </React.StrictMode>

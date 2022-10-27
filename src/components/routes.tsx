@@ -12,16 +12,18 @@ import Trading from "../pages/trading";
 import Intelligence from "../pages/intelligence";
 import Signup from "../pages/signup";
 import Signup1 from "../pages/signup-1";
+import Signup2 from "../pages/signup-2";
 import Login from "../pages/login";
 import Home from "../pages/home";
 import AdminConsole from "../pages/admin-console";
-import { authVerify0 } from "../atoms/authCheck";
-import { adminAuth } from "../atoms/adminAuthCheck";
+import { userAuth } from "../atoms/userAuth";
+import { adminAuth } from "../atoms/adminAuth";
+import { superAdminAuth } from "../atoms/superAdminAuth";
+import { modAuth } from "../atoms/modAuth";
 import { useRecoilValue } from "recoil";
-import Signup2 from "../pages/signup-2";
 
 function ProtectedRoute({ children }: { children: JSX.Element }) {
-  const auth = useRecoilValue(authVerify0);
+  const auth = useRecoilValue(userAuth);
   if (!auth) {
     return <Navigate to="/" />;
   } else {
@@ -30,12 +32,12 @@ function ProtectedRoute({ children }: { children: JSX.Element }) {
 }
 
 function AdminRoute({ children }: { children: JSX.Element }) {
-  const auth = useRecoilValue(adminAuth);
-  if (!auth) {
-    return <Navigate to="/" />;
-  } else {
+  const mAuth = useRecoilValue(modAuth);
+  const aAuth = useRecoilValue(adminAuth);
+  const sAuth = useRecoilValue(superAdminAuth);
+  if (mAuth || aAuth || sAuth) {
     return children;
-  }
+  } else return <Navigate to="/" />;
 }
 
 function AllRoutes() {

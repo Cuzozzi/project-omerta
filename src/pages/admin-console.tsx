@@ -9,15 +9,21 @@ import {
   RemoveMod,
   GiveAdmin,
   RemoveAdmin,
+  DeleteAllUsers,
 } from "../helpers/AdminFunctions";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
-import { authVerify0 } from "../atoms/authCheck";
+import { userAuth } from "../atoms/userAuth";
+import { superAdminAuth } from "../atoms/superAdminAuth";
+import { adminAuth } from "../atoms/adminAuth";
+import { modAuth } from "../atoms/modAuth";
 
 function AdminConsole() {
   const navigate = useNavigate();
-  const [auth, setAuth] = useRecoilState(authVerify0);
+  const [auth, setAuth] = useRecoilState(userAuth);
+  const [SuperAdAuth, setSuperAdAuth] = useRecoilState(superAdminAuth);
+  const [AdAuth, setAdAuth] = useRecoilState(adminAuth);
   const [tableArray, changeTableArray] = useState<any[]>([]);
   const [dangerToggle, changeDangerToggle] = useState(true);
   const [usernameValue, setUsernameValue] = useState("");
@@ -25,7 +31,7 @@ function AdminConsole() {
   const [passValue, setPassValue] = useState("");
 
   async function setUserTable() {
-    changeTableArray((await AllUsers(navigate)) || []);
+    changeTableArray((await AllUsers()) || []);
   }
 
   useEffect(() => {
@@ -56,10 +62,11 @@ function AdminConsole() {
               <td className=" text-center">
                 {user.admin ? (
                   <button
+                    disabled={SuperAdAuth ? false : true}
                     className="tooltip"
                     data-tip="Toggle Admin"
                     onClick={() => {
-                      RemoveAdmin(navigate, user.id, user.email);
+                      RemoveAdmin(user.id);
                       changeTableArray(
                         tableArray.map((userchange) => {
                           if (userchange.id === user.id) {
@@ -74,11 +81,11 @@ function AdminConsole() {
                   </button>
                 ) : (
                   <button
+                    disabled={SuperAdAuth ? false : true}
                     className="tooltip"
                     data-tip="Toggle Admin"
                     onClick={() => {
-                      console.log(user.id);
-                      GiveAdmin(navigate, user.id, user.email);
+                      GiveAdmin(user.id);
                       changeTableArray(
                         tableArray.map((userchange) => {
                           if (userchange.id === user.id) {
@@ -96,10 +103,11 @@ function AdminConsole() {
               <td className=" text-center">
                 {user.moderator ? (
                   <button
+                    disabled={SuperAdAuth || AdAuth ? false : true}
                     className="tooltip"
                     data-tip="Toggle Moderator"
                     onClick={() => {
-                      RemoveMod(navigate, user.id, user.email);
+                      RemoveMod(user.id);
                       changeTableArray(
                         tableArray.map((userchange) => {
                           if (userchange.id === user.id) {
@@ -114,10 +122,11 @@ function AdminConsole() {
                   </button>
                 ) : (
                   <button
+                    disabled={SuperAdAuth || AdAuth ? false : true}
                     className="tooltip"
                     data-tip="Toggle Moderator"
                     onClick={() => {
-                      GiveMod(navigate, user.id, user.email);
+                      GiveMod(user.id);
                       changeTableArray(
                         tableArray.map((userchange) => {
                           if (userchange.id === user.id) {
@@ -134,14 +143,11 @@ function AdminConsole() {
               </td>
               <td>
                 <button
+                  disabled={SuperAdAuth || AdAuth || modAuth ? false : true}
                   className="tooltip"
                   data-tip="Logout User"
                   onClick={async () => {
-                    const response = await UserTokens(
-                      navigate,
-                      user.id,
-                      user.email
-                    );
+                    const response = await UserTokens(user.id);
                     if (response === "OK") {
                       console.log("Logged out!");
                     }
@@ -152,10 +158,11 @@ function AdminConsole() {
               </td>
               <td>
                 <button
+                  disabled={SuperAdAuth ? false : true}
                   className="tooltip"
                   data-tip="Delete User"
                   onClick={async () => {
-                    const response = await UserDelete(navigate, user.id);
+                    const response = await UserDelete(user.id);
                     if (response === "OK") {
                       const id = user.id;
                       changeTableArray(
@@ -171,14 +178,18 @@ function AdminConsole() {
           ))}
         </tbody>
       </table>
-      {/* DANGEROUS CONSOLE */}
+      {/* SUPER ADMIN PANEL */}
       <div className="flex flex-col">
         <table className="table mx-auto my-10 h-fit w-full">
           <thead>
             <tr className="w-full text-center">
-              <th>Dangerous Console</th>
+              <th>Super Admin Panel</th>
+              <th></th>
+              <th></th>
+              <th></th>
               <th>
                 <button
+                  disabled={SuperAdAuth ? false : true}
                   className="text-center tooltip"
                   data-tip="Toggle Console"
                   onClick={() => {
@@ -209,11 +220,7 @@ function AdminConsole() {
                   data-tip="Logout All Users"
                   disabled={dangerToggle}
                   onClick={() => {
-                    AllTokens(navigate);
-                    localStorage.setItem("isAdmin", "false");
-                    localStorage.removeItem("token");
-                    setAuth(false);
-                    navigate("/login", { replace: true });
+                    AllTokens();
                   }}
                 >
                   <i
@@ -229,6 +236,7 @@ function AdminConsole() {
                   className="text-center tooltip"
                   data-tip="Delete All Users"
                   disabled={dangerToggle}
+                  onClick={() => DeleteAllUsers()}
                 >
                   <i
                     className={
@@ -247,11 +255,11 @@ function AdminConsole() {
             <tr className="text-center">
               <th>
                 <button
+                  disabled={SuperAdAuth || AdAuth ? false : true}
                   className="tooltip"
                   data-tip="Add User"
                   onClick={async () => {
                     const response = await AddUser(
-                      navigate,
                       emailValue,
                       passValue,
                       usernameValue

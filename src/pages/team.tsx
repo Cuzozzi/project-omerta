@@ -2,10 +2,10 @@ import "../output.css";
 import team from "../JSON/team.json";
 import ContentCard from "../components/ContentCard";
 import { useRecoilValue } from "recoil";
-import { authVerify0 } from "../atoms/authCheck";
+import { userAuth } from "../atoms/userAuth";
 
 function Team() {
-  const auth = useRecoilValue(authVerify0);
+  const auth = useRecoilValue(userAuth);
   return (
     <div>
       <main

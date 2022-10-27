@@ -1,14 +1,17 @@
 import LogoutButton from "./LogoutButton";
+import MobileLogoutButton from "./MobileLogoutButton";
 import NavLink from "./NavLink";
 import GamebarLink from "./GamebarLink";
-import Logout from "../helpers/LogoutFunction";
 import { useRecoilValue } from "recoil";
-import { authVerify0 } from "../atoms/authCheck";
-import { adminAuth } from "../atoms/adminAuthCheck";
+import { userAuth } from "../atoms/userAuth";
+import { adminAuth } from "../atoms/adminAuth";
+import { superAdminAuth } from "../atoms/superAdminAuth";
 
 function TopNavbar() {
-  const auth = useRecoilValue(authVerify0);
+  const auth = useRecoilValue(userAuth);
   const adAuth = useRecoilValue(adminAuth);
+  const suAdAuth = useRecoilValue(superAdminAuth);
+
   return (
     <div>
       <header className="desktop rounded-t">
@@ -16,7 +19,7 @@ function TopNavbar() {
           <p className="text-xl">Project Omerta</p>
           <NavLink path="/" domRender="Home" />
           {auth && <NavLink path="/account" domRender="Account" />}
-          {auth && adAuth && (
+          {(suAdAuth || adAuth) && (
             <NavLink path="/admin-console" domRender="Admin" />
           )}
           {auth && <LogoutButton />}
@@ -40,7 +43,7 @@ function TopNavbar() {
                 className="menu dropdown-content p-2 shadow bg-base-100 rounded-box w-52 mt-4"
               >
                 <GamebarLink path="/" domRender="Home" />
-                {adAuth && (
+                {(suAdAuth || adAuth) && (
                   <GamebarLink path="/admin-console" domRender="Admin" />
                 )}
                 <GamebarLink path="/character" domRender="Character" />
@@ -50,7 +53,7 @@ function TopNavbar() {
                 <GamebarLink path="/politics" domRender="Politics" />
                 <GamebarLink path="/trading" domRender="Trading" />
                 <GamebarLink path="/intelligence" domRender="Intelligence" />
-                <GamebarLink path="/login" domRender="Logout" logout={Logout} />
+                <MobileLogoutButton />
               </ul>
             </div>
           )}

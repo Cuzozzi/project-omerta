@@ -5,7 +5,7 @@ function Signup() {
   return (
     <main className="main-window bg-hello-img bg-cover flex flex-1 items-center justify-center border-4 rounded border-slate-900 bg-slate-900">
       <div className="bg-slate-900 max-w-fit rounded-xl max-h-fit">
-        <div className="hero max-w-fit min-h-fit bg-base-200 rounded-xl p-10 blur-0">
+        <div className="hero min-h-fit bg-base-200 rounded-xl p-10 blur-0">
           <div className="hero-content text-center">
             <div className="max-w-md">
               <h1 className="text-5xl font-bold">Hello there</h1>

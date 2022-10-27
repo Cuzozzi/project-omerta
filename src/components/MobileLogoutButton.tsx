@@ -6,7 +6,7 @@ import { adminAuth } from "../atoms/adminAuth";
 import { superAdminAuth } from "../atoms/superAdminAuth";
 import { modAuth } from "../atoms/modAuth";
 
-function LogoutButton() {
+function MobileLogoutButton() {
   const setUser = useSetRecoilState(userAuth);
   const setAdmin = useSetRecoilState(adminAuth);
   const setSuperAdmin = useSetRecoilState(superAdminAuth);
@@ -14,7 +14,7 @@ function LogoutButton() {
   let navigate = useNavigate();
   return (
     <button
-      className="btn btn-ghost normal-case text-xl"
+      className="btn btn-ghost bold"
       onClick={() => {
         axios({
           method: "delete",
@@ -36,4 +36,4 @@ function LogoutButton() {
   );
 }
 
-export default LogoutButton;
+export default MobileLogoutButton;

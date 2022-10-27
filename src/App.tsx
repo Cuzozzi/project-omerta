@@ -3,9 +3,10 @@ import TopNavbar from "./components/TopNavbar";
 import MainAppPage from "./components/MainAppPage";
 import Footer from "./components/Footer";
 import { BrowserRouter } from "react-router-dom";
+import { useEffect } from "react";
 
 function App() {
-  console.log("Render Check");
+  useEffect(() => console.log("Render Check"), []);
 
   return (
     <div className="App">

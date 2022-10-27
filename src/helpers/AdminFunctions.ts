@@ -1,7 +1,6 @@
 import axios from "axios";
-import { NavigateFunction } from "react-router-dom";
 
-export async function AllUsers(navigate: NavigateFunction) {
+export async function AllUsers() {
   try {
     const response = await axios({
       method: "get",
@@ -14,14 +13,12 @@ export async function AllUsers(navigate: NavigateFunction) {
   } catch (err: any) {
     if (err.response.status === 401) {
       console.log("Authentication failed");
-      localStorage.setItem("isAdmin", "false");
-      navigate("/", { replace: true });
+      return err.response.data;
     }
   }
 }
 
 export async function AddUser(
-  navigate: NavigateFunction,
   email: string,
   password: string,
   username: string
@@ -42,12 +39,13 @@ export async function AddUser(
     return response.data;
   } catch (err: any) {
     if (err.response.status === 401) {
-      navigate("/", { replace: true });
+      console.log("Authentication failed");
+      return err.response.data;
     }
   }
 }
 
-export async function UserDelete(navigate: NavigateFunction, user_id: string) {
+export async function UserDelete(user_id: string) {
   try {
     const response = await axios({
       method: "delete",
@@ -63,24 +61,18 @@ export async function UserDelete(navigate: NavigateFunction, user_id: string) {
   } catch (err: any) {
     if (err.response.status === 401) {
       console.log("Authentication failed");
-      localStorage.setItem("isAdmin", "false");
-      navigate("/", { replace: true });
+      return err.response.data;
     }
   }
 }
 
-export async function UserTokens(
-  navigate: NavigateFunction,
-  user_id: string,
-  user_email: string
-) {
+export async function UserTokens(user_id: string) {
   try {
     const response = await axios({
       method: "put",
       url: `${process.env.REACT_APP_SERVER_PORT}/admin/console/tokens`,
       data: {
         user_id,
-        user_email,
       },
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -90,18 +82,16 @@ export async function UserTokens(
   } catch (err: any) {
     if (err.response.status === 401) {
       console.log("Authentication failed");
-      localStorage.setItem("isAdmin", "false");
-      navigate("/", { replace: true });
       return err.response.data;
     }
   }
 }
 
-export async function AllTokens(navigate: NavigateFunction) {
+export async function AllTokens() {
   try {
     const response = await axios({
       method: "delete",
-      url: `${process.env.REACT_APP_SERVER_PORT}/admin/console/tokens`,
+      url: `${process.env.REACT_APP_SERVER_PORT}/dangerous/site-logout`,
       data: {
         token: localStorage.getItem("token"),
       },
@@ -113,24 +103,18 @@ export async function AllTokens(navigate: NavigateFunction) {
   } catch (err: any) {
     if (err.response.status === 401) {
       console.log("Authentication failed");
-      localStorage.setItem("isAdmin", "false");
-      navigate("/", { replace: true });
+      return err.response.data;
     }
   }
 }
 
-export async function GiveMod(
-  navigate: NavigateFunction,
-  user_id: string,
-  user_email: string
-) {
+export async function GiveMod(user_id: string) {
   try {
     const response = await axios({
       method: "put",
       url: `${process.env.REACT_APP_SERVER_PORT}/admin/console/moderator`,
       data: {
         user_id,
-        user_email,
       },
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -140,24 +124,18 @@ export async function GiveMod(
   } catch (err: any) {
     if (err.response.status === 401) {
       console.log("Authentication failed");
-      localStorage.setItem("isAdmin", "false");
-      navigate("/", { replace: true });
+      return err.response.data;
     }
   }
 }
 
-export async function RemoveMod(
-  navigate: NavigateFunction,
-  user_id: string,
-  user_email: string
-) {
+export async function RemoveMod(user_id: string) {
   try {
     const response = await axios({
       method: "delete",
       url: `${process.env.REACT_APP_SERVER_PORT}/admin/console/moderator`,
       data: {
         user_id,
-        user_email,
       },
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -167,24 +145,18 @@ export async function RemoveMod(
   } catch (err: any) {
     if (err.response.status === 401) {
       console.log("Authentication failed");
-      localStorage.setItem("isAdmin", "false");
-      navigate("/", { replace: true });
+      return err.response.data;
     }
   }
 }
 
-export async function GiveAdmin(
-  navigate: NavigateFunction,
-  user_id: string,
-  user_email: string
-) {
+export async function GiveAdmin(user_id: string) {
   try {
     const response = await axios({
       method: "put",
       url: `${process.env.REACT_APP_SERVER_PORT}/admin/console/admin`,
       data: {
         user_id,
-        user_email,
       },
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -194,24 +166,18 @@ export async function GiveAdmin(
   } catch (err: any) {
     if (err.response.status === 401) {
       console.log("Authentication failed");
-      localStorage.setItem("isAdmin", "false");
-      navigate("/", { replace: true });
+      return err.response.data;
     }
   }
 }
 
-export async function RemoveAdmin(
-  navigate: NavigateFunction,
-  user_id: string,
-  user_email: string
-) {
+export async function RemoveAdmin(user_id: string) {
   try {
     const response = await axios({
       method: "delete",
       url: `${process.env.REACT_APP_SERVER_PORT}/admin/console/admin`,
       data: {
         user_id,
-        user_email,
       },
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -221,8 +187,25 @@ export async function RemoveAdmin(
   } catch (err: any) {
     if (err.response.status === 401) {
       console.log("Authentication failed");
-      localStorage.setItem("isAdmin", "false");
-      navigate("/", { replace: true });
+      return err.response.data;
+    }
+  }
+}
+
+export async function DeleteAllUsers() {
+  try {
+    const response = await axios({
+      method: "delete",
+      url: `${process.env.REACT_APP_SERVER_PORT}/dangerous/all-users`,
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
+    return response.data;
+  } catch (err: any) {
+    if (err.response.status === 401) {
+      console.log("Authentication failed");
+      return err.response.data;
     }
   }
 }

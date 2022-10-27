@@ -1,22 +1,27 @@
 import "../output.css";
 import LoginButton from "../helpers/LoginFunction";
 import { useState } from "react";
-import { useRecoilState } from "recoil";
-import { authVerify0 } from "../atoms/authCheck";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { userAuth } from "../atoms/userAuth";
+import { adminAuth } from "../atoms/adminAuth";
+import { superAdminAuth } from "../atoms/superAdminAuth";
+import { modAuth } from "../atoms/modAuth";
 import { useNavigate } from "react-router-dom";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const buttonArguments = { email, password };
-  // eslint-disable-next-line
-  const [auth, setAuth] = useRecoilState(authVerify0);
+  const [user, setUser] = useRecoilState(userAuth);
+  const setAdmin = useSetRecoilState(adminAuth);
+  const setSuperAdmin = useSetRecoilState(superAdminAuth);
+  const setMod = useSetRecoilState(modAuth);
   let navigate = useNavigate();
 
   return (
     <div
-      className={`hero ${auth && "main-window"} ${
-        !auth && "main-window-2"
+      className={`hero ${user && "main-window"} ${
+        !user && "main-window-2"
       } bg-slate-900`}
     >
       <div className="hero-content justify-center flex-col lg:flex-row-reverse">
@@ -64,11 +69,23 @@ function Login() {
                 type="submit"
                 className="btn btn-primary"
                 onClick={async () => {
-                  if (await LoginButton(buttonArguments)) {
-                    setAuth(true);
-                    navigate("/", { replace: true });
+                  const response = await LoginButton(buttonArguments);
+                  if (response.error) {
+                    setUser(false);
+                    setMod(false);
+                    setAdmin(false);
+                    setSuperAdmin(false);
                   } else {
-                    setAuth(false);
+                    setUser(true);
+                    setMod(response.moderator);
+                    setAdmin(response.admin);
+                    setSuperAdmin(response.super_admin);
+                    navigate(
+                      response.super_admin || response.admin
+                        ? "/admin-console"
+                        : "/account",
+                      { replace: true }
+                    );
                   }
                 }}
               >

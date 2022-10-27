@@ -1,11 +1,13 @@
+import { useEffect } from "react";
 import { useRecoilValue } from "recoil";
-import { authVerify0 } from "../atoms/authCheck";
+import { userAuth } from "../atoms/userAuth";
 import GamebarLink from "./GamebarLink";
 import AllRoutes from "./routes";
 
 function MainAppPage() {
-  const auth = useRecoilValue(authVerify0);
-  console.log("Render Check");
+  const auth = useRecoilValue(userAuth);
+
+  useEffect(() => console.log("Render Check"), []);
   if (auth) {
     return (
       <div>
