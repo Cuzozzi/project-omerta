@@ -7,15 +7,22 @@ import { adminAuth } from "../atoms/adminAuth";
 import { superAdminAuth } from "../atoms/superAdminAuth";
 import { modAuth } from "../atoms/modAuth";
 import { useNavigate } from "react-router-dom";
+import {
+  ValidateIdentifier,
+  ValidatePassword,
+} from "../helpers/AuthValidators";
 
 function Login() {
-  const [email, setEmail] = useState("");
+  const [identifier, setIdentifier] = useState("");
+  const [verifyIdentifier, setVerifyIdentifier] = useState(false);
   const [password, setPassword] = useState("");
-  const buttonArguments = { email, password };
+  const [verifyPass, setVerifyPass] = useState(false);
   const [user, setUser] = useRecoilState(userAuth);
+  const [error, setError] = useState(false);
   const setAdmin = useSetRecoilState(adminAuth);
   const setSuperAdmin = useSetRecoilState(superAdminAuth);
   const setMod = useSetRecoilState(modAuth);
+  const buttonArguments = { identifier, password };
   let navigate = useNavigate();
 
   return (
@@ -36,13 +43,23 @@ function Login() {
           <div className="card-body">
             <div className="form-control">
               <label className="label">
-                <span className="label-text">Email</span>
+                <span className="label-text">Username or Email</span>
               </label>
               <input
                 type="email"
-                placeholder="email"
-                className="input input-bordered"
-                onChange={(event) => setEmail(event.target.value)}
+                className={
+                  verifyIdentifier === true
+                    ? "input w-full input-bordered input-success"
+                    : "input w-full input-bordered"
+                }
+                onChange={(event) => {
+                  setIdentifier(event.target.value);
+                  if (ValidateIdentifier(event.target.value) != null) {
+                    setVerifyIdentifier(true);
+                  } else {
+                    setVerifyIdentifier(false);
+                  }
+                }}
               />
             </div>
             <div className="form-control">
@@ -51,9 +68,19 @@ function Login() {
               </label>
               <input
                 type="password"
-                placeholder="password"
-                className="input input-bordered"
-                onChange={(event) => setPassword(event.target.value)}
+                className={
+                  verifyPass === true
+                    ? "input w-full input-bordered input-success"
+                    : "input w-full input-bordered"
+                }
+                onChange={(event) => {
+                  setPassword(event.target.value);
+                  if (ValidatePassword(event.target.value) != null) {
+                    setVerifyPass(true);
+                  } else {
+                    setVerifyPass(false);
+                  }
+                }}
               />
               <label className="label">
                 <a
@@ -68,6 +95,7 @@ function Login() {
               <button
                 type="submit"
                 className="btn btn-primary"
+                disabled={verifyIdentifier && verifyPass ? false : true}
                 onClick={async () => {
                   const response = await LoginButton(buttonArguments);
                   if (response.error) {
@@ -75,6 +103,7 @@ function Login() {
                     setMod(false);
                     setAdmin(false);
                     setSuperAdmin(false);
+                    setError(true);
                   } else {
                     setUser(true);
                     setMod(response.moderator);
@@ -91,6 +120,13 @@ function Login() {
               >
                 Login
               </button>
+              {error === true ? (
+                <p className="text-center mt-5 text-red-600">
+                  Login failed, please try again!
+                </p>
+              ) : (
+                <></>
+              )}
             </div>
           </div>
         </div>

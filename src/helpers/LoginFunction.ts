@@ -1,7 +1,7 @@
 import axios from "axios";
 
-interface LoginButtonProps {
-  email: string;
+interface LoginFunctionProps {
+  identifier: string;
   password: string;
 }
 
@@ -13,15 +13,15 @@ interface response {
   error: boolean;
 }
 
-async function LoginButton({ email, password }: LoginButtonProps) {
+async function LoginFunction({ identifier, password }: LoginFunctionProps) {
   let value: response;
   try {
     const response = await axios({
       method: "put",
       url: `${process.env.REACT_APP_SERVER_PORT}/api/login`,
       data: {
-        email: email,
-        password: password,
+        identifier,
+        password,
       },
     });
     localStorage.setItem("token", response.data.token);
@@ -36,4 +36,4 @@ async function LoginButton({ email, password }: LoginButtonProps) {
   return value;
 }
 
-export default LoginButton;
+export default LoginFunction;

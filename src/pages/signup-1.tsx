@@ -2,25 +2,11 @@ import "../output.css";
 import { useState } from "react";
 import SingupButton from "../helpers/SignupButton";
 import { useNavigate } from "react-router-dom";
-
-//6-16 length, upper & lowercase, letters & numbers only
-function validateUsername(username: string) {
-  return String(username).match(/[a-zA-Z0-9]{6,16}$/);
-}
-
-//simple email validation string@string.string
-function validateEmail(email: string) {
-  return String(email)
-    .toLowerCase()
-    .match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
-}
-
-//6 - 16 length, at least one number and one special character
-function validatePassword(password: string) {
-  return String(password).match(
-    /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/
-  );
-}
+import {
+  ValidateUsername,
+  ValidateEmail,
+  ValidatePassword,
+} from "../helpers/AuthValidators";
 
 function Signup1() {
   const [email, setEmail] = useState("");
@@ -30,9 +16,6 @@ function Signup1() {
   const [username, setUsername] = useState("");
   const [userVerify, setUserVerify] = useState(false);
   const [error, setError] = useState(false);
-  const [disable1, setDisable1] = useState(true);
-  const [disable2, setDisable2] = useState(true);
-  const [disable3, setDisable3] = useState(true);
 
   const SignupButtonArgs = { email, password, username };
   const navigate = useNavigate();
@@ -72,14 +55,10 @@ function Signup1() {
                 }
                 onChange={(event) => {
                   setUsername(event.target.value);
-                  if (event.target.value === "") {
-                    setDisable1(true);
+                  if (ValidateUsername(event.target.value) != null) {
+                    setUserVerify(true);
                   } else {
-                    setDisable1(false);
-                    if (validateUsername(event.target.value) != null) {
-                      setUserVerify(true);
-                      setDisable2(false);
-                    }
+                    setUserVerify(false);
                   }
                 }}
                 id="username"
@@ -99,13 +78,10 @@ function Signup1() {
                 }
                 onChange={(event) => {
                   setEmail(event.target.value);
-                  if (event.target.value === "") {
-                    setDisable2(true);
+                  if (ValidateEmail(event.target.value) != null) {
+                    setEmailVerify(true);
                   } else {
-                    if (validateEmail(event.target.value) != null) {
-                      setEmailVerify(true);
-                      setDisable2(false);
-                    }
+                    setEmailVerify(false);
                   }
                 }}
                 id="email"
@@ -125,13 +101,10 @@ function Signup1() {
                 }
                 onChange={(event) => {
                   setPassword(event.target.value);
-                  if (event.target.value === "") {
-                    setDisable3(true);
+                  if (ValidatePassword(event.target.value) != null) {
+                    setPassVerify(true);
                   } else {
-                    if (validatePassword(event.target.value) != null) {
-                      setPassVerify(true);
-                      setDisable3(false);
-                    }
+                    setPassVerify(false);
                   }
                 }}
                 id="password"
@@ -139,7 +112,9 @@ function Signup1() {
             </div>
             <button
               disabled={
-                disable1 === false && disable2 === false && disable3 === false
+                emailVerify === true &&
+                passVerify === true &&
+                userVerify === true
                   ? false
                   : true
               }

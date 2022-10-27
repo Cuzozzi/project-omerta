@@ -11,24 +11,30 @@ import {
   RemoveAdmin,
   DeleteAllUsers,
 } from "../helpers/AdminFunctions";
-import { useNavigate } from "react-router-dom";
+
+import {
+  ValidateUsername,
+  ValidateEmail,
+  ValidatePassword,
+} from "../helpers/AuthValidators";
+
 import { useEffect, useState } from "react";
-import { useRecoilState } from "recoil";
-import { userAuth } from "../atoms/userAuth";
+import { useRecoilValue } from "recoil";
 import { superAdminAuth } from "../atoms/superAdminAuth";
 import { adminAuth } from "../atoms/adminAuth";
 import { modAuth } from "../atoms/modAuth";
 
 function AdminConsole() {
-  const navigate = useNavigate();
-  const [auth, setAuth] = useRecoilState(userAuth);
-  const [SuperAdAuth, setSuperAdAuth] = useRecoilState(superAdminAuth);
-  const [AdAuth, setAdAuth] = useRecoilState(adminAuth);
+  const SuperAdAuth = useRecoilValue(superAdminAuth);
+  const AdAuth = useRecoilValue(adminAuth);
   const [tableArray, changeTableArray] = useState<any[]>([]);
   const [dangerToggle, changeDangerToggle] = useState(true);
   const [usernameValue, setUsernameValue] = useState("");
+  const [userVerify, setUserVerify] = useState(Boolean);
   const [emailValue, setEmailValue] = useState("");
+  const [emailVerify, setEmailVerify] = useState(Boolean);
   const [passValue, setPassValue] = useState("");
+  const [passVerify, setPassVerify] = useState(Boolean);
 
   async function setUserTable() {
     changeTableArray((await AllUsers()) || []);
@@ -255,7 +261,14 @@ function AdminConsole() {
             <tr className="text-center">
               <th>
                 <button
-                  disabled={SuperAdAuth || AdAuth ? false : true}
+                  disabled={
+                    (SuperAdAuth || AdAuth || modAuth) &&
+                    userVerify &&
+                    passVerify &&
+                    emailVerify
+                      ? false
+                      : true
+                  }
                   className="tooltip"
                   data-tip="Add User"
                   onClick={async () => {
@@ -267,7 +280,14 @@ function AdminConsole() {
                     changeTableArray([...tableArray, response[0]]);
                   }}
                 >
-                  <i className="fa-solid fa-plus"></i>
+                  <i
+                    className={
+                      "fa-solid fa-user-plus " +
+                      (userVerify && passVerify && emailVerify
+                        ? "text-emerald-500"
+                        : "text-gray-500")
+                    }
+                  ></i>
                 </button>
               </th>
               <th>Add User</th>
@@ -279,9 +299,18 @@ function AdminConsole() {
               <td>
                 <input
                   type="string"
-                  className="input input-bordered"
+                  className={
+                    userVerify === true
+                      ? "input w-full input-bordered input-success"
+                      : "input w-full input-bordered"
+                  }
                   onChange={(event) => {
                     setUsernameValue(event.target.value);
+                    if (ValidateUsername(event.target.value) != null) {
+                      setUserVerify(true);
+                    } else {
+                      setUserVerify(false);
+                    }
                   }}
                 ></input>
               </td>
@@ -291,9 +320,18 @@ function AdminConsole() {
               <td>
                 <input
                   type="email"
-                  className="input input-bordered"
+                  className={
+                    emailVerify === true
+                      ? "input w-full input-bordered input-success"
+                      : "input w-full input-bordered"
+                  }
                   onChange={(event) => {
                     setEmailValue(event.target.value);
+                    if (ValidateEmail(event.target.value) != null) {
+                      setEmailVerify(true);
+                    } else {
+                      setEmailVerify(false);
+                    }
                   }}
                 ></input>
               </td>
@@ -303,9 +341,18 @@ function AdminConsole() {
               <td>
                 <input
                   type="password"
-                  className="input input-bordered"
+                  className={
+                    passVerify === true
+                      ? "input w-full input-bordered input-success"
+                      : "input w-full input-bordered"
+                  }
                   onChange={(event) => {
                     setPassValue(event.target.value);
+                    if (ValidatePassword(event.target.value) != null) {
+                      setPassVerify(true);
+                    } else {
+                      setPassVerify(false);
+                    }
                   }}
                 ></input>
               </td>
