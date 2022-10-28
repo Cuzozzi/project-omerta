@@ -45,7 +45,7 @@ function AdminConsole() {
   }, []);
 
   return (
-    <div className="main-window flex flex-row overflow-x-auto">
+    <div className="main-window flex flex-row overflow-x-auto bg-base-300">
       {/* USERS TABLE */}
       <table className="table mx-10 mt-10 h-fit">
         <thead>

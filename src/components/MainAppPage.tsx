@@ -12,8 +12,8 @@ function MainAppPage() {
     return (
       <div>
         <main>
-          <div className="desktop gameplay-bar flex bg-slate-900">
-            <div className="w-28 border-2 border-slate-800 justify-center items-center inline-flex flex-col navbar gap-10 bg-slate-800">
+          <div className="desktop gameplay-bar flex bg-base-200">
+            <div className="w-28 justify-center items-center inline-flex flex-col navbar gap-10 bg-base-200">
               <GamebarLink path="/map" domRender="Map" />
               <GamebarLink path="/character" domRender="Character" />
               <GamebarLink path="/safehouses" domRender="Safehouses" />
@@ -27,7 +27,7 @@ function MainAppPage() {
           </div>
         </main>
         <main>
-          <div className="mobile gameplay-bar flex bg-slate-900">
+          <div className="mobile gameplay-bar flex bg-base-200">
             <AllRoutes />
           </div>
         </main>
@@ -36,7 +36,7 @@ function MainAppPage() {
   } else {
     return (
       <main>
-        <div className="gameplay-bar flex bg-slate-900">
+        <div className="gameplay-bar flex bg-base-200">
           <AllRoutes />
         </div>
       </main>

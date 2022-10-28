@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import Gravatar from "react-gravatar";
-import AccountCard, { Message } from "../components/AccountCard";
+import AccountCard, { Message } from "./AccountCard";
 import { useQuery } from "react-query";
 
 export interface User {
@@ -60,7 +60,7 @@ export function AccountContent() {
   });
 
   return (
-    <div className="main-window">
+    <div className="main-window bg-base-300">
       <div className="flex justify-center my-8">
         <Gravatar
           className="mask mask-circle"
@@ -73,31 +73,29 @@ export function AccountContent() {
         <table className="table w-full">
           <thead className="text-center">
             <tr>
-              <th className="bg-slate-800">Details</th>
+              <th className="bg-base-100">Details</th>
             </tr>
           </thead>
           <tbody className="text-center">
             <tr>
-              <td className="bg-slate-800">Username:</td>
-              <td className="bg-slate-800">
+              <td className="bg-base-100">Username:</td>
+              <td className="bg-base-100">
                 {result ? result.username : "404"}
               </td>
             </tr>
             <tr>
-              <td className="bg-slate-800">Email: </td>
-              <td className="bg-slate-800">{result ? result.email : "404"}</td>
+              <td className="bg-base-100">Email: </td>
+              <td className="bg-base-100">{result ? result.email : "404"}</td>
             </tr>
             <tr>
-              <td className="bg-slate-800">Tilepower:</td>
-              <td className="bg-slate-800">
+              <td className="bg-base-100">Tilepower:</td>
+              <td className="bg-base-100">
                 {result ? result.tilepower : "404"}
               </td>
             </tr>
             <tr>
-              <td className="bg-slate-800">Account ID:</td>
-              <td className="bg-slate-800">
-                {result ? result.user_id : "404"}
-              </td>
+              <td className="bg-base-100">Account ID:</td>
+              <td className="bg-base-100">{result ? result.user_id : "404"}</td>
             </tr>
           </tbody>
         </table>

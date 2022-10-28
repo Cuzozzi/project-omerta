@@ -16,7 +16,7 @@ function ContentCard({
   para3: string;
 }) {
   return (
-    <div className="flex-1 card  m-4 bg-slate-800">
+    <div className="flex-1 card m-4 bg-base-100">
       <figure className="max-h-48 md:max-h-64 overflow-hidden">
         <img src={img} alt={alt} className="object-fill" />
       </figure>

@@ -15,9 +15,9 @@ function TopNavbar() {
   return (
     <div>
       <header className="desktop rounded-t">
-        <div className="inline-flex flex-row justify-around content-center navbar bg-slate-700 rounded-t">
+        <div className="inline-flex flex-row justify-around content-center navbar bg-base-200 rounded-t">
           <p className="text-xl">Project Omerta</p>
-          <NavLink path="/" domRender="Home" />
+          <NavLink path="/" domRender="Home" end />
           {auth && <NavLink path="/account" domRender="Account" />}
           {(suAdAuth || adAuth) && (
             <NavLink path="/admin-console" domRender="Admin" />
@@ -28,7 +28,7 @@ function TopNavbar() {
         </div>
       </header>
       <header className="mobile rounded-t">
-        <div className="inline-flex flex-row justify-around content-center navbar bg-slate-700 rounded-t">
+        <div className="inline-flex flex-row justify-around content-center navbar bg-base-200 rounded-t">
           {auth && <NavLink path="/account" domRender="Account" />}
           {!auth && <NavLink path="/login" domRender="Login" />}
           <p className="text-xl">Project Omerta</p>
@@ -40,7 +40,7 @@ function TopNavbar() {
               </label>
               <ul
                 tabIndex={0}
-                className="menu dropdown-content p-2 shadow bg-base-100 rounded-box w-52 mt-4"
+                className="menu dropdown-content p-2 shadow bg-base-200 rounded-box w-52 mt-4"
               >
                 <GamebarLink path="/" domRender="Home" />
                 {(suAdAuth || adAuth) && (

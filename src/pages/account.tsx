@@ -1,5 +1,5 @@
 import "../output.css";
-import { AccountContent } from "../helpers/AccountFunctions";
+import { AccountContent } from "../components/AccountFunctions";
 
 function Account() {
   return <AccountContent />;
