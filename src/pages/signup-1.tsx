@@ -21,7 +21,7 @@ function Signup1() {
   const navigate = useNavigate();
 
   return (
-    <main className="main-window-2 bg-hello-img bg-cover border-4 rounded border-slate-900 flex justify-center items-center flex-col">
+    <main className="main-window-2 bg-hello-img bg-cover flex justify-center items-center flex-col">
       <div>
         <ul className="steps mt-5">
           {error ? (
@@ -33,7 +33,7 @@ function Signup1() {
           <li className="step">Character</li>
         </ul>
       </div>
-      <div className="hero max-w-fit min-h-fit bg-base-200 rounded-xl p-10 blur-0 m-5">
+      <div className="hero max-w-fit min-h-fit bg-base-100 rounded-xl p-10 blur-0 m-5">
         <div className="hero-content text-center">
           <div className="max-w-md">
             <h1 className="text-5xl font-bold">Welcome to Omerta</h1>

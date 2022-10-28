@@ -29,7 +29,7 @@ function Login() {
     <div
       className={`hero ${user && "main-window"} ${
         !user && "main-window-2"
-      } bg-slate-900`}
+      } bg-base-300`}
     >
       <div className="hero-content justify-center flex-col lg:flex-row-reverse">
         <div className="text-center">
@@ -39,7 +39,7 @@ function Login() {
             the action! Your family needs your help, capiche?
           </p>
         </div>
-        <div className="card max-h-96 shrink w-full max-w-sm shadow-2xl bg-slate-800">
+        <div className="card max-h-96 shrink w-full max-w-sm shadow-2xl bg-base-100">
           <div className="card-body">
             <div className="form-control">
               <label className="label">

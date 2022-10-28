@@ -1,17 +1,24 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 interface NavProps {
   path: string;
   domRender: string;
   thisWillBeUnsued?: number;
+  end?: boolean;
 }
 
-function NavLink({ path, domRender }: NavProps) {
+function Link({ path, domRender, end }: NavProps) {
   return (
-    <Link to={path} className="btn btn-ghost normal-case text-xl">
+    <NavLink
+      to={path}
+      className={({ isActive }) =>
+        `${isActive ? "btn-primary" : "btn-ghost"} btn normal-case text-xl `
+      }
+      end={end}
+    >
       {domRender}
-    </Link>
+    </NavLink>
   );
 }
 
-export default NavLink;
+export default Link;

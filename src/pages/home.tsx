@@ -9,23 +9,23 @@ function Home() {
   return (
     <div>
       <main
-        className={`desktop p-4 bg-slate-900 ${
+        className={`desktop p-4 bg-base-300 ${
           auth ? "main-window" : "main-window-2"
         }`}
       >
         <div
           className={`h-full w-full p-5 inline-flex flex-col md:flex-row ${
             !auth && "justify-center"
-          } content-between bg-slate-900 rounded`}
+          } content-between bg-base-300 rounded`}
         >
           {home.map((i, index) => (
             <ContentCard {...i} key={index} />
           ))}
         </div>
       </main>
-      <main className={`mobile p-4 bg-slate-900`}>
+      <main className={`mobile p-4 bg-base-300`}>
         <div
-          className={`h-full w-full p-5 inline-flex flex-col md:flex-row justify-center content-between bg-slate-900 rounded`}
+          className={`h-full w-full p-5 inline-flex flex-col md:flex-row justify-center content-between bg-base-300 rounded`}
         >
           {home.map((i, index) => (
             <ContentCard {...i} key={index} />
