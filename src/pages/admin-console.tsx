@@ -242,7 +242,10 @@ function AdminConsole() {
                   className="text-center tooltip"
                   data-tip="Delete All Users"
                   disabled={dangerToggle}
-                  onClick={() => DeleteAllUsers()}
+                  onClick={() => {
+                    DeleteAllUsers();
+                    setUserTable();
+                  }}
                 >
                   <i
                     className={
