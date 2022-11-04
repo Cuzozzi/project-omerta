@@ -3,9 +3,6 @@
 @tailwind utilities;
 
 @layer utilities {
-  .bg-main-yellow {
-    background-color: rgb(86 72 52);
-  }
   .fixed {
     position: fixed;
     bottom: 0;
@@ -30,16 +27,18 @@
   }
   .main-window {
     width: calc(100vw);
-    min-height: calc(100vh - 116px);
+    min-height: calc(100vh);
   }
-  .main-window-2 {
-    width: calc(100vw);
-    min-height: calc(100vh - 116px);
-  }
-
   .map-window {
     width: calc(100vw);
-    height: calc(100vh - 116px);
+    height: calc(100vh);
+  }
+  .sidebar {
+    min-height: calc(100vh);
+    bottom: 0;
+  }
+  .menu li {
+    margin-bottom: 2px;
   }
 }
 
@@ -54,15 +53,18 @@
   }
   .main-window {
     width: calc(100vw);
-    min-height: calc(100vh - 116px);
-  }
-  .main-window-2 {
-    width: calc(100vw);
-    min-height: calc(100vh - 116px);
+    min-height: calc(100vh);
   }
   .map-window {
     width: calc(100vw);
-    height: calc(100vh - 116px);
+    height: calc(100vh);
+  }
+  .sidebar {
+    min-height: calc(100vh);
+    bottom: 0;
+  }
+  .menu li {
+    margin-bottom: 2px;
   }
 }
 
@@ -77,15 +79,18 @@
   }
   .main-window {
     width: calc(100vw);
-    min-height: calc(100vh - 116px);
-  }
-  .main-window-2 {
-    width: calc(100vw);
-    min-height: calc(100vh - 116px);
+    min-height: calc(100vh);
   }
   .map-window {
     width: calc(100vw);
-    height: calc(100vh - 116px);
+    height: calc(100vh);
+  }
+  .sidebar {
+    min-height: calc(100vh);
+    bottom: 0;
+  }
+  .menu li {
+    margin-bottom: 2px;
   }
 }
 
@@ -100,15 +105,18 @@
   }
   .main-window {
     width: calc(100vw);
-    min-height: calc(100vh - 116px);
-  }
-  .main-window-2 {
-    width: calc(100vw);
-    min-height: calc(100vh - 116px);
+    min-height: calc(100vh);
   }
   .map-window {
     width: calc(100vw);
-    height: calc(100vh - 116px);
+    height: calc(100vh);
+  }
+  .sidebar {
+    min-height: calc(100vh);
+    bottom: 0;
+  }
+  .menu li {
+    margin-bottom: 2px;
   }
 }
 
@@ -122,15 +130,18 @@
     display: flex;
   }
   .main-window {
-    width: calc(100vw - 112px);
-    min-height: calc(100vh - 116px);
-  }
-  .main-window-2 {
     width: calc(100vw);
-    min-height: calc(100vh - 116px);
+    min-height: calc(100vh);
   }
   .map-window {
-    width: calc(100vw - 112px);
-    height: calc(100vh - 116px);
+    width: calc(100vw);
+    height: calc(100vh);
+  }
+  .sidebar {
+    min-height: calc(100vh);
+    bottom: 0;
+  }
+  .menu li {
+    margin-bottom: 1px;
   }
 }

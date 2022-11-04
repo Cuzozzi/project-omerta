@@ -10,6 +10,8 @@ import {
   GiveAdmin,
   RemoveAdmin,
   DeleteAllUsers,
+  AddTenTiles,
+  RemoveTenTiles,
 } from "../helpers/AdminFunctions";
 
 import {
@@ -23,6 +25,7 @@ import { useRecoilValue } from "recoil";
 import { superAdminAuth } from "../atoms/superAdminAuth";
 import { adminAuth } from "../atoms/adminAuth";
 import { modAuth } from "../atoms/modAuth";
+import { clear } from "@testing-library/user-event/dist/clear";
 
 function AdminConsole() {
   const SuperAdAuth = useRecoilValue(superAdminAuth);
@@ -35,164 +38,195 @@ function AdminConsole() {
   const [emailVerify, setEmailVerify] = useState(Boolean);
   const [passValue, setPassValue] = useState("");
   const [passVerify, setPassVerify] = useState(Boolean);
+  const [page, setPage] = useState(1);
 
-  async function setUserTable() {
-    changeTableArray((await AllUsers()) || []);
+  async function setUserTable(offset: number) {
+    changeTableArray((await AllUsers(offset)) || []);
   }
 
   useEffect(() => {
-    setUserTable();
-  }, []);
+    const clear = async () => {
+      await setUserTable(page * 10 - 10);
+    };
+    clear();
+  }, [page]);
 
   return (
-    <div className="main-window flex flex-row overflow-x-auto bg-base-300">
+    <div className="main-window flex flex-row overflow-x-auto bg-base-300 justify-center">
       {/* USERS TABLE */}
-      <table className="table mx-10 mt-10 h-fit">
-        <thead>
-          <tr>
-            <th className="text-center">ID</th>
-            <th className="text-center">Username</th>
-            <th className="text-center">Email</th>
-            <th className="text-center">Admin</th>
-            <th className="text-center">Moderator</th>
-            <th></th>
-            <th className="text-center"></th>
-          </tr>
-        </thead>
-        <tbody>
-          {tableArray.map((user) => (
-            <tr key={user.id}>
-              <td className="text-center">{user.id}</td>
-              <td className="text-center">{user.username}</td>
-              <td className="text-center">{user.email}</td>
-              <td className=" text-center">
-                {user.admin ? (
-                  <button
-                    disabled={SuperAdAuth ? false : true}
-                    className="tooltip"
-                    data-tip="Toggle Admin"
-                    onClick={() => {
-                      RemoveAdmin(user.id);
-                      changeTableArray(
-                        tableArray.map((userchange) => {
-                          if (userchange.id === user.id) {
-                            userchange.admin = false;
-                          }
-                          return userchange;
-                        })
-                      );
-                    }}
-                  >
-                    <i className="fa-regular fa-square-check"></i>
-                  </button>
-                ) : (
-                  <button
-                    disabled={SuperAdAuth ? false : true}
-                    className="tooltip"
-                    data-tip="Toggle Admin"
-                    onClick={() => {
-                      GiveAdmin(user.id);
-                      changeTableArray(
-                        tableArray.map((userchange) => {
-                          if (userchange.id === user.id) {
-                            userchange.admin = true;
-                          }
-                          return userchange;
-                        })
-                      );
-                    }}
-                  >
-                    <i className="fa-regular fa-square"></i>
-                  </button>
-                )}
-              </td>
-              <td className=" text-center">
-                {user.moderator ? (
-                  <button
-                    disabled={SuperAdAuth || AdAuth ? false : true}
-                    className="tooltip"
-                    data-tip="Toggle Moderator"
-                    onClick={() => {
-                      RemoveMod(user.id);
-                      changeTableArray(
-                        tableArray.map((userchange) => {
-                          if (userchange.id === user.id) {
-                            userchange.moderator = false;
-                          }
-                          return userchange;
-                        })
-                      );
-                    }}
-                  >
-                    <i className="fa-regular fa-square-check"></i>
-                  </button>
-                ) : (
-                  <button
-                    disabled={SuperAdAuth || AdAuth ? false : true}
-                    className="tooltip"
-                    data-tip="Toggle Moderator"
-                    onClick={() => {
-                      GiveMod(user.id);
-                      changeTableArray(
-                        tableArray.map((userchange) => {
-                          if (userchange.id === user.id) {
-                            userchange.moderator = true;
-                          }
-                          return userchange;
-                        })
-                      );
-                    }}
-                  >
-                    <i className="fa-regular fa-square"></i>
-                  </button>
-                )}
-              </td>
-              <td>
-                <button
-                  disabled={SuperAdAuth || AdAuth || modAuth ? false : true}
-                  className="tooltip"
-                  data-tip="Logout User"
-                  onClick={async () => {
-                    const response = await UserTokens(user.id);
-                    if (response === "OK") {
-                      console.log("Logged out!");
-                    }
-                  }}
-                >
-                  <i className="fa-solid fa-arrow-right-from-bracket"></i>
-                </button>
-              </td>
-              <td>
-                <button
-                  disabled={SuperAdAuth ? false : true}
-                  className="tooltip"
-                  data-tip="Delete User"
-                  onClick={async () => {
-                    const response = await UserDelete(user.id);
-                    if (response === "OK") {
-                      const id = user.id;
-                      changeTableArray(
-                        tableArray.filter((tableArray) => tableArray.id !== id)
-                      );
-                    }
-                  }}
-                >
-                  <i className="fa-solid fa-trash text-rose-500"></i>
-                </button>
-              </td>
+      <div className="flex flex-col">
+        <table className="table mr-20 mt-20 h-fit">
+          <thead>
+            <tr>
+              <th className="text-center">ID</th>
+              <th className="text-center">TP</th>
+              <th className="text-center">Username</th>
+              <th className="text-center">Email</th>
+              <th className="text-center">Admin</th>
+              <th className="text-center">Moderator</th>
+              <th></th>
+              <th className="text-center"></th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {tableArray.map((user) => (
+              <tr key={user.id}>
+                <td className="text-center">{user.id}</td>
+                <td className="text-center">{user.tilepower}</td>
+                <td className="text-center">{user.username}</td>
+                <td className="text-center">{user.email}</td>
+                <td className=" text-center">
+                  {user.admin ? (
+                    <button
+                      disabled={SuperAdAuth ? false : true}
+                      className="tooltip"
+                      data-tip="Toggle Admin"
+                      onClick={() => {
+                        RemoveAdmin(user.id);
+                        changeTableArray(
+                          tableArray.map((userchange) => {
+                            if (userchange.id === user.id) {
+                              userchange.admin = false;
+                            }
+                            return userchange;
+                          })
+                        );
+                      }}
+                    >
+                      <i className="fa-regular fa-square-check"></i>
+                    </button>
+                  ) : (
+                    <button
+                      disabled={SuperAdAuth ? false : true}
+                      className="tooltip"
+                      data-tip="Toggle Admin"
+                      onClick={() => {
+                        GiveAdmin(user.id);
+                        changeTableArray(
+                          tableArray.map((userchange) => {
+                            if (userchange.id === user.id) {
+                              userchange.admin = true;
+                            }
+                            return userchange;
+                          })
+                        );
+                      }}
+                    >
+                      <i className="fa-regular fa-square"></i>
+                    </button>
+                  )}
+                </td>
+                <td className=" text-center">
+                  {user.moderator ? (
+                    <button
+                      disabled={SuperAdAuth || AdAuth ? false : true}
+                      className="tooltip"
+                      data-tip="Toggle Moderator"
+                      onClick={() => {
+                        RemoveMod(user.id);
+                        changeTableArray(
+                          tableArray.map((userchange) => {
+                            if (userchange.id === user.id) {
+                              userchange.moderator = false;
+                            }
+                            return userchange;
+                          })
+                        );
+                      }}
+                    >
+                      <i className="fa-regular fa-square-check"></i>
+                    </button>
+                  ) : (
+                    <button
+                      disabled={SuperAdAuth || AdAuth ? false : true}
+                      className="tooltip"
+                      data-tip="Toggle Moderator"
+                      onClick={() => {
+                        GiveMod(user.id);
+                        changeTableArray(
+                          tableArray.map((userchange) => {
+                            if (userchange.id === user.id) {
+                              userchange.moderator = true;
+                            }
+                            return userchange;
+                          })
+                        );
+                      }}
+                    >
+                      <i className="fa-regular fa-square"></i>
+                    </button>
+                  )}
+                </td>
+                <td>
+                  <button
+                    disabled={SuperAdAuth || AdAuth || modAuth ? false : true}
+                    className="tooltip"
+                    data-tip="Logout User"
+                    onClick={async () => {
+                      const response = await UserTokens(user.id);
+                      if (response === "OK") {
+                        console.log("Logged out!");
+                      }
+                    }}
+                  >
+                    <i className="fa-solid fa-arrow-right-from-bracket"></i>
+                  </button>
+                </td>
+                <td>
+                  <button
+                    disabled={SuperAdAuth ? false : true}
+                    className="tooltip"
+                    data-tip="Delete User"
+                    onClick={async () => {
+                      const response = await UserDelete(user.id);
+                      if (response === "OK") {
+                        const id = user.id;
+                        changeTableArray(
+                          tableArray.filter(
+                            (tableArray) => tableArray.id !== id
+                          )
+                        );
+                      }
+                    }}
+                  >
+                    <i className="fa-solid fa-trash text-rose-500"></i>
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <div className="btn-group">
+          <button
+            className="btn"
+            onClick={() => {
+              if (page > 1) {
+                setPage(page - 1);
+              } else {
+                return;
+              }
+            }}
+          >
+            «
+          </button>
+          <button className="btn">{page}</button>
+          <button
+            className="btn"
+            onClick={() => {
+              setPage(page + 1);
+            }}
+          >
+            »
+          </button>
+        </div>
+      </div>
+
       {/* SUPER ADMIN PANEL */}
       <div className="flex flex-col">
-        <table className="table mx-auto my-10 h-fit w-full">
+        <table className="table mx-auto my-20 h-fit w-full">
           <thead>
             <tr className="w-full text-center">
               <th>Super Admin Panel</th>
-              <th></th>
-              <th></th>
-              <th></th>
               <th>
                 <button
                   disabled={SuperAdAuth ? false : true}
@@ -217,42 +251,53 @@ function AdminConsole() {
           </thead>
           <tbody>
             <tr>
-              <td></td>
-              <td></td>
-              <td></td>
               <td>
                 <button
-                  className="text-center tooltip"
-                  data-tip="Logout All Users"
+                  className="text-center btn btn-error"
                   disabled={dangerToggle}
                   onClick={() => {
                     AllTokens();
                   }}
                 >
-                  <i
-                    className={
-                      "fa-solid fa-arrow-right-from-bracket " +
-                      (dangerToggle ? "text-gray-500" : "text-rose-500")
-                    }
-                  ></i>
+                  Logout All Users
                 </button>
               </td>
               <td>
                 <button
-                  className="text-center tooltip"
-                  data-tip="Delete All Users"
+                  className="text-center btn btn-primary px-8"
                   disabled={dangerToggle}
-                  onClick={() => {
-                    DeleteAllUsers();
-                    setUserTable();
+                  onClick={async () => {
+                    await AddTenTiles();
+                    setUserTable(0);
                   }}
                 >
-                  <i
-                    className={
-                      "fa-solid fa-trash " +
-                      (dangerToggle ? "text-gray-500" : "text-rose-500")
-                    }
-                  ></i>
+                  Add Ten Tiles
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td className="text-center">
+                <button
+                  className="text-center btn btn-error"
+                  disabled={dangerToggle}
+                  onClick={async () => {
+                    await DeleteAllUsers();
+                    setUserTable(0);
+                  }}
+                >
+                  Delete All Users
+                </button>
+              </td>
+              <td className="text-center">
+                <button
+                  className="text-center btn btn-primary"
+                  disabled={dangerToggle}
+                  onClick={async () => {
+                    await RemoveTenTiles();
+                    setUserTable(0);
+                  }}
+                >
+                  Remove Ten Tiles
                 </button>
               </td>
             </tr>

@@ -1,8 +1,9 @@
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Gravatar from "react-gravatar";
 import AccountCard, { Message } from "./AccountCard";
 import { useQuery } from "react-query";
+import { themeChange } from "theme-change";
 
 export interface User {
   user_id: number;
@@ -59,6 +60,10 @@ export function AccountContent() {
     },
   });
 
+  useEffect(() => {
+    themeChange(false);
+  }, []);
+
   return (
     <div className="main-window bg-base-300">
       <div className="flex justify-center my-8">
@@ -96,6 +101,20 @@ export function AccountContent() {
             <tr>
               <td className="bg-base-100">Account ID:</td>
               <td className="bg-base-100">{result ? result.user_id : "404"}</td>
+            </tr>
+            <tr>
+              <td className="bg-base-100">Change Theme:</td>
+              <td>
+                <select data-choose-theme>
+                  <option value="light">Light</option>
+                  <option value="dark">Dark</option>
+                  <option value="synthwave">Synthwave</option>
+                  <option value="cyberpunk">Cyberpunk</option>
+                  <option value="luxury">Luxury</option>
+                  <option value="business">Business</option>
+                  <option value="night">Night</option>
+                </select>
+              </td>
             </tr>
           </tbody>
         </table>

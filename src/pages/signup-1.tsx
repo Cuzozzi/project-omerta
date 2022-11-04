@@ -21,7 +21,7 @@ function Signup1() {
   const navigate = useNavigate();
 
   return (
-    <main className="main-window-2 bg-hello-img bg-cover flex justify-center items-center flex-col">
+    <main className="main-window bg-hello-img bg-cover flex justify-center items-center flex-col">
       <div>
         <ul className="steps mt-5">
           {error ? (

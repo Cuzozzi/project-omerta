@@ -1,7 +1,6 @@
 import "./output.css";
-import TopNavbar from "./components/TopNavbar";
 import MainAppPage from "./components/MainAppPage";
-import Footer from "./components/Footer";
+import SideNavBar from "./components/SideNavbar";
 import { BrowserRouter } from "react-router-dom";
 import { useEffect } from "react";
 
@@ -11,9 +10,8 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <TopNavbar />
+        <SideNavBar />
         <MainAppPage />
-        <Footer />
       </BrowserRouter>
     </div>
   );
