@@ -25,7 +25,6 @@ import { useRecoilValue } from "recoil";
 import { superAdminAuth } from "../atoms/superAdminAuth";
 import { adminAuth } from "../atoms/adminAuth";
 import { modAuth } from "../atoms/modAuth";
-import { clear } from "@testing-library/user-event/dist/clear";
 
 function AdminConsole() {
   const SuperAdAuth = useRecoilValue(superAdminAuth);
