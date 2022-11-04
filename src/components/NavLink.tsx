@@ -4,10 +4,11 @@ interface NavProps {
   path: string;
   thisWillBeUnsued?: number;
   end?: boolean;
-  children?: String | JSX.Element | JSX.Element[];
+  icon: JSX.Element;
+  domRender: string;
 }
 
-function Link({ path, end, children }: NavProps) {
+function Link({ path, end, icon, domRender }: NavProps) {
   return (
     <NavLink
       to={path}
@@ -16,7 +17,10 @@ function Link({ path, end, children }: NavProps) {
       }
       end={end}
     >
-      {children}
+      <>
+        {domRender}
+        {icon}
+      </>
     </NavLink>
   );
 }

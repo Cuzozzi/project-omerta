@@ -7,7 +7,7 @@ import { userAuth } from "../atoms/userAuth";
 import { adminAuth } from "../atoms/adminAuth";
 import { superAdminAuth } from "../atoms/superAdminAuth";
 
-export default function TopNavbar() {
+export default function SideNavbar() {
   const auth = useRecoilValue(userAuth);
   const adAuth = useRecoilValue(adminAuth);
   const suAdAuth = useRecoilValue(superAdminAuth);
@@ -18,11 +18,14 @@ export default function TopNavbar() {
     <>
       {toggle && (
         <ul className="menu menu-vertical bg-base-100 w-72 sidebar p-0 fixed top-0 left-0 bottom-auto z-40">
-          <li className="text-center m-6 text-2xl">Project Omerta</li>
+          <li className="menu-title text-center m-6 text-2xl">
+            Project Omerta
+          </li>
           <li>
             <NavLink
               path="/"
-              children={[<>Home</>, <i className="fa-solid fa-house"></i>]}
+              domRender="Home"
+              icon={<i className="fa-solid fa-house"></i>}
               end
             />
           </li>
@@ -31,19 +34,15 @@ export default function TopNavbar() {
               <li>
                 <NavLink
                   path="/signup"
-                  children={[
-                    <>Signup</>,
-                    <i className="fa-solid fa-user-plus"></i>,
-                  ]}
+                  domRender="Signup"
+                  icon={<i className="fa-solid fa-user-plus"></i>}
                 />
               </li>
               <li>
                 <NavLink
                   path="/login"
-                  children={[
-                    <>Login</>,
-                    <i className="fa-solid fa-arrow-right-to-bracket"></i>,
-                  ]}
+                  domRender="Login"
+                  icon={<i className="fa-solid fa-arrow-right-to-bracket"></i>}
                 />
               </li>
             </>
@@ -52,7 +51,8 @@ export default function TopNavbar() {
             <li>
               <NavLink
                 path="/admin-console"
-                children={[<>Admin</>, <i className="fa-brands fa-adn"></i>]}
+                domRender="Admin"
+                icon={<i className="fa-brands fa-adn"></i>}
               />
             </li>
           )}
@@ -61,10 +61,8 @@ export default function TopNavbar() {
               <li>
                 <NavLink
                   path="/account"
-                  children={[
-                    <>Account</>,
-                    <i className="fa-solid fa-user-shield"></i>,
-                  ]}
+                  domRender="Account"
+                  icon={<i className="fa-solid fa-user-shield"></i>}
                 />
               </li>
               <li>
@@ -76,73 +74,57 @@ export default function TopNavbar() {
               <li>
                 <NavLink
                   path="/map"
-                  children={[
-                    <>Map</>,
-                    <i className="fa-solid fa-earth-europe"></i>,
-                  ]}
+                  domRender="Map"
+                  icon={<i className="fa-solid fa-earth-europe"></i>}
                 />
               </li>
               <li>
                 <NavLink
                   path="/character"
-                  children={[
-                    <>Character</>,
-                    <i className="fa-solid fa-person"></i>,
-                  ]}
+                  domRender="Character"
+                  icon={<i className="fa-solid fa-person"></i>}
                 />
               </li>
               <li>
                 <NavLink
                   path="/safehouses"
-                  children={[
-                    <>Safehouses</>,
-                    <i className="fa-solid fa-house-flag"></i>,
-                  ]}
+                  domRender="Safehouses"
+                  icon={<i className="fa-solid fa-house-flag"></i>}
                 />
               </li>
               <li>
                 <NavLink
                   path="/rackets"
-                  children={[
-                    <>Rackets</>,
-                    <i className="fa-solid fa-warehouse"></i>,
-                  ]}
+                  domRender="Rackets"
+                  icon={<i className="fa-solid fa-warehouse"></i>}
                 />
               </li>
               <li>
                 <NavLink
                   path="/family"
-                  children={[
-                    <>Family</>,
-                    <i className="fa-solid fa-users"></i>,
-                  ]}
+                  domRender="Family"
+                  icon={<i className="fa-solid fa-users"></i>}
                 />
               </li>
               <li>
                 <NavLink
                   path="/politics"
-                  children={[
-                    <>Politics</>,
-                    <i className="fa-solid fa-user-tag"></i>,
-                  ]}
+                  domRender="Politics"
+                  icon={<i className="fa-solid fa-user-tag"></i>}
                 />
               </li>
               <li>
                 <NavLink
                   path="/trading"
-                  children={[
-                    <>Trading</>,
-                    <i className="fa-solid fa-money-bill-trend-up"></i>,
-                  ]}
+                  domRender="Trading"
+                  icon={<i className="fa-solid fa-money-bill-trend-up"></i>}
                 />
               </li>
               <li>
                 <NavLink
                   path="/intelligence"
-                  children={[
-                    <>Intelligence</>,
-                    <i className="fa-solid fa-brain"></i>,
-                  ]}
+                  domRender="Intelligence"
+                  icon={<i className="fa-solid fa-brain"></i>}
                 />
               </li>
             </>
@@ -153,19 +135,17 @@ export default function TopNavbar() {
           <li>
             <NavLink
               path="/team"
-              children={[
-                <>Our Team</>,
-                <i className="fa-solid fa-people-group"></i>,
-              ]}
+              domRender="Our Team"
+              icon={<i className="fa-solid fa-people-group"></i>}
             />
           </li>
           <li>
             <NavLink
               path="/rules"
-              children={[<>Rules</>, <i className="fa-solid fa-book"></i>]}
+              domRender="Rules"
+              icon={<i className="fa-solid fa-book"></i>}
             />
           </li>
-          <li className="w-26 mx-auto"></li>
         </ul>
       )}
       <button
