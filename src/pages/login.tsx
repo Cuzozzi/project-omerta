@@ -28,7 +28,7 @@ function Login() {
   return (
     <div
       className={`hero ${user && "main-window"} ${
-        !user && "main-window-2"
+        !user && "main-window"
       } bg-base-300`}
     >
       <div className="hero-content justify-center flex-col lg:flex-row-reverse">

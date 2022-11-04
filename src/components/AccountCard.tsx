@@ -1,4 +1,3 @@
-import React, { useRef } from "react";
 import { useState } from "react";
 
 export interface Message {

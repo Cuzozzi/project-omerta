@@ -2,21 +2,21 @@ import { NavLink } from "react-router-dom";
 
 interface NavProps {
   path: string;
-  domRender: string;
   thisWillBeUnsued?: number;
   end?: boolean;
+  children?: String | JSX.Element | JSX.Element[];
 }
 
-function Link({ path, domRender, end }: NavProps) {
+function Link({ path, end, children }: NavProps) {
   return (
     <NavLink
       to={path}
       className={({ isActive }) =>
-        `${isActive ? "btn-primary" : "btn-ghost"} btn normal-case text-xl `
+        `${isActive ? "btn-primary" : "btn-ghost"} btn bold`
       }
       end={end}
     >
-      {domRender}
+      {children}
     </NavLink>
   );
 }

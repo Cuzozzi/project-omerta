@@ -10,13 +10,13 @@ function Team() {
     <div>
       <main
         className={`desktop p-4 bg-base-300 ${
-          auth ? "main-window" : "main-window-2"
+          auth ? "main-window" : "main-window"
         }`}
       >
         <div
           className={`h-full w-full p-5 inline-flex flex-col md:flex-row ${
             !auth && "justify-center"
-          } content-between bg-base-300`}
+          } content-between bg-base-300 my-auto`}
         >
           {team.map((i, index) => (
             <ContentCard {...i} key={index} />

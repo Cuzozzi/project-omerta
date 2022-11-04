@@ -9,14 +9,14 @@ function Home() {
   return (
     <div>
       <main
-        className={`desktop p-4 bg-base-300 ${
-          auth ? "main-window" : "main-window-2"
+        className={`desktop p-2 bg-base-300 ${
+          auth ? "main-window" : "main-window"
         }`}
       >
         <div
           className={`h-full w-full p-5 inline-flex flex-col md:flex-row ${
             !auth && "justify-center"
-          } content-between bg-base-300 rounded`}
+          } content-between bg-base-300 rounded my-auto`}
         >
           {home.map((i, index) => (
             <ContentCard {...i} key={index} />
