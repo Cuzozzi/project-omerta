@@ -13,7 +13,8 @@ export async function AllUsers(offset: number) {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     });
-    if (response.data === 0) {
+    if (response.data <= 0) {
+      console.log("running twice");
       const response = await axios({
         method: "put",
         url: `${process.env.REACT_APP_SERVER_PORT}/admin/console/user`,
