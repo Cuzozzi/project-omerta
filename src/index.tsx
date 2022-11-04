@@ -11,7 +11,13 @@ root.render(
   <React.StrictMode>
     <RecoilRoot>
       <QueryClientProvider client={queryClient}>
-        <React.Suspense fallback="loading... bitch">
+        <React.Suspense
+          fallback={
+            <div className="main-window flex flex-col justify-center items-center bg-slate-700">
+              <p className="text-5xl">Loading...</p>
+            </div>
+          }
+        >
           <App />
         </React.Suspense>
       </QueryClientProvider>
